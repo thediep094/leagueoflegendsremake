@@ -1,0 +1,10 @@
+.button {
+  width: 192px;
+  height: 66px;
+  overflow: hidden;
+  position: relative;
+}
+
+.button canvas {
+  transition: all 0.3s ease-in-out;
+}

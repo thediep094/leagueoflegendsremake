@@ -1,7 +1,12 @@
 import React from "react";
+import Button from "../components/button/Button";
 
 function Footer() {
-  return <div>Footer</div>;
+  return (
+    <div>
+      <Button />
+    </div>
+  );
 }
 
 export default Footer;

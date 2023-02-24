@@ -8,6 +8,7 @@
   align-items: center;
   padding: 0 16px;
   justify-content: space-between;
+  position: fixed;
   @include responsive(MD) {
     padding: 0 36px;
     justify-content: unset;
@@ -147,16 +148,17 @@
   }
 
   .header__menu-drawer-content {
-    transform: translateX(100%);
     transition: all 0.3s ease-in-out;
     position: absolute;
     width: 100vw;
     height: 100vh;
-    left: 0;
+    left: 100%;
     top: 0;
     background: #1f1f1f;
+    visibility: hidden;
     &.is-active {
-      transform: translateX(0%);
+      left: 0;
+      visibility: visible;
     }
   }
 
