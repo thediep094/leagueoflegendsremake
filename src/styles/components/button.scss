@@ -1,10 +1,60 @@
 .button {
+  position: relative;
   width: 192px;
   height: 66px;
-  overflow: hidden;
-  position: relative;
-}
-
-.button canvas {
-  transition: all 0.3s ease-in-out;
+  margin-top: 100px;
+  margin-left: 20px;
+  cursor: pointer;
+  .button-content {
+    width: 192px;
+    height: 66px;
+    background-color: rgb(11, 198, 227);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body-family);
+    color: rgb(1, 1, 1);
+    font-size: 13px;
+    letter-spacing: 0.15em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: 0.5s ease;
+    cursor: pointer;
+    clip-path: polygon(
+      calc(15px) 0,
+      100% 0,
+      100% calc(100% - 15px),
+      calc(100% - 15px) 100%,
+      0 100%,
+      0 15px
+    );
+  }
+  &:hover {
+    .button-content {
+      transition: all 0.3s ease-in-out;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+    }
+    &::after {
+      transition: all 0.3s ease-in-out;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+    }
+  }
+  &::after {
+    transition: all 0.3s ease-in-out;
+    content: "";
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    bottom: -4px;
+    right: -4px;
+    border: 1px solid #7e7e7e;
+    clip-path: polygon(
+      calc(20px) 0,
+      100% 0,
+      100% calc(100% - 20px),
+      calc(100% - 20px) 100%,
+      0 100%,
+      0 20px
+    );
+  }
 }
