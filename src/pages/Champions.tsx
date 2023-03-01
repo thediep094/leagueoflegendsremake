@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IChampionInformation, IChampions } from "../types/champion";
+import ChampionItem from "../sections/champions/ChampionItem";
 
 function Champions() {
   const [champions, setChampions] = useState<IChampionInformation[]>([]);
@@ -16,19 +17,18 @@ function Champions() {
     };
     fetchData();
   }, []);
-  console.log(champions);
+
   return (
     <div className="champions">
-      {champions
-        ? champions.map((item: IChampionInformation) => {
-            return (
-              <img
-                src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${item.id}_0.jpg`}
-                alt=""
-              />
-            );
-          })
-        : null}
+      <div className="container">
+        <div className="row">
+          {champions
+            ? champions.map((item: IChampionInformation) => {
+                return <ChampionItem data={item} />;
+              })
+            : null}
+        </div>
+      </div>
     </div>
   );
 }

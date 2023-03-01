@@ -3,7 +3,7 @@ import Button from "../components/button/Button";
 import { Link } from "react-router-dom";
 import { footerVideo } from "../data/video";
 import "../styles/Footer.scss";
-import { match } from "assert";
+
 function Footer() {
   return (
     <div className="footer">
