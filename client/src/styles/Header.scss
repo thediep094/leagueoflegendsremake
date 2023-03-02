@@ -10,7 +10,7 @@
   padding: 0 16px;
   justify-content: space-between;
   position: fixed;
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 992px) {
     padding: 0 36px;
     justify-content: unset;
   }
@@ -31,7 +31,7 @@
     display: flex;
     flex-direction: row;
     width: fit-content;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 992px) {
       padding: 0 22px;
       width: calc(70%);
     }
@@ -77,7 +77,7 @@
     }
     &.desktop {
       display: none;
-      @media screen and (min-width: 768px) {
+      @media screen and (min-width: 992px) {
         display: flex;
       }
     }
@@ -115,7 +115,7 @@
 
   .header__account {
     display: none;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 992px) {
       width: calc(100% - 70% - 95px);
       display: flex;
       justify-content: flex-end;
@@ -124,14 +124,14 @@
 
   .header__menu-logo-desktop {
     display: none;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 992px) {
       display: block;
     }
   }
 
   .header__menu-logo-mobile {
     display: block;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 992px) {
       display: none;
     }
   }
@@ -139,7 +139,7 @@
   .header__menu-drawer-btn {
     background-color: transparent;
     border-color: transparent;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 992px) {
       display: none;
     }
   }

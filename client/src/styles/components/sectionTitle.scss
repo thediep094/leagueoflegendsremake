@@ -12,7 +12,7 @@
     text-transform: uppercase;
     font-style: italic;
     font-size: 16px;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 992px) {
       font-size: 24px;
     }
   }
@@ -25,7 +25,7 @@
     padding: 0 0 10px;
     font-size: 40px;
     font-style: italic;
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 992px) {
       font-size: 111px;
     }
   }
@@ -39,7 +39,7 @@
     animation: 1000ms cubic-bezier(0.215, 0.61, 0.355, 1) 400ms 1 normal both
       running lbWRkT;
     font-size: 12px;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 992px) {
       padding: 0 10%;
     }
   }
