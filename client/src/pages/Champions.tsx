@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { IChampionInformation, IChampions } from "../types/champion";
 import ChampionItem from "../sections/champions/ChampionItem";
-
+import Header from "../sections/Header";
+import Footer from "../sections/Footer";
+import "../styles/pages/Champions.scss";
 function Champions() {
   const [champions, setChampions] = useState<IChampionInformation[]>([]);
   const championUrl = `https://ddragon.leagueoflegends.com/cdn/12.5.1/data/en_US/champion.json`;
@@ -20,8 +22,9 @@ function Champions() {
 
   return (
     <div className="champions">
-      <div className="container">
-        <div className="row">
+      <Header />
+      <div className="container ">
+        <div className="row champions__wrapper">
           {champions
             ? champions.map((item: IChampionInformation) => {
                 return <ChampionItem data={item} />;
@@ -29,6 +32,7 @@ function Champions() {
             : null}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

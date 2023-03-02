@@ -1,4 +1,3 @@
-@import "base.scss";
 .header {
   width: 100%;
   height: 78px;
@@ -10,7 +9,7 @@
   padding: 0 16px;
   justify-content: space-between;
   position: fixed;
-  @include responsive(MD) {
+  @media screen and (max-width: 768px) {
     padding: 0 36px;
     justify-content: unset;
   }
@@ -31,7 +30,7 @@
     display: flex;
     flex-direction: row;
     width: fit-content;
-    @include responsive(MD) {
+    @media screen and (max-width: 768px) {
       padding: 0 22px;
       width: calc(70%);
     }
@@ -77,7 +76,7 @@
     }
     &.desktop {
       display: none;
-      @include responsive(MD) {
+      @media screen and (max-width: 768px) {
         display: flex;
       }
     }
@@ -115,7 +114,7 @@
 
   .header__account {
     display: none;
-    @include responsive(MD) {
+    @media screen and (max-width: 768px) {
       width: calc(100% - 70% - 95px);
       display: flex;
       justify-content: flex-end;
@@ -124,14 +123,14 @@
 
   .header__menu-logo-desktop {
     display: none;
-    @include responsive(MD) {
+    @media screen and (max-width: 768px) {
       display: block;
     }
   }
 
   .header__menu-logo-mobile {
     display: block;
-    @include responsive(MD) {
+    @media screen and (max-width: 768px) {
       display: none;
     }
   }
@@ -139,7 +138,7 @@
   .header__menu-drawer-btn {
     background-color: transparent;
     border-color: transparent;
-    @include responsive(MD) {
+    @media screen and (max-width: 768px) {
       display: none;
     }
   }

@@ -12,7 +12,9 @@ const ChampionItem = (data: TProp): any => {
           src={`http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${data.data.id}_0.jpg`}
           alt=""
         />
-        <div className="championItem__name">{data.data.name}</div>
+        <div className="championItem__name">
+          <span>{data.data.name}</span>
+        </div>
       </div>
     </div>
   );
