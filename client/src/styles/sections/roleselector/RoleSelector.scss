@@ -1,0 +1,48 @@
+.role-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-top: 1rem;
+
+    &__header {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+    }
+
+    &__roles {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        &__role {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.2s ease;
+
+            &.selected {
+                background-color: #e6e6e6;
+            }
+
+            &:hover {
+                background-color: #f2f2f2;
+            }
+
+            &__role-icon {
+                width: 64px;
+                height: 64px;
+                margin-bottom: 0.5rem;
+            }
+
+            &__role-name {
+                text-align: center;
+            }
+        }
+    }
+}

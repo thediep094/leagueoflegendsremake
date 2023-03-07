@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from "react";
 import Header from "../sections/Header";
 import Footer from "../sections/Footer";
-
+import FeaturedNews from "../sections/news/featured-news";
 function Homepage() {
   useEffect(() => {
     const fetchData = async () => {
@@ -17,6 +17,7 @@ function Homepage() {
     <div className="Homepage">
       <Header />
       <Fragment>Home page</Fragment>
+      <FeaturedNews/>
       <Footer />
     </div>
   );

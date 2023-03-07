@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Button from "../components/button/Button";
 import "../styles/Header.scss";
 import "../styles/base.scss";
+import { headerVideo } from "../data/video";
 function Header() {
   const [openMenu, setOpenMenu] = useState<Boolean>(false);
 
   return (
+    <div className="Header">
     <div className="header">
       <div className="header__logo">
         <svg
@@ -293,7 +296,32 @@ function Header() {
           </div>
         </div>
       </div>
+      
     </div>
+    {/* <div className="header__video__background">
+    <div className="header__video_background-wrapper">
+      <video
+        src={headerVideo[Math.floor(Math.random() * headerVideo.length)]}
+        autoPlay
+        muted
+        loop
+      ></video>
+    </div>
+  </div> */}
+  <div className="header__video">
+    <div className="header__video-wrapper">
+      <video
+        src={headerVideo[Math.floor(Math.random() * headerVideo.length)]}
+        autoPlay
+        muted
+        loop
+      ></video>
+      <div className="header__btn">
+        <Button name={"Play for free"} />
+      </div>
+    </div>
+  </div>
+  </div>
   );
 }
 
