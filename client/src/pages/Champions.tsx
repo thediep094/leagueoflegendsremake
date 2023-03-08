@@ -4,7 +4,7 @@ import ChampionItem from "../sections/champions/ChampionItem";
 import Header from "../sections/Header";
 import Footer from "../sections/Footer";
 import "../styles/pages/Champions.scss";
-import SectionTitle from "../components/section-title/SectionTitle";
+import SectionTitle from "../components/section-title/sectionTitle";
 import { Swiper, SwiperSlide } from "swiper/react";
 // import required modules
 import { Pagination } from "swiper";
