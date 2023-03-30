@@ -19,6 +19,7 @@ const ShopBanner = () => {
             <div className="shopBanner__content-button">
               <ButtonShop name="Shop now" />
             </div>
+            {/* <canvas width={480} height={164}></canvas> */}
           </div>
         </div>
       </div>
