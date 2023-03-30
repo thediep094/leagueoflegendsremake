@@ -62,6 +62,9 @@ function Header() {
         <div className="header__menu-link desktop">
           <Link to={"/chat"}>Chat globals</Link>
         </div>
+        <div className="header__menu-link desktop">
+          <Link to={"/shop"}>Shop</Link>
+        </div>
       </div>
       <div className="header__account">
         <Link to={"/login"} className="header__account-login">
@@ -206,6 +209,9 @@ function Header() {
             </div>
             <div className="menu-drawer__link">
               <Link to={"/chat"}>Chat globals</Link>
+            </div>
+            <div className="menu-drawer__link">
+              <Link to={"/shop"}>Shop</Link>
             </div>
           </div>
 

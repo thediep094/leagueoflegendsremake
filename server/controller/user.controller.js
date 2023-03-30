@@ -16,6 +16,24 @@ const UserController = {
       });
     }
   },
+
+  read: async (req, res) => {
+    try {
+      const user = await User.find({
+        username: req.params.username,
+      });
+
+      return res.status(200).json({
+        success: true,
+        data: user,
+      });
+    } catch (error) {
+      return res.status(404).json({
+        message: "Server error",
+        error: error,
+      });
+    }
+  },
 };
 
 module.exports = UserController;
