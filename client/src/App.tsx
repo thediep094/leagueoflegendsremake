@@ -5,6 +5,7 @@ import Champions from "./pages/Champions";
 import Search from "./pages/Search";
 import UserInformation from "./pages/User";
 import Shop from "./pages/Shop";
+import Product from "./pages/Product";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/user/:username" element={<UserInformation />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/product/:id" element={<Product />} />
         </Routes>
       </BrowserRouter>
     </div>
