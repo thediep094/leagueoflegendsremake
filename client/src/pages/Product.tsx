@@ -1,9 +1,16 @@
-import React from "react";
-import "../styles/pages/Product.scss";
+import React, { useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { EffectFade, Navigation, Pagination, Thumbs } from "swiper";
+import "swiper/swiper.min.css";
 import Header from "../sections/Header";
 import Footer from "../sections/Footer";
 import ButtonShop from "../components/button/ButtonShop";
+import "../styles/pages/Product.scss";
+
+SwiperCore.use([Navigation, Thumbs]);
 const Product = () => {
+  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
+  const [openDescription, setOpenDescription] = useState(false);
   const testData = {
     id: 2,
     img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt580be0785b3cde05/6410e53d7af6422f7a249cfd/2023_SG_Ecomm_Ahri_Front_Shot_Thumb_1.png",
@@ -57,7 +64,52 @@ const Product = () => {
     <div className="product">
       <Header />
       <div className="product-wrapper">
-        <div className="product-wrapper__img"></div>
+        <div className="product-wrapper__img">
+          <div className="product-wrappper__img-swiper">
+            <Swiper
+              onSwiper={setThumbsSwiper}
+              slidesPerView={1}
+              freeMode={true}
+              watchSlidesProgress={true}
+              className="product-wrapper__img-thumbs"
+            >
+              {testData.thumbnail_image.map((item, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <img src={item.img} alt="" />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+            <Swiper
+              spaceBetween={10}
+              slidesPerView={1}
+              navigation
+              modules={[EffectFade, Pagination]}
+              effect="fade"
+              pagination={{ clickable: true }}
+              thumbs={{ swiper: thumbsSwiper }}
+              className="product-wrapper__img-main"
+            >
+              {testData.thumbnail_image.map((item, index) => {
+                return (
+                  <SwiperSlide key={index}>
+                    <img src={item.img} alt="" />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
+          <div className="product-wrapper__img-more">
+            {testData.images.map((item, index) => {
+              return (
+                <div className="product-wrapper__img-more-item">
+                  <img src={item.img} alt="" />
+                </div>
+              );
+            })}
+          </div>
+        </div>
         <div className="product-wrapper__info">
           <div className="shape-top"></div>
           <div className="product-wrapper__info-tags">
@@ -94,11 +146,24 @@ const Product = () => {
           </div>
 
           <div className="product-wrapper__info-description">
-            <div className="product-wrapper__info-description-heading">
+            <div
+              className="product-wrapper__info-description-heading"
+              onClick={() => setOpenDescription(!openDescription)}
+            >
               Description
+              <div
+                className={`product-wrapper__info-description-svg ${
+                  openDescription ? "active" : ""
+                }`}
+              >
+                <span></span>
+                <span></span>
+              </div>
             </div>
             <div
-              className="product-wrapper__info-description-content"
+              className={`product-wrapper__info-description-content ${
+                openDescription ? "active" : ""
+              }`}
               dangerouslySetInnerHTML={{ __html: testData.description }}
             ></div>
           </div>
