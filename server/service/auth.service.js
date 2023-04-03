@@ -33,3 +33,5 @@ const deleteTokenDB = async (user) => {
         await token.delete();
     }
 };
+
+module.exports = { spawnToken, deleteTokenDB };
