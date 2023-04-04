@@ -1,0 +1,75 @@
+.gaming-login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    background-image: url(https://i.pinimg.com/564x/79/b8/96/79b896faeb1513796709d0af33fd9be5.jpg);
+
+    .title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+
+        label {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            height: 40px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+
+            &:focus {
+                outline: none;
+                border-color: #007bff;
+            }
+        }
+
+        .error-message {
+            margin-top: 5px;
+            color: red;
+            font-size: 14px;
+        }
+
+        &.checkbox {
+            display: flex;
+            align-items: center;
+
+            label {
+                display: flex;
+                align-items: center;
+
+                input[type="checkbox"] {
+                    margin-right: 10px;
+                }
+
+                span {
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .btn-login {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+}

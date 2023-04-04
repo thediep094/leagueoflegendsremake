@@ -1,0 +1,126 @@
+.cart {
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    padding: 1rem;
+    width: 300px;
+
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        button {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #008cba;
+            border: none;
+            border-radius: 4px;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+    }
+
+    &-shipping {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 1rem;
+
+        span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        div {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+
+            input[type="radio"] {
+                margin-right: 0.25rem;
+            }
+
+            label {
+                font-size: 0.875rem;
+                font-weight: 400;
+            }
+        }
+    }
+
+    &-total {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.5rem;
+
+        span {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        strong {
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    }
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+
+    &-image {
+        width: 3rem;
+        height: 3rem;
+        margin-right: 1rem;
+
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+    }
+
+    &-details {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+
+        h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        p {
+            font-size: 0.875rem;
+            font-weight: 400;
+            margin: 0;
+        }
+    }
+
+    &-price {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    &-remove {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ff4136;
+        margin-left: 1rem;
+        cursor: pointer;
+    }
+}
