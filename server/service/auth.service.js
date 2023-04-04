@@ -62,9 +62,19 @@ const refresh = async (refreshToken) => {
 };
 
 const deleteTokenDB = async (user) => {
-    const token = await Token.findById(user._id);
-    if (token) {
-        await token.delete();
+    try {
+        const token = await Token.find({ userID: user._id });
+        console.log("đã tìm thấy: " + token.length);
+        if (token.length > 0) {
+            // console.log(token[0].userID);
+            await Token.deleteMany({ userID: token[0].userID });
+        }
+        return token.length;
+    } catch (error) {
+        return res.status(500).json({
+            message: "Server error",
+            error: error,
+        });
     }
 };
 
