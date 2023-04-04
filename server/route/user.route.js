@@ -4,5 +4,5 @@ const userController = require("../controller/user.controller");
 const userMiddleware = require("../middleware/user.middleware");
 
 userRouter.post("/", userMiddleware.checkRequire, userController.create);
-userRouter.get("/:id", userController.getUser);
+userRouter.get("/:id", userController.getUserByID);
 module.exports = userRouter;

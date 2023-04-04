@@ -27,6 +27,40 @@ const spawnToken = async (user) => {
     return token;
 };
 
+const refresh = async (refreshToken) => {
+    const checkDB = await Token.findOne({ token: refreshToken });
+    let returnData = {};
+    try {
+        const payload = jwt.verify(
+            refreshToken,
+            process.env.SECRET_KEY_REFRESH,
+        );
+        const user = await User.findOne({ _id: payload._id });
+        const token = await spawnToken(user);
+        checkDB.token = token.refreshToken;
+        await checkDB.save();
+        returnData = {
+            data: token,
+            // access_token: token.accessToken,
+            // expriseAt: token.expriseAt,
+        };
+        return returnData;
+    } catch (error) {
+        if (error.name === "TokenExpiredError") {
+            await checkDB.delete();
+            returnData = {
+                message: "Refresh token hết hạn",
+                error: error,
+            };
+            return returnData;
+        }
+        return (returnData = {
+            message: "Refresh Token không hợp lệ",
+            error: error,
+        });
+    }
+};
+
 const deleteTokenDB = async (user) => {
     const token = await Token.findById(user._id);
     if (token) {
@@ -34,4 +68,4 @@ const deleteTokenDB = async (user) => {
     }
 };
 
-module.exports = { spawnToken, deleteTokenDB };
+module.exports = { spawnToken, deleteTokenDB, refresh };
