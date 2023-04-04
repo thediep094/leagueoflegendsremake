@@ -8,7 +8,7 @@ const ButtonShop = (prop: TProp): any => {
   return (
     <div className="buttonShop">
       <div className="button-content">
-        / <span>{prop.name}</span>
+        <span>{prop.name}</span>
       </div>
     </div>
   );

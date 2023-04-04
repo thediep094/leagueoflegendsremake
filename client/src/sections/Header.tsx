@@ -70,8 +70,8 @@ function Header() {
         <Link to={"/login"} className="header__account-login">
           Login
         </Link>
-        <Link to={"/playnow"} className="header__account-playnow">
-          Play now
+        <Link to={"/cart"} className="header__account-playnow">
+          Cart
         </Link>
       </div>
       <div className="header__menu-drawer">
@@ -220,7 +220,7 @@ function Header() {
               <Link to={"/login"}>Login</Link>
             </div>
             <div className="menu-drawer__account-playnow">
-              <Link to={"/playnow"}>Play now</Link>
+              <Link to={"/cart"}>Cart</Link>
             </div>
           </div>
         </div>

@@ -81,9 +81,14 @@ const FeaturedProducts = () => {
         <div className="row">
           {testData.map((item, index) => {
             return (
-              <div className="col-12 col-lg-3">
+              <div
+                className="col-12 col-lg-3"
+                style={{
+                  marginBottom: "10px",
+                }}
+              >
                 <a href={`/product/${item.id}`}>
-                  <ProductItem data={item as IProduct} key={index} />;
+                  <ProductItem data={item as IProduct} key={index} />
                 </a>
               </div>
             );
