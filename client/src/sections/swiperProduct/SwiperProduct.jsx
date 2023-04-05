@@ -11,7 +11,7 @@ const SwiperProduct = () => {
     if (swiperRef.current) {
       swiper = new Swiper(swiperRef.current, {
         // Add your options here
-        slidesPerView: 3,
+        slidesPerView: 1,
         spaceBetween: 30,
         loop: true,
         autoplay: {
