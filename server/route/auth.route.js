@@ -13,12 +13,13 @@ authRouter.post(
 authRouter.post(
     "/logout",
     authMiddleware.checkRequired,
-    authMiddleware.verifiyToken,
+    authMiddleware.verifiyRFToken,
     authController.logout,
 );
 authRouter.post(
     "/refresh-token",
     authMiddleware.checkRequired,
+    // authMiddleware.verifiyRFToken,
     authController.refreshToken,
 );
 
