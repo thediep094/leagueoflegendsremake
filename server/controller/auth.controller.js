@@ -31,7 +31,7 @@ const AuthController = {
             return res.status(200).json({
                 message: "Đăng nhập thành công",
                 username: checkUser.username,
-                userId: checkUser._id,
+                // userId: checkUser._id,
                 token: token,
             });
         } catch (error) {
@@ -58,7 +58,7 @@ const AuthController = {
             });
         } catch (error) {
             return res.status(500).json({
-                message: "Server error",
+                message: "Server error - loi o logout",
                 error: error,
             });
         }
