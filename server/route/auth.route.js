@@ -13,7 +13,7 @@ authRouter.post(
 authRouter.post(
     "/logout",
     authMiddleware.checkRequired,
-    authMiddleware.verifiyRFToken,
+    authMiddleware.verifiyToken,
     authController.logout,
 );
 authRouter.post(
