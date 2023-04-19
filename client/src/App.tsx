@@ -8,6 +8,7 @@ import Shop from "./pages/Shop";
 import Product from "./pages/Product";
 import CartPage from "./pages/CartPage";
 import SignIn from "./pages/SignIn";
+import ChampionView from "./pages/ChampionView";
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<SignIn />} />
+          <Route
+            path="/champions/championview/:name"
+            element={<ChampionView />}
+          />
         </Routes>
       </BrowserRouter>
     </div>
