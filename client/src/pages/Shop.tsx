@@ -11,7 +11,7 @@ const Shop = () => {
       <Header />
       <ShopBanner />
       <FeaturedProducts />
-      <SwiperProduct />
+      {/* <SwiperProduct /> */}
       <Footer />
     </div>
   );
