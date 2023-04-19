@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../store/apiCall";
 import Header from "../sections/Header";
 import Footer from "../sections/Footer";
+import SocialLoginButtons from "../components/sociallogin/SocialLoginButtons";
 const SignIn = () => {
   const [user, setUser] = useState({
     username: "",
@@ -52,6 +53,13 @@ const SignIn = () => {
                 }}
               />
             </div>
+            <label>
+              <input
+                type="checkbox"
+              />
+              Lưu mật khẩu
+            </label>
+            <SocialLoginButtons />
           </form>
           <div className="signIn__login" onClick={() => handleLogin()}>
             Login
