@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Champions from "./pages/Champions";
@@ -9,15 +9,18 @@ import Product from "./pages/Product";
 import CartPage from "./pages/CartPage";
 import SignIn from "./pages/SignIn";
 import ChampionView from "./pages/ChampionView";
+import ScrollToTop from "./helpers/scrollToTop";
+import News from "./pages/News";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route index path="/" element={<Homepage />} />
           <Route path="/champions" element={<Champions />} />
-          <Route path="/news" element={<div>News</div>} />
+          <Route path="/news" element={<News />} />
           <Route path="/search" element={<Search />} />
           <Route path="/user/:username" element={<UserInformation />} />
           <Route path="/shop" element={<Shop />} />

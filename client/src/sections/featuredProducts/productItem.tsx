@@ -14,6 +14,7 @@ const ProductItem = (data: TProp) => {
             return (
               <div
                 className="productItem__tag"
+                key={index}
                 style={{
                   backgroundColor: `${item.background}`,
                   color: `${item.color}`,

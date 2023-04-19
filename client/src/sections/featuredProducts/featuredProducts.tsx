@@ -83,6 +83,7 @@ const FeaturedProducts = () => {
             return (
               <div
                 className="col-12 col-lg-3"
+                key={index}
                 style={{
                   marginBottom: "10px",
                 }}

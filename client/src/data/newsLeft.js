@@ -1,0 +1,42 @@
+export var newsLeft = [
+    {
+        "id": 1,
+        "type":"GAME UPDATES",
+        "title": "PROJECT Abyssia | Little Legend Showcase - TFT",
+        "description":"Hack your way through servers, foes, and leaderboards with PROJECT Abyssia starting February 15th.",
+        "time":"2 days ago",
+        "img" : "https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt491b8e1f3ab4e341/620db1d89c50e50a64ea8517/22122_TFTMID622HKVideo_Banner.jpg",
+    },
+    {
+        "id": 2,
+        "type":"COMMUNITY",
+        "title": "Neon Nights Social Profile Augment Kits",
+        "description":"Augment your social media presence with these Neon Nights themed kits.",
+        "time":"5 days ago",
+        "img" : "https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blta57a574e5d4f88f9/620fe1457fb50b72a9cb4823/21822_TFTSocialKit_Banner_v2.jpg.jpg",
+    },
+    {
+        "id": 3,
+        "type":"COMMUNITY",
+        "title": "Activating the PROJECT Abyssia Stream Overlay",
+        "description":"Project Abyssia is hacking into streams around the world to guarantee victory—in style.",
+        "time":"Riot nova cat - 5 days ago",
+        "img" :"https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt2a2bde3a16722d51/620ab24555ec9c227628c8d5/tft-social-stream-overlay-banner.jpg",
+    },
+    {
+        "id": 4,
+        "type":"GAME UPDATES",
+        "title": "Renata Glasc Champion Spotlight",
+        "description":"Everyone has their price.",
+        "time":"6 days ago",
+        "img" :"https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blte3cd95b997c2b504/620c5b493ac90d22f4b73343/21722_RenataChampionSpotlight_Banner.jpg",
+    },
+    {
+        "id": 5,
+        "type":"DEV",
+        "title": "Champion Insights: Renata Glasct",
+        "description":"Gaslight. Gatekeep. Girlboss.",
+        "time":"Riot Cashmiir - 6 days ago",
+        "img" :"https://images.contentstack.io/v3/assets/blt731acb42bb3d1659/blt3b25fc89c2a9bdf8/620c3af600f003242ae110f9/2172022_RenataChampInsightsArticle_00_Header_WEB.jpg",
+    },
+]
