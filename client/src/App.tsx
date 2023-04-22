@@ -13,6 +13,7 @@ import ScrollToTop from "./helpers/scrollToTop";
 import News from "./pages/News";
 import Rank from "./pages/Rank";
 import TeamPage from "./pages/TeamPage";
+import Chat from "./pages/Chat";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/rank" element={<Rank />} />
+          <Route path="/chat" element={<Chat />} />
           {/* <Route path="/teampage" element={<TeamPage />} /> */}
           <Route
             path="/champions/championview/:name"
