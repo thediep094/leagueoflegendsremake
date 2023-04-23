@@ -2,6 +2,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const port = process.env.PORT;
 const router = require("./route/index");
@@ -16,7 +17,7 @@ const connectDB = async () => {
     }
 };
 connectDB();
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
 app.use("/api/v1", router);

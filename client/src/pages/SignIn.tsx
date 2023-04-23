@@ -53,13 +53,11 @@ const SignIn = () => {
                 }}
               />
             </div>
-            <label>
-              <input
-                type="checkbox"
-              />
+            {/* <label>
+              <input type="checkbox" />
               Lưu mật khẩu
-            </label>
-            <SocialLoginButtons />
+            </label> */}
+            {/* <SocialLoginButtons /> */}
           </form>
           <div className="signIn__login" onClick={() => handleLogin()}>
             Login

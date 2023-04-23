@@ -49,11 +49,14 @@
           text-align: center;
           input {
             width: 70%;
-            height: 20px;
-            padding: 20px 0;
+            height: 58px;
+            padding: 0 20px;
             margin: 10px 0;
             background-color: #ebebeb;
             border-radius: 5px;
+            border-color: none;
+            outline-color: #0bc4e2;
+            transition: all 0.3s ease-in-out;
           }
         }
       }
@@ -83,13 +86,17 @@
         cursor: pointer;
         display: flex;
         margin-top: 20px;
-        padding: 30px 30px;
+        padding: 15px 35px;
         border: 1px solid rgb(184, 183, 183, 0.5);
-        border-radius: 30%;
-        color: rgb(184, 183, 183, 0.5);
+        border-radius: 10px;
+        background-color: rgb(34, 211, 211);
+        color: white;
         transition: all 0.5s ease-in-out;
+        font-family: var(--font-footer-family);
+        font-weight: bold;
+        text-transform: uppercase;
         &:hover {
-          background-color: rgb(34, 211, 211);
+          background-color: rgba(34, 211, 211, 0.6);
           color: white;
         }
       }
@@ -107,6 +114,7 @@
           text-decoration: none;
           margin-top: 10px;
           color: rgb(129, 128, 128);
+          transition: all 0.3s ease-in-out;
           &:hover {
             color: black;
           }
@@ -136,7 +144,6 @@
       background-color: white;
       form {
         width: 100%;
-        height: 50%;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -155,8 +162,8 @@
           text-align: center;
           input {
             width: 50%;
-            height: 50px;
-            padding: 20px 0;
+            height: 58px;
+            padding: 0 20px;
             margin: 10px 0;
             background-color: #ebebeb;
             border-radius: 5px;
@@ -193,6 +200,9 @@
         border-radius: 30%;
         color: rgb(184, 183, 183, 0.5);
         transition: all 0.5s ease-in-out;
+        font-family: var(--font-footer-family);
+        font-weight: bold;
+        text-transform: uppercase;
         &:hover {
           background-color: #d13639;
           color: white;
