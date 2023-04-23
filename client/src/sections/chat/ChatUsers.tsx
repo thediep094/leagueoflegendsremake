@@ -109,9 +109,9 @@ const ChatUsers = () => {
         </div>
       </div>
       <div className="other-users">
-        {usersData?.map((item: any) => {
+        {usersData?.map((item: any, index: number) => {
           return (
-            <div className="chat-user">
+            <div className="chat-user" key={index}>
               <div className="chat-user__avatar">
                 <img src={item?.avatar} alt="" />
               </div>

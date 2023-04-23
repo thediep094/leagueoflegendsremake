@@ -2,12 +2,13 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const express = require("express");
+const http = require("http");
 const cors = require("cors");
+const { Server } = require("socket.io");
 const app = express();
 const port = process.env.PORT;
 const router = require("./route/index");
 const url = process.env.URL;
-
 const connectDB = async () => {
     try {
         await mongoose.connect(url);
@@ -17,6 +18,7 @@ const connectDB = async () => {
     }
 };
 connectDB();
+
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
@@ -25,6 +27,30 @@ app.get("/", (req, res) => {
     res.send("Hello World!?");
 });
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`App listening on http://localhost:${port}`);
+});
+
+const io = new Server(server, {
+    cors: {
+        origin: `http://localhost:3000`,
+        methods: ["GET", "POST"],
+    },
+});
+io.on("connection", (socket) => {
+    console.log(`User Connected: ${socket.id}`);
+
+    socket.on("join_room", (data) => {
+        socket.join(data);
+        console.log(`User with ID: ${socket.id} joined room: ${data}`);
+    });
+
+    socket.on("send_message", (data) => {
+        console.log(data);
+        socket.to(data.room).emit("receive_message", data);
+    });
+
+    socket.on("disconnect", () => {
+        console.log("User Disconnected", socket.id);
+    });
 });

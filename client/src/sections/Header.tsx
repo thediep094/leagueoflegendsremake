@@ -1,13 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.scss";
 import "../styles/base.scss";
 import Icons from "../components/icons/Icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { loginSuccess } from "../store/slice/accountSlice";
+import { getDataFromAccessToken } from "../store/apiCall";
 function Header() {
   const [openMenu, setOpenMenu] = useState<Boolean>(false);
   const user = useSelector((state: RootState) => state.account.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const userLocal = localStorage?.getItem("accessToken");
+
+    if (!user) {
+      if (userLocal) {
+        getDataFromAccessToken(dispatch, userLocal);
+      }
+    }
+  }, []);
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    window.location.reload();
+  };
   return (
     <div className="header">
       <div className="header__logo">
@@ -69,7 +85,11 @@ function Header() {
         </div>
       </div>
       <div className="header__account">
-        {user?.username ? null : (
+        {user?.username ? (
+          <div className="header__account-login" onClick={() => handleLogout()}>
+            Logout
+          </div>
+        ) : (
           <Link to={"/login"} className="header__account-login">
             Login
           </Link>
