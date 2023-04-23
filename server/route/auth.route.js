@@ -19,6 +19,7 @@ authRouter.post(
 authRouter.post(
     "/refresh-token",
     authMiddleware.checkRequired,
+    // authMiddleware.verifiyRFToken,
     authController.refreshToken,
 );
 

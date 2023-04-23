@@ -44,11 +44,12 @@ const AuthController = {
     logout: async (req, res) => {
         try {
             const userID = req.body.verify_id;
+            console.log(userID);
             const user = await User.findById(userID);
             const check = await deleteTokenDB(user);
             if (check > 0) {
                 // res.clearCookie("auth_token"); // assuming auth token was stored in a cookie
-                res.redirect("/");
+                // res.redirect("/");
                 return res.status(200).json({
                     message: "Đăng xuất thành công",
                 });
