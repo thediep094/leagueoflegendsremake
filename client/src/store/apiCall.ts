@@ -1,9 +1,10 @@
 import { loginStart, loginSuccess, loginFailure } from "./slice/accountSlice";
 import axios from "axios";
+import { API_LINK } from "../default-value";
 export const login = async (dispatch: any, user: any) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post(`http://127.0.0.1:8000/accounts/login`, {
+    const res = await axios.post(`${API_LINK}/auth/login`, {
       username: user.username,
       password: user.password,
     });
