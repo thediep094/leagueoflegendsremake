@@ -12,7 +12,8 @@ userRouter.post(
     userController.create,
 );
 userRouter.get(
-    "/:id",
+    // "/:id",
+    "/",
     authMiddleware.checkRequired,
     authMiddleware.verifiyToken,
     userController.getUserByID,
