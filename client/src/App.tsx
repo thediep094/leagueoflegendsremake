@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import io from "socket.io-client";
 import Homepage from "./pages/Homepage";
 import Champions from "./pages/Champions";
 import Search from "./pages/Search";
@@ -14,7 +15,7 @@ import News from "./pages/News";
 import Rank from "./pages/Rank";
 import TeamPage from "./pages/TeamPage";
 import Chat from "./pages/Chat";
-
+const socket = io("http://localhost:8000").connect();
 function App() {
   return (
     <div className="App">
@@ -31,7 +32,7 @@ function App() {
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/rank" element={<Rank />} />
-          <Route path="/chat" element={<Chat />} />
+          <Route path="/chat" element={<Chat socket={socket} />} />
           {/* <Route path="/teampage" element={<TeamPage />} /> */}
           <Route
             path="/champions/championview/:name"

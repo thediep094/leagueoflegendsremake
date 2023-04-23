@@ -1,90 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MainChatItem from "./MainChatItem";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
-const MainChat = () => {
-  const dataChats = [
-    {
-      type: "other-user",
-      name: "Zed",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "user",
-      name: "Main Lux",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "user",
-      name: "Main Lux",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "user",
-      name: "Main Lux",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "other-user",
-      name: "Zed",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "user",
-      name: "Main Lux",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "other-user",
-      name: "Zed",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "user",
-      name: "Main Lux",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "other-user",
-      name: "Zed",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-    {
-      type: "user",
-      name: "Main Lux",
-      comment: "Legend never die",
-      avatar:
-        "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    },
-  ];
+const MainChat = ({ socket }: any) => {
+  const user = useSelector((state: RootState) => state.account.user);
+  const [currentMessage, setCurrentMessage] = useState("");
+  const [messageList, setMessageList] = useState<any>([]);
+  const [room, setRoom] = useState("global");
+  useEffect(() => {
+    if (user && room !== "") {
+      socket.emit("join_room", room);
+    }
+  }, []);
+
+  const sendMessage = async () => {
+    if (currentMessage !== "") {
+      const messageData = {
+        room: room,
+        type: "user",
+        name: user?.ingame ? user?.ingame : "Anounymous",
+        comment: currentMessage,
+        avatar:
+          "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
+      };
+
+      const messageSendData = {
+        room: room,
+        type: "other-user",
+        name: user?.ingame ? user?.ingame : "Anounymous",
+        comment: currentMessage,
+        avatar:
+          "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
+      };
+
+      await socket.emit("send_message", messageSendData);
+      setMessageList((list: any) => [...list, messageData]);
+      setCurrentMessage("");
+    }
+  };
+
+  useEffect(() => {
+    socket.on("receive_message", (data: any) => {
+      setMessageList((list: any) => [...list, data]);
+    });
+  }, [socket]);
+
   return (
     <div className="main-chat">
       <div className="main-chat__items">
-        {dataChats?.map((item: any) => {
+        {messageList?.map((item: any) => {
           return <MainChatItem data={item} />;
         })}
       </div>
       <div className="main-chat__input">
         <div className="main-chat__input-text">COMMENT:</div>
-        <input type="text" className="main-chat__field" />
-        <button className="main-chat__button">
+        <input
+          type="text"
+          className="main-chat__field"
+          value={currentMessage}
+          onChange={(event) => {
+            setCurrentMessage(event.target.value);
+          }}
+          onKeyPress={(event) => {
+            event.key === "Enter" && sendMessage();
+          }}
+        />
+        <button className="main-chat__button" onClick={() => sendMessage()}>
           <svg
             width="19"
             height="20"

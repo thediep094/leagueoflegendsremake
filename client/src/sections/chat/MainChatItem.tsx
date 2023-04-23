@@ -6,6 +6,7 @@ const MainChatItem = ({ data }: any) => {
       className={`main-chat-item ${
         data.type === "user" ? "user" : "other-user"
       }`}
+      key={data.type}
     >
       <div className="main-chat-item__heading">
         <div className="main-chat-item__name">{data?.name}</div>

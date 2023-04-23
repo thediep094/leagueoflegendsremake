@@ -4,7 +4,7 @@ import Footer from "../sections/Footer";
 import "../styles/pages/Chat.scss";
 import MainChat from "../sections/chat/MainChat";
 import ChatUsers from "../sections/chat/ChatUsers";
-const Chat = () => {
+const Chat = ({ socket }: any) => {
   return (
     <div className="chat">
       <Header />
@@ -15,7 +15,7 @@ const Chat = () => {
           alt=""
         />
         <div className="chat-wrapper__main">
-          <MainChat />
+          <MainChat socket={socket} />
         </div>
         <div className="chat-wrapper__user">
           <ChatUsers />

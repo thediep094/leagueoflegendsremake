@@ -1,21 +1,32 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import "../styles/pages/signIn.scss";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { login } from "../store/apiCall";
 import Header from "../sections/Header";
 import Footer from "../sections/Footer";
 import SocialLoginButtons from "../components/sociallogin/SocialLoginButtons";
+import { RootState } from "../store/store";
 const SignIn = () => {
-  const [user, setUser] = useState({
+  const [userForm, setUserForm] = useState({
     username: "",
     password: "",
   });
+  const accessToken = localStorage.getItem("accessToken");
+  const user = useSelector((state: RootState) => state.account.user);
+  const navigator = useNavigate();
   const dispatch = useDispatch();
-
   const handleLogin = () => {
-    login(dispatch, { username: user.username, password: user.password });
+    login(dispatch, {
+      username: userForm.username,
+      password: userForm.password,
+    });
   };
+  useEffect(() => {
+    if (accessToken) {
+      navigator("/");
+    }
+  }, [accessToken]);
   return (
     <Fragment>
       <Header />
@@ -36,8 +47,8 @@ const SignIn = () => {
                 type="text"
                 placeholder="Username"
                 onChange={(e) => {
-                  setUser({
-                    ...user,
+                  setUserForm({
+                    ...userForm,
                     ["username"]: e.target.value,
                   });
                 }}
@@ -46,8 +57,8 @@ const SignIn = () => {
                 type="password"
                 placeholder="Password"
                 onChange={(e) => {
-                  setUser({
-                    ...user,
+                  setUserForm({
+                    ...userForm,
                     ["password"]: e.target.value,
                   });
                 }}
