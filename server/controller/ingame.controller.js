@@ -6,6 +6,11 @@ const InGameController = {
     getIngameBySummonerName: async (req, res) => {
         try {
             const { summonerName } = req.query;
+            if (!summonerName) {
+                return res.status(404).json({
+                    message: "Ingame không tồn tại",
+                });
+            }
             const data = await InGame.findOne({ name: summonerName });
             if (data) {
                 return res.status(200).json({
