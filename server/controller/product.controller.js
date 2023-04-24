@@ -1,6 +1,4 @@
 const Product = require("../model/Product");
-const ProductImages = require("../model/ProductImages");
-const ThumnailImage = require("../model/ThumnailImage");
 const mongoose = require("mongoose");
 
 const ProductController = {
