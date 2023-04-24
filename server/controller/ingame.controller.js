@@ -18,8 +18,7 @@ const InGameController = {
                     `https://vn2.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}`,
                     {
                         headers: {
-                            "X-Riot-Token":
-                                "RGAPI-b7749de4-d7c8-4f5a-af7f-ac09aaf329ce",
+                            "X-Riot-Token": process.env.RIOT_KEY,
                         },
                     },
                 )
