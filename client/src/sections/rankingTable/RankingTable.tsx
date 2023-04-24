@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/base.scss";
 import "../../styles/sections/rankingTable/RankingTable.scss";
+import { Link } from "react-router-dom";
 
 interface Team {
   name: string;
@@ -20,7 +21,7 @@ const RankingTable: React.FC<RankingTableProps> = ({ teams }) => {
       <div className="title">Bảng A</div>
       <div className="group">
         {teams.map((team, index) => (
-          <a href="" className="ranking" key={index}>
+          <Link to="/teampage" className="ranking" key={index}>
             <div className="ordinal">{index + 1}</div>
             <div className="team">
               <div className="team-logo">
@@ -33,7 +34,7 @@ const RankingTable: React.FC<RankingTableProps> = ({ teams }) => {
               <div className="solorank">Solo/Duo Rank: {team.solorank}</div>
               <div className="flexrank">Flex Rank: {team.flexrank}</div>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </div>

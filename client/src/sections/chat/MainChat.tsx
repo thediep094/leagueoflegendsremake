@@ -3,16 +3,10 @@ import MainChatItem from "./MainChatItem";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
-const MainChat = ({ socket }: any) => {
+const MainChat = ({ socket, room }: any) => {
   const user = useSelector((state: RootState) => state.account.user);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState<any>([]);
-  const [room, setRoom] = useState("global");
-  useEffect(() => {
-    if (user && room !== "") {
-      socket.emit("join_room", room);
-    }
-  }, []);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {

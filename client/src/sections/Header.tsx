@@ -83,6 +83,9 @@ function Header() {
         <div className="header__menu-link desktop">
           <Link to={"/shop"}>Shop</Link>
         </div>
+        <div className="header__menu-link desktop">
+          <Link to={"/rank"}>Rank</Link>
+        </div>
       </div>
       <div className="header__account">
         {user?.username ? (
@@ -236,6 +239,9 @@ function Header() {
             </div>
             <div className="menu-drawer__link">
               <Link to={"/shop"}>Shop</Link>
+            </div>
+            <div className="menu-drawer__link">
+              <Link to={"/rank"}>Rank</Link>
             </div>
           </div>
 

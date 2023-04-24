@@ -1,10 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../sections/Header";
 import Footer from "../sections/Footer";
 import "../styles/pages/Chat.scss";
 import MainChat from "../sections/chat/MainChat";
 import ChatUsers from "../sections/chat/ChatUsers";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 const Chat = ({ socket }: any) => {
+  const [room, setRoom] = useState("global");
+  const user = useSelector((state: RootState) => state.account.user);
+  useEffect(() => {
+    if (user && room !== "") {
+      socket.emit("join_room", room);
+    }
+  }, []);
+
   return (
     <div className="chat">
       <Header />
@@ -15,10 +25,10 @@ const Chat = ({ socket }: any) => {
           alt=""
         />
         <div className="chat-wrapper__main">
-          <MainChat socket={socket} />
+          <MainChat socket={socket} room={room} />
         </div>
         <div className="chat-wrapper__user">
-          <ChatUsers />
+          <ChatUsers socket={socket} />
         </div>
       </div>
       <Footer />

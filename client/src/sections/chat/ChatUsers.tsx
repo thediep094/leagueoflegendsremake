@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Icons from "../../components/icons/Icons";
 
-const ChatUsers = () => {
+const ChatUsers = ({ socket }: any) => {
   const mainUserData = {
     avatar:
       "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
@@ -83,6 +83,12 @@ const ChatUsers = () => {
       status: true,
     },
   ];
+  useEffect(() => {
+    socket.on("user_online", (data: any) => {
+      console.log(data);
+    });
+  }, [socket]);
+
   return (
     <div className="chat-users">
       <div className="main-user">

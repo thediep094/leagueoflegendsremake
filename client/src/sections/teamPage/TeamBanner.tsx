@@ -2,31 +2,34 @@ import React from "react";
 import "../../styles/base.scss";
 import "../../styles/sections/teamPage/TeamBanner.scss";
 
-interface Team {
+interface TeamData {
   name: string;
-  logo: string;
-  region: string;
+  logoUrl: string;
   bannerUrl: string;
+  region: string;
+  level: string;
 }
 
-interface TeamProps {
-  team: Team[];
+interface TeamBannerProps {
+  teamData: TeamData;
 }
-const TeamBanner: React.FC<TeamProps> = ({ team }) => {
+
+const TeamBanner: React.FC<TeamBannerProps> = ({ teamData }) => {
   return (
-    <div className="team">
-      {team.map((team, index) => (
-        <div className="group">
-          <img src={team.bannerUrl} className="bannerUrl" alt="" />
-          <div className="team-logo">
-            <img src={team.logo} className="logo" alt="" />
-          </div>
-          <div className="team-info">
-            <div className="name">{team.name}</div>
-            <div className="region">{team.region}</div>
-          </div>
-        </div>
-      ))}
+    <div className="team-banner-container">
+      <div
+        className="team-banner"
+        style={{ backgroundImage: `url(${teamData.bannerUrl})` }}
+      />
+
+      <div className="team-logo">
+        <img src={teamData.logoUrl} alt={teamData.name} />
+      </div>
+      <div className="team-info">
+        <div className="team-name">{teamData.name}</div>
+        <div className="team-region">{teamData.region}</div>
+        <div className="team-level">{teamData.level}</div>
+      </div>
     </div>
   );
 };

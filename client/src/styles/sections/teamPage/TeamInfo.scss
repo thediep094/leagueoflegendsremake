@@ -1,0 +1,52 @@
+.team-info-main {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 500px;
+  opacity: 100%;
+  background: #0a0e13;
+  border-bottom: 1px solid #252c32;
+  animation: fadein 0.8s;
+  overflow: hidden;
+  transition: max-height 0.4s ease-in-out;
+  z-index: 10;
+  flex-direction: row;
+  font-family: var(--font-heading-family);
+  color: white;
+  .team-info-solo {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    transition-property: left;
+    transition-duration: 0.7s;
+    transition-timing-function: ease;
+    border-right: 1px solid #252c32;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+  .team-info-flex {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    margin-left: 50%;
+    height: 100%;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    transition-property: left;
+    transition-duration: 0.7s;
+    transition-timing-function: ease;
+    border-right: 1px solid #252c32;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+}

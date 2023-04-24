@@ -1,0 +1,42 @@
+.teamPage {
+  .ranking-table {
+    display: flex;
+    position: relative;
+    height: 140px;
+    opacity: 100%;
+    background: #0a0e13;
+    border-bottom: 1px solid #252c32;
+    animation: fadein 0.8s;
+    overflow: hidden;
+    max-height: 140px;
+    transition: max-height 0.4s ease-in-out;
+    z-index: 10;
+    .team {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      left: 0;
+      height: 100%;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      transition-property: left;
+      transition-duration: 0.7s;
+      transition-timing-function: ease;
+      border-right: 1px solid #252c32;
+      gap: 1rem;
+      .solo,
+      .flex {
+        display: flex;
+        flex-direction: row;
+        color: white;
+        gap: 1rem;
+        font-family: var(--font-heading-family);
+        img {
+          width: 36px;
+          height: 36px;
+        }
+      }
+    }
+  }
+}
