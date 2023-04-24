@@ -8,7 +8,7 @@ const productSchema = new Schema(
     description: { type: String },
     estimate_ship_date: { type: Date, default: Date.now },
     img: { type: String, default: "" },
-    tagId: { type: Array },
+    tags: { type: Array },
   },
   {
     timestamps: true,

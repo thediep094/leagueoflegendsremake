@@ -3,9 +3,7 @@ const ProductImages = require("../model/ProductImages");
 const ThumnailImage = require("../model/ThumnailImage");
 const mongoose = require("mongoose");
 
-
 const ProductController = {
-
     create: async (req, res) => {
         // {
         //     "name": "Test product",
@@ -25,7 +23,7 @@ const ProductController = {
         //             "alt": "test alt 2"
         //         }
         //     ],
-        //     "thumnails": [
+        //     "thumnail_images": [
         //         {
         //             "img": "Test img 1",
         //             "alt": "test alt 1"
@@ -39,7 +37,7 @@ const ProductController = {
         try {
             const newProduct = await Product.create(req.body);
             const images = req.body.images;
-            const thumnails = req.body.thumnails;
+            const thumnails = req.body.thumnail_images;
             for (var image of images) {
                 image.productId = newProduct._id;
                 console.log(image);
@@ -64,11 +62,27 @@ const ProductController = {
     getProductByID: async (req, res) => {
         try {
             const { id } = req.params;
-            const data = await Product.findById(id);
-            if (data) {
+            const productData = await Product.findById(id);
+
+            const productImagesData = await ProductImages.find({
+                productId: id,
+            });
+
+            const productThumnailsData = await ThumnailImage.find({
+                productId: id,
+            });
+            const data = {};
+
+            data.product = productData;
+            data.images = productImagesData;
+            data.thumnail_images = productThumnailsData;
+
+            // console.log(data);
+
+            if (productData) {
                 return res.status(200).json({
                     message: "Thành công",
-                    product: data,
+                    data: data,
                 });
             }
             return res.status(404).json({
