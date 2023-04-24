@@ -8,10 +8,25 @@ productRouter.post(
     productController.create,
 );
 
+productRouter.put(
+    "/update/:id",
+    productController.update,
+);
+
+productRouter.delete(
+    "/:id",
+    productController.delete,
+);
+
 productRouter.get(
     // "/:id",
     "/:id",
     productController.getProductByID,
+);
+
+productRouter.get(
+    "/",
+    productController.getAllProduct,
 );
 
 module.exports = productRouter;
