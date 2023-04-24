@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 
 const ProductController = {
     create: async (req, res) => {
-        
         try {
             const newProduct = await Product.create(req.body);
             return res.status(200).json({
@@ -40,9 +39,19 @@ const ProductController = {
     },
     getAllProduct: async (req, res) => {
         try {
-            const productData = await Product.find();
+            const { page, limit } = req.query;
 
-            if (productData) {
+            const aggregateQuery = [
+                { $sort: { createdAt: -1 } },
+
+                { $skip: (Number(page) - 1) * Number(limit) },
+
+                { $limit: Number(limit) },
+            ];
+
+            const productData = await Product.aggregate(aggregateQuery);
+
+            if (productData.length > 0) {
                 return res.status(200).json({
                     message: "Thành công",
                     data: productData,
