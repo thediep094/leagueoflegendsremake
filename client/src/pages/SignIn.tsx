@@ -170,7 +170,6 @@ const SignIn = () => {
           <FaUserAlt className="icon icon-user" />
         </div>
       </div>
-      <Footer />
     </Fragment>
   );
 };
