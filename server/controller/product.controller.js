@@ -20,7 +20,6 @@ const ProductController = {
         try {
             const { id } = req.params;
             const productData = await Product.findById(id);
-
             if (productData) {
                 return res.status(200).json({
                     message: "Thành công",
