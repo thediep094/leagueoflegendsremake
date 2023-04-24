@@ -5,11 +5,20 @@ const mongoose = require("mongoose");
 const ProductController = {
 
     create: async (req, res) => {
+//     {
+//     "name": "Test product",
+//     "price": 1234.56,
+//     "compare_at_price": 1500.00,
+//     "description": "Test des",
+//     "img": "Test img",
+//     "estimate_ship_date": "",
+//     "tagId": ["1", "2"]
+// }
         try {
             const newProduct = await Product.create(req.body);
             return res.status(200).json({
                 message: "Tạo sản phẩm thành công",
-                user: newUser,
+                product: newProduct,
             });
         } catch (error) {
             return res.status(500).json({
@@ -21,7 +30,7 @@ const ProductController = {
     getProductByID: async (req, res) => {
         try {
             const { id } = req.params;
-            const data = await User.findById(id);
+            const data = await Product.findById(id);
             if (data) {
                 return res.status(200).json({
                     message: "Thành công",
@@ -41,7 +50,7 @@ const ProductController = {
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            const data = await User.findByIdAndUpdate(id, req.body);
+            const data = await Product.findByIdAndUpdate(id, req.body);
             if (data) {
                 return res.status(200).json({
                     message: "Sửa thông tin sản phẩm thành công",
@@ -61,7 +70,7 @@ const ProductController = {
     delete: async (req, res) => {
         try {
             const { id } = req.params;
-            const data = await User.findByIdAndDelete(id);
+            const data = await Product.findByIdAndDelete(id);
             if (data) {
                 return res.status(200).json({
                     message: "Xoá sản phẩm thành công",
@@ -79,4 +88,4 @@ const ProductController = {
     },
 };
 
-module.exports = Product;
+module.exports = ProductController;
