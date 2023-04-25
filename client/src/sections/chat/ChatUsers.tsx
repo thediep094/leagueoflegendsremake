@@ -12,12 +12,6 @@ const ChatUsers = ({ socket }: any) => {
   const user = useSelector((state: RootState) => state.account.user);
   const [messageList, setMessageList] = useState<any>([]);
   const [currentMessage, setCurrentMessage] = useState("");
-  const mainUserData = {
-    avatar:
-      "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
-    name: "x2muadacam",
-    status: true,
-  };
   const chatParent = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

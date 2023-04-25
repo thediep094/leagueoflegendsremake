@@ -29,6 +29,7 @@ const MainChat = ({ socket, room }: any) => {
       };
 
       await socket.emit("send_message", messageSendData);
+
       setMessageList((list: any) => [...list, messageData]);
       setCurrentMessage("");
     }
@@ -36,7 +37,9 @@ const MainChat = ({ socket, room }: any) => {
 
   useEffect(() => {
     socket.on("receive_message", (data: any) => {
-      setMessageList((list: any) => [...list, data]);
+      if (data.room === "global") {
+        setMessageList((list: any) => [...list, data]);
+      }
     });
   }, [socket]);
 
