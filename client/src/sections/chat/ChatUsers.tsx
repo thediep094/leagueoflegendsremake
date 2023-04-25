@@ -45,6 +45,7 @@ const ChatUsers = ({ socket }: any) => {
       const resDataMessages = await axios.get(
         `${API_LINK}/chat/messages/${resId.data.id}`
       );
+      socket.emit("join_room", resId.data.id);
       resDataMessages.data.data.forEach((message: any) => {
         const messageData = {
           room: resId.data.id,
@@ -53,18 +54,14 @@ const ChatUsers = ({ socket }: any) => {
           comment: message.message,
           avatar: message.mainAva,
         };
-        setMessageList((list: any) => [...list, messageData]);
+        if (messageData.room === resId.data.id)
+          setMessageList((list: any) => [...list, messageData]);
       });
       setRoomId(resId.data.id);
     } else {
       alert("Bạn cần đăng nhập");
     }
   };
-  useEffect(() => {
-    if (user && roomId !== "") {
-      socket.emit("join_room", roomId);
-    }
-  }, [roomId]);
 
   const sendMessage = async (account: IAccount) => {
     const res = await axios.post(`${API_LINK}/message/`, {
@@ -97,9 +94,9 @@ const ChatUsers = ({ socket }: any) => {
 
   useEffect(() => {
     socket.on("receive_message", (data: any) => {
-      setMessageList((list: any) => [...list, data]);
+      if (data.room === roomId) setMessageList((list: any) => [...list, data]);
     });
-  }, [socket]);
+  }, [socket, roomId]);
   return (
     <div className="chat-users">
       <div className="main-user">
