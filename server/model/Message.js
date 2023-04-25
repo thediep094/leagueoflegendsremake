@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const messageScheme = new Schema(
     {
-        user: { type: String },
+        user: { type: Schema.Types.ObjectId },
         message: { type: String },
         boxchat: { type: Schema.Types.ObjectId }, // id box chat
     },

@@ -3,14 +3,13 @@ const Schema = mongoose.Schema;
 
 const BoxChatSchema = new Schema(
     {
-        user1: { type: String }, // username 1
-        user2: { type: String }, // username 2
-        // messages: [{ type: String }],
+        user1: { type: Schema.Types.ObjectId }, // user1 id
+        user2: { type: Schema.Types.ObjectId }, // user2 id
     },
     {
         timestamps: true,
     },
 );
 
-const BoxChat = mongoose.modelNames("BoxChat", BoxChatSchema);
+const BoxChat = mongoose.model("BoxChat", BoxChatSchema);
 module.exports = BoxChat;
