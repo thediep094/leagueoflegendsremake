@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Icons from "../../components/icons/Icons";
 import axios from "axios";
 import { API_LINK } from "../../default-value";
@@ -18,7 +18,14 @@ const ChatUsers = ({ socket }: any) => {
     name: "x2muadacam",
     status: true,
   };
+  const chatParent = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const domNode = chatParent.current;
+    if (domNode) {
+      domNode.scrollTop = domNode.scrollHeight;
+    }
+  });
   const [usersData, setUsersData] = useState<IAccount[]>();
 
   useEffect(() => {
@@ -180,7 +187,7 @@ const ChatUsers = ({ socket }: any) => {
             _
           </div>
         </div>
-        <div className="chat__popup-content">
+        <div className="chat__popup-content" ref={chatParent}>
           {messageList.map((message: any) => {
             return (
               <div

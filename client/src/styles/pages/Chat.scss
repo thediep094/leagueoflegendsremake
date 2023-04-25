@@ -377,6 +377,27 @@
     .chat__popup-content {
       flex: 1;
       padding: 10px;
+      overflow: auto;
+      &:hover {
+        &::-webkit-scrollbar-thumb {
+          background-color: #c89b3c;
+        }
+      }
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 100px;
+      }
+
+      &::-webkit-scrollbar {
+        width: 6px;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 100px;
+        background-color: #a09b8c;
+        transition: all 0.3s ease-in-out;
+      }
     }
 
     .chat__popup-heading-subname {
@@ -412,6 +433,7 @@
       width: fit-content;
       max-width: 200px;
       border-radius: 5px;
+      margin: 5px 0;
       &.user {
         background-color: #785a28;
         align-self: flex-end;

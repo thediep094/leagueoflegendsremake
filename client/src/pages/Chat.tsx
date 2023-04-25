@@ -31,7 +31,6 @@ const Chat = ({ socket }: any) => {
           <ChatUsers socket={socket} />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };
