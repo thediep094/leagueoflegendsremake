@@ -10,6 +10,18 @@ const getAllMessageOfBoxChat = async (id) => {
                 boxchat: chatID,
             },
         },
+        {
+            $sort: {
+                createdAt: 1,
+            },
+        },
+        {
+            $project: {
+                createdAt: 0,
+                updatedAt: 0,
+                __v: 0,
+            },
+        },
     ];
     try {
         const data = await Message.aggregate(pipeline);
