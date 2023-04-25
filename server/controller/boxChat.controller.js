@@ -6,6 +6,7 @@ const BoxChatController = {
     create: async (req, res) => {
         try {
             // console.log(req.body);
+
             const check = await BoxChat.find(req.body);
             if (check.length > 0) {
                 return res.status(200).json({

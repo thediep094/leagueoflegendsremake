@@ -1,6 +1,75 @@
-@import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
+@import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortForLoL-Bold);
 // Then import Bootstrap
 @import "../../node_modules/bootstrap/scss/bootstrap";
+
+@font-face {
+  font-family: "BeaufortForLoL";
+  src: url("../font/BeaufortForLoL-TTF/BeaufortforLOL-Bold.ttf")
+    format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BeaufortForLoL";
+  src: url("../font/BeaufortForLoL-TTF/BeaufortforLOL-Heavy.ttf")
+    format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BeaufortForLoL";
+  src: url("../font/BeaufortForLoL-TTF/BeaufortforLOL-Italic.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "BeaufortForLoL";
+  src: url("../font/BeaufortForLoL-TTF/BeaufortforLOL-Light.ttf")
+    format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BeaufortForLoL";
+  src: url("../font/BeaufortForLoL-TTF/BeaufortforLOL-Medium.ttf")
+    format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BeaufortForLoL";
+  src: url("../font/BeaufortForLoL-TTF/BeaufortforLOL-Regular.ttf")
+    format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Spiegel";
+  src: url("../font/Spiegel-TTF/Spiegel_TT_Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Spiegel";
+  src: url("../font/Spiegel-TTF/Spiegel_TT_SemiBold.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Spiegel";
+  src: url("../font/Spiegel-TTF/Spiegel_TT_Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
 
 * {
   margin: 0;
@@ -19,8 +88,8 @@ body {
 }
 
 :root {
-  --font-heading-family: "BeaufortforLOL-Bold";
-  --font-body-family: Spiegel, "Arial Narrow", Arial, sans-serif;
+  --font-heading-family: "BeaufortForLoL";
+  --font-body-family: "Spiegel";
   --font-footer-family: "FF Mark W05", Arial, sans-serif;
   --gray-200: #ededed;
   --gray-300: #a2a2a2;
