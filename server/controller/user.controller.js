@@ -16,6 +16,60 @@ const UserController = {
             });
         }
     },
+    getAllUser: async (req, res) => {
+        try {
+            const { page, limit } = req.query;
+            const pipeline = [
+                {
+                    $match: {},
+                },
+                {
+                    $project: {
+                        password: 0,
+                        __v: 0,
+                        // _id: 0,
+                        createdAt: 0,
+                        updatedAt: 0,
+                    },
+                },
+                {
+                    $facet: {
+                        count: [
+                            {
+                                $count: "docs",
+                            },
+                        ],
+                        users: [
+                            {
+                                $skip: Number(page - 1) * Number(limit), //page * limit,
+                            },
+                            {
+                                $limit: Number(limit), //limit,
+                            },
+                        ],
+                    },
+                },
+            ];
+            const data = await User.aggregate(pipeline);
+            if (data[0].count.length > 0) {
+                return res.status(200).json({
+                    message: "Thành công",
+                    "tổng số user": data[0].count[0].docs,
+                    data: data[0].users,
+                });
+            }
+            if (data[0].count.length) {
+                return res.status(404).json({
+                    message: "Not found",
+                });
+            }
+        } catch (error) {
+            return res.status(500).json({
+                message: "Server error",
+                error: error,
+            });
+        }
+    },
     getUserByID: async (req, res) => {
         try {
             const id = req.body.verify_id;

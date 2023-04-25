@@ -18,4 +18,5 @@ userRouter.get(
     authMiddleware.verifiyToken,
     userController.getUserByID,
 );
+userRouter.get("/all", userController.getAllUser);
 module.exports = userRouter;
