@@ -1,0 +1,62 @@
+.inventory {
+    font-family: var(--font-heading-family);
+
+    h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-bottom: 20px;
+        th {
+            text-align: left;
+            background-color: #7b7979;
+            padding: 8px;
+            font-weight: normal;
+        }
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            img {
+                max-height: 50px;
+            }
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    }
+    h2 {
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        label {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        input {
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            width: 100px;
+            padding: 8px;
+            font-size: 16px;
+            background-color: #24ba49;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            &:hover {
+                background-color: #04a876;
+            }
+        }
+    }
+}
