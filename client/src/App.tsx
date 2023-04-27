@@ -15,6 +15,7 @@ import News from "./pages/News";
 import Rank from "./pages/Rank";
 import TeamPage from "./pages/TeamPage";
 import Chat from "./pages/Chat";
+import New from "./pages/New";
 const socket = io("http://localhost:8000").connect();
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route index path="/" element={<Homepage />} />
           <Route path="/champions" element={<Champions />} />
           <Route path="/news" element={<News />} />
+          <Route path="/new/:id" element={<New />} />
           <Route path="/search" element={<Search />} />
           <Route path="/user/:username" element={<UserInformation />} />
           <Route path="/shop" element={<Shop />} />
