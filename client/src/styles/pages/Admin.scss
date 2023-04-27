@@ -1,0 +1,117 @@
+.newAdmin {
+  padding-top: 100px;
+  min-height: 100vh;
+  background-color: #f1f2f4;
+  padding-bottom: 100px;
+  .newAdmin__add {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    div {
+      display: flex;
+      flex-direction: column;
+      color: #1f2124;
+      input {
+        min-height: 36px;
+        padding: 0 10px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #cbccce;
+      }
+      textarea {
+        padding: 0 10px;
+        min-height: 100px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #cbccce;
+      }
+
+      label {
+        padding: 5px;
+        margin-top: 10px;
+      }
+    }
+    button {
+      background-color: #007a5c;
+      color: #fff;
+      font-family: var(--font-body-family);
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 20px;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .update {
+      margin-left: 10px;
+      background-color: #076de2;
+    }
+  }
+
+  .newAdmin__lists {
+    margin-top: 100px;
+    background-color: #fff;
+    padding: 30px;
+    .newAdmin__item-checkbox {
+      width: 30px;
+    }
+    .newAdmin__item {
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid #cbccce;
+      &:last-child {
+        border-bottom: none;
+      }
+      img {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 5px;
+      }
+    }
+
+    .newAdmin__item-title {
+      width: 100%;
+      padding: 0 20px;
+      font-family: var(--font-heading-family);
+      color: #000000;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .newAdmin__item-update {
+      background-color: #007a5c;
+      color: #fff;
+      font-family: var(--font-body-family);
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 20px;
+      margin-right: 20px;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+
+    .newAdmin__item-delete {
+      background-color: #eb1f10;
+      color: #fff;
+      font-family: var(--font-body-family);
+      padding: 10px 20px;
+      border-radius: 5px;
+      border: none;
+      margin-top: 20px;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

@@ -2,15 +2,18 @@ const New = require("../model/New");
 const mongoose = require("mongoose");
 const User = require("../model/User");
 const moment = require("moment");
+const fs = require("fs");
 const NewController = {
     create: async (req, res) => {
         try {
-            const { title, subtitle, description, author, tags } = req.body;
+            const { title, subtitle, description, expect, author, tags } =
+                req.body;
             const img = Buffer.from(req.file.buffer).toString("base64");
             const newRecord = new New({
                 title,
                 subtitle,
                 description,
+                expect,
                 author,
                 tags,
                 img,
@@ -82,13 +85,17 @@ const NewController = {
     //Update
     updateNewById: async (req, res) => {
         try {
-            const { title, subtitle, description, author, tags } = req.body;
-            const img = req.file ? req.file.buffer : undefined; // Kiểm tra xem file ảnh có được gửi lên hay không
+            const { title, subtitle, description, expect, author, tags } =
+                req.body;
+            const img = req.file
+                ? Buffer.from(req.file.buffer).toString("base64")
+                : undefined; // Kiểm tra xem file ảnh có được gửi lên hay không
 
             const updatedNew = {
                 title,
                 subtitle,
                 description,
+                expect,
                 author,
                 tags,
             };
@@ -120,23 +127,15 @@ const NewController = {
     deleteNewById: async (req, res) => {
         const { id } = req.params;
         try {
-            const news = await News.findById(id);
+            const news = await New.findById(id);
             if (!news) {
                 return res.status(404).json({
                     message: "News not found",
                 });
             }
-            // Xóa ảnh khỏi server nếu có
-            if (news.img) {
-                const imgPath = news.img.path;
-                fs.unlink(imgPath, (err) => {
-                    if (err) {
-                        console.log(err);
-                    }
-                });
-            }
+
             // Xóa bản ghi News
-            await News.findByIdAndDelete(id);
+            await New.findByIdAndDelete(id);
             return res.status(200).json({
                 message: "News deleted successfully",
             });

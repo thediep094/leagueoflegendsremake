@@ -17,6 +17,7 @@ import TeamPage from "./pages/TeamPage";
 import Chat from "./pages/Chat";
 import New from "./pages/New";
 import SignUp from "./pages/SignUp";
+import NewAdmin from "./pages/NewAdmin";
 const socket = io("http://localhost:8000").connect();
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             path="/champions/championview/:name"
             element={<ChampionView />}
           />
+          <Route path="/admin/new" element={<NewAdmin />} />
         </Routes>
       </BrowserRouter>
     </div>
