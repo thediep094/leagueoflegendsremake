@@ -3,7 +3,54 @@ const mongoose = require("mongoose");
 
 const ProductController = {
     create: async (req, res) => {
+        // Truyền bằng form-data
+        // <form action="/profile" method="post" enctype="multipart/form-data">
+        //     <input type="file" name="avatar" />
+        // </form>
+        // "product": {
+        //     "name": "test",
+        //     "price": 1500,
+        //     "compare_at_price": 1666.66,
+        //     "description": "test",
+        //     "img": "",
+        //     "tags": [],
+        //     "images": [
+        //         {
+        //             "name": "cat1.jpg",
+        //             "base64": "...."
+        //         },
+        //     ],
+        //     "thumbnails": [
+        //         {
+        //             "name": "cat1.jpg",
+        //             "base64": "...."
+        //         },
+        //     ]
+        // }
+        // Muốn lấy ảnh dùng thẻ img
+        // <img src="data:image/png;base64,<đoạn base64 bên trên>" alt=""></img>
         try {
+            
+            const { images, thumbnails } = req.files;
+            const savedImages = [];
+            for (let i = 0; i < images.length; i++) {
+                const newImage = {
+                    name: images[i].originalname,
+                    base64: Buffer.from(images[i].buffer).toString('base64'),
+                };
+                savedImages.push(newImage);
+            }
+
+            const savedThumbnails = [];
+            for (let i = 0; i < thumbnails.length; i++) {
+                const newThumbnail = {
+                    name: thumbnails[i].originalname,
+                    base64: Buffer.from(thumbnails[i].buffer).toString('base64'),
+                };
+                savedThumbnails.push(newThumbnail);
+            }
+            req.body.images = savedImages;
+            req.body.thumbnails = savedThumbnails;
             const newProduct = await Product.create(req.body);
             return res.status(200).json({
                 message: "Tạo sản phẩm thành công",
