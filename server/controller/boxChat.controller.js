@@ -6,7 +6,14 @@ const BoxChatController = {
     create: async (req, res) => {
         try {
             // console.log(req.body);
-            const check = await BoxChat.find(req.body);
+            const { user1, user2 } = req.body;
+            let check = await BoxChat.find(req.body);
+            if (check.length == 0) {
+                check = await BoxChat.find({
+                    user1: user2,
+                    user2: user1,
+                });
+            }
             if (check.length > 0) {
                 return res.status(200).json({
                     message: "Giữa 2 người dùng đã có boxchat",

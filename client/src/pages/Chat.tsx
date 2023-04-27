@@ -7,7 +7,7 @@ import ChatUsers from "../sections/chat/ChatUsers";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 const Chat = ({ socket }: any) => {
-  const [room, setRoom] = useState("global");
+  const [room, setRoom] = useState("6447f841a0d2f47c841d10b5");
   const user = useSelector((state: RootState) => state.account.user);
   useEffect(() => {
     if (user && room !== "") {
@@ -31,7 +31,6 @@ const Chat = ({ socket }: any) => {
           <ChatUsers socket={socket} />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

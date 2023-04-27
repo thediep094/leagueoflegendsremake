@@ -1,13 +1,41 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import MainChatItem from "./MainChatItem";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import axios from "axios";
+import { API_LINK } from "../../default-value";
 
 const MainChat = ({ socket, room }: any) => {
   const user = useSelector((state: RootState) => state.account.user);
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState<any>([]);
+  const chatParent = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const domNode = chatParent.current;
+    if (domNode) {
+      domNode.scrollTop = domNode.scrollHeight;
+    }
+  });
+  useEffect(() => {
+    const fetchData = async () => {
+      const resDataMessages = await axios.get(
+        `${API_LINK}/chat/messages/6447f841a0d2f47c841d10b5`
+      );
+      resDataMessages.data.data.forEach((message: any) => {
+        const messageData = {
+          room: "6447f841a0d2f47c841d10b5",
+          type: message.user === user?._id ? "user" : "other-user",
+          name: message?.ingame ? message?.ingame : "Announymous",
+          comment: message.message,
+          avatar: message.mainAva,
+        };
+        if (messageData.room === "6447f841a0d2f47c841d10b5")
+          setMessageList((list: any) => [...list, messageData]);
+      });
+    };
+    fetchData();
+  }, []);
   const sendMessage = async () => {
     if (currentMessage !== "") {
       const messageData = {
@@ -15,8 +43,9 @@ const MainChat = ({ socket, room }: any) => {
         type: "user",
         name: user?.ingame ? user?.ingame : "Anounymous",
         comment: currentMessage,
-        avatar:
-          "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
+        avatar: user?.mainAva
+          ? user.mainAva
+          : "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
       };
 
       const messageSendData = {
@@ -24,11 +53,17 @@ const MainChat = ({ socket, room }: any) => {
         type: "other-user",
         name: user?.ingame ? user?.ingame : "Anounymous",
         comment: currentMessage,
-        avatar:
-          "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
+        avatar: user?.mainAva
+          ? user.mainAva
+          : "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_7.jpg",
       };
-
+      const res = await axios.post(`${API_LINK}/message/`, {
+        user: user?._id,
+        message: currentMessage,
+        boxchat: "6447f841a0d2f47c841d10b5",
+      });
       await socket.emit("send_message", messageSendData);
+
       setMessageList((list: any) => [...list, messageData]);
       setCurrentMessage("");
     }
@@ -36,13 +71,15 @@ const MainChat = ({ socket, room }: any) => {
 
   useEffect(() => {
     socket.on("receive_message", (data: any) => {
-      setMessageList((list: any) => [...list, data]);
+      if (data.room === "6447f841a0d2f47c841d10b5") {
+        setMessageList((list: any) => [...list, data]);
+      }
     });
   }, [socket]);
 
   return (
     <div className="main-chat">
-      <div className="main-chat__items">
+      <div className="main-chat__items" ref={chatParent}>
         {messageList?.map((item: any) => {
           return <MainChatItem data={item} />;
         })}
@@ -56,6 +93,7 @@ const MainChat = ({ socket, room }: any) => {
           onChange={(event) => {
             setCurrentMessage(event.target.value);
           }}
+          onClick={() => socket.emit("join_room", "6447f841a0d2f47c841d10b5")}
           onKeyPress={(event) => {
             event.key === "Enter" && sendMessage();
           }}

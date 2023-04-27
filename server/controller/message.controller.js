@@ -1,14 +1,26 @@
 const Message = require("../model/Message");
 const mongoose = require("mongoose");
+const User = require("../model/User");
 
 const MessageController = {
     create: async (req, res) => {
+        const userid = req.body.user;
+        const user = await User.findOne({ _id: userid });
         try {
-            const newMessage = await Message.create(req.body);
-            return res.status(200).json({
-                message: "Tạo message thành công",
-                data: newMessage,
-            });
+            if (user) {
+                req.body.username = user.username;
+                req.body.ingame = user.ingame;
+                req.body.mainAva = user.mainAva;
+                const newMessage = await Message.create(req.body);
+                return res.status(200).json({
+                    message: "Tạo message thành công",
+                    data: newMessage,
+                });
+            } else {
+                return res.status(404).json({
+                    message: "User không tồn tại",
+                });
+            }
         } catch (error) {
             return res.status(500).json({
                 message: "Server error",

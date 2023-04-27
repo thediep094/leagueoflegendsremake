@@ -18,11 +18,28 @@ type TProp = {
     | "time-shipping"
     | "two-gift"
     | "arrowdown"
-    | "addfriend";
+    | "addfriend"
+    | "chat";
 };
 
 const Icons: React.FC<TProp> = ({ name }) => {
   switch (name) {
+    case "chat":
+      return (
+        <svg
+          width="20"
+          height="20"
+          className="icon icon-chat"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5.52637 19.5156C5.89551 19.5156 6.16797 19.3398 6.60742 18.9443L9.85059 16.0176L15.5986 16.0264C18.2441 16.0264 19.7295 14.4971 19.7295 11.8867V5.05762C19.7295 2.44727 18.2441 0.917969 15.5986 0.917969H4.39258C1.75586 0.917969 0.261719 2.44727 0.261719 5.05762V11.8867C0.261719 14.5059 1.7998 16.0176 4.33105 16.0176H4.68262V18.5664C4.68262 19.1465 4.99023 19.5156 5.52637 19.5156Z"
+            fill="currentColor"
+          />
+        </svg>
+      );
     case "addfriend":
       return (
         <svg

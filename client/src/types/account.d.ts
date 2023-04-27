@@ -1,11 +1,10 @@
 export interface IAccount {
   id?: number;
-  avatar: string;
-  first_name: string;
-  last_name: string;
+  _id?: number;
+  mainAva: string;
+  fullname: string;
   ingame: string;
   username: string;
-  sdt: string;
-  location: string;
   email: string;
+  date: string;
 }
