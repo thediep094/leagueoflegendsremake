@@ -2,7 +2,7 @@ import { Fragment, useState, useEffect } from "react";
 import "../styles/pages/signIn.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../store/apiCall";
+import { register } from "../store/apiCall";
 import Header from "../sections/Header";
 import Footer from "../sections/Footer";
 import { FaUserAlt } from "react-icons/fa";
@@ -14,19 +14,30 @@ import { RiArrowRightLine } from "react-icons/ri";
 import SocialLoginButtons from "../components/sociallogin/SocialLoginButtons";
 import { RootState } from "../store/store";
 
-const SignIn = () => {
+const SignUp = () => {
   const [userForm, setUserForm] = useState({
+    fullname: "",
     username: "",
     password: "",
+    date: "",
+    mail: "",
+    ingame: "",
+    mainAva:
+      "https://static.wikia.nocookie.net/leagueoflegends/images/1/18/2017_Worlds_Pick%27em_Master_Poro_profileicon.png/revision/latest?cb=20170913013533",
   });
   const accessToken = localStorage.getItem("accessToken");
   const user = useSelector((state: RootState) => state.account.user);
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const handleLogin = () => {
-    login(dispatch, {
+    register(dispatch, {
+      fullname: userForm.fullname,
       username: userForm.username,
       password: userForm.password,
+      date: userForm.date,
+      mail: userForm.mail,
+      ingame: userForm.ingame,
+      mainAva: userForm.mainAva,
     });
   };
   useEffect(() => {
@@ -47,7 +58,7 @@ const SignIn = () => {
                 alt="Logo Riot Games"
               />
             </div>
-            <h1>LOGIN</h1>
+            <h1>Register</h1>
             <div>
               <form>
                 <div className="input_field">
@@ -80,6 +91,66 @@ const SignIn = () => {
                   />
                   <label htmlFor="password">Password</label>
                 </div>
+                <div className="input_field">
+                  <input
+                    type="text"
+                    name="mail"
+                    id="mail"
+                    onChange={(e) => {
+                      setUserForm({
+                        ...userForm,
+                        ["mail"]: e.target.value,
+                      });
+                    }}
+                    required
+                  />
+                  <label htmlFor="fullname">Email</label>
+                </div>
+                <div className="input_field">
+                  <input
+                    type="text"
+                    name="fullname"
+                    id="fullname"
+                    onChange={(e) => {
+                      setUserForm({
+                        ...userForm,
+                        ["fullname"]: e.target.value,
+                      });
+                    }}
+                    required
+                  />
+                  <label htmlFor="fullname">Fullname</label>
+                </div>
+                <div className="input_field">
+                  <input
+                    type="text"
+                    name="ingame"
+                    id="ingame"
+                    onChange={(e) => {
+                      setUserForm({
+                        ...userForm,
+                        ["ingame"]: e.target.value,
+                      });
+                    }}
+                    required
+                  />
+                  <label htmlFor="fullname">Ingame name</label>
+                </div>
+                <div className="input_field">
+                  <input
+                    type="text"
+                    name="date"
+                    id="date"
+                    onChange={(e) => {
+                      setUserForm({
+                        ...userForm,
+                        ["date"]: e.target.value,
+                      });
+                    }}
+                    required
+                  />
+                  <label htmlFor="fullname">Date</label>
+                </div>
               </form>
 
               <div className="social-media-login">
@@ -101,14 +172,7 @@ const SignIn = () => {
 
             <div className="other-actions">
               <div>
-                <Link
-                  to={"/register"}
-                  style={{
-                    textDecoration: "none",
-                  }}
-                >
-                  Create account
-                </Link>
+                <Link to={"/login"}>Already have an account?</Link>
                 <div>V1.0.0</div>
               </div>
             </div>
@@ -131,4 +195,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
