@@ -11,6 +11,8 @@ userRouter.post(
     userMiddleware.checkExist,
     userController.create,
 );
+
+userRouter.put("/:id", userMiddleware.checkExist, userController.update);
 userRouter.get(
     // "/:id",
     "/",

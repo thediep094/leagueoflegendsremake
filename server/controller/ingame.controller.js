@@ -1,6 +1,7 @@
 const InGame = require("../model/Ingame");
 const mongoose = require("mongoose");
 const axios = require("axios");
+const User = require("../model/User");
 
 const InGameController = {
     getIngameBySummonerName: async (req, res) => {
@@ -30,6 +31,7 @@ const InGameController = {
                 )
                 .then(async (response) => {
                     const inGameData = await InGame.create(response.data);
+
                     return res.status(200).json({
                         message: "Thành công",
                         data: inGameData,

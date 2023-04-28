@@ -32,7 +32,9 @@ export const register = async (dispatch: any, user: any) => {
           date: user.date,
           mail: user.mail,
           ingame: user.ingame,
-          mainAva: user.mainAva,
+          mainAva: res2.data.ingame.profileIconId
+            ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${res2.data.ingame.profileIconId}.png`
+            : user.mainAva,
         });
         alert("Tạo tài khoản thành công");
       } catch (error) {

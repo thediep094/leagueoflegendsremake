@@ -25,7 +25,7 @@ const ChatUsers = ({ socket }: any) => {
 
   useEffect(() => {
     const fetchAllUser = async () => {
-      const res = await axios.get(`${API_LINK}/users/all?page=1&limit=20`);
+      const res = await axios.get(`${API_LINK}/users/all?page=1&limit=50`);
       setUsersData(res.data.data);
     };
     fetchAllUser();
@@ -100,6 +100,7 @@ const ChatUsers = ({ socket }: any) => {
       if (data.room === roomId) setMessageList((list: any) => [...list, data]);
     });
   }, [socket, roomId]);
+  console.log(user);
   return (
     <div className="chat-users">
       <div className="main-user">

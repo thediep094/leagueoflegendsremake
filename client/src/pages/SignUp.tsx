@@ -134,7 +134,7 @@ const SignUp = () => {
                     }}
                     required
                   />
-                  <label htmlFor="fullname">Ingame name</label>
+                  <label htmlFor="ingame">Ingame name</label>
                 </div>
                 <div className="input_field">
                   <input
@@ -149,7 +149,7 @@ const SignUp = () => {
                     }}
                     required
                   />
-                  <label htmlFor="fullname">Date</label>
+                  <label htmlFor="date">Date</label>
                 </div>
               </form>
 
