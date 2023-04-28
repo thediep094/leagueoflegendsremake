@@ -84,82 +84,170 @@ const RankController = {
         try {
             const data = await Rank.aggregate([
                 {
-                  $match: { queueType: "RANKED_SOLO_5x5" }
+                    $match: { queueType: "RANKED_SOLO_5x5" },
                 },
                 {
-                  $project: {
-                    tier: {
-                      $switch: {
-                        branches: [
-                          { case: { $eq: ["$tier", "CHALLENGER"] }, then: 1 },
-                          { case: { $eq: ["$tier", "GRANDMASTER"] }, then: 2 },
-                          { case: { $eq: ["$tier", "MASTER"] }, then: 3 },
-                          { case: { $eq: ["$tier", "DIAMOND"] }, then: 4 },
-                          { case: { $eq: ["$tier", "PLATINUM"] }, then: 5 },
-                          { case: { $eq: ["$tier", "GOLD"] }, then: 6 },
-                          { case: { $eq: ["$tier", "SILVER"] }, then: 7 },
-                          { case: { $eq: ["$tier", "BRONZE"] }, then: 8 },
-                          { case: { $eq: ["$tier", "IRON"] }, then: 9 },
-                        ],
-                        default: 10
-                      }
+                    $lookup: {
+                        from: "InGame",
+                        localField: "summonerId",
+                        foreignField: "id",
+                        as: "summoner",
                     },
-                    rank: {
-                      $switch: {
-                        branches: [
-                          { case: { $eq: ["$rank", "I"] }, then: 1 },
-                          { case: { $eq: ["$rank", "II"] }, then: 2 },
-                          { case: { $eq: ["$rank", "III"] }, then: 3 },
-                          { case: { $eq: ["$rank", "IV"] }, then: 4 }
-                        ],
-                        default: 5
-                      }
-                    },
-                    leaguePoints: 1,
-                    summonerName: 1,
-                    wins: 1,
-                    losses: 1
-                  }
                 },
                 {
-                  $sort: { tier: 1, rank: 1, leaguePoints: -1, summonerName: 1 }
+                    $addFields: {
+                        profileIconId: {
+                            $arrayElemAt: ["$summoner.profileIconId", 0],
+                        },
+                        level: { $arrayElemAt: ["$summoner.summonerLevel", 0] },
+                    },
                 },
                 {
                     $project: {
                         tier: {
                             $switch: {
-                              branches: [
-                                { case: { $eq: ["$tier", 1] }, then: "CHALLENGER" },
-                                { case: { $eq: ["$tier", 2] }, then: "GRANDMASTER" },
-                                { case: { $eq: ["$tier", 3] }, then: "MASTER" },
-                                { case: { $eq: ["$tier", 4] }, then: "DIAMOND" },
-                                { case: { $eq: ["$tier", 5] }, then: "PLATINUM" },
-                                { case: { $eq: ["$tier", 6] }, then: "GOLD" },
-                                { case: { $eq: ["$tier", 7] }, then: "SILVER" },
-                                { case: { $eq: ["$tier", 8] }, then: "BRONZE" },
-                                { case: { $eq: ["$tier", 9] }, then: "IRON" },
-                              ],
-                              default: "UNRANK"
-                            }
+                                branches: [
+                                    {
+                                        case: { $eq: ["$tier", "CHALLENGER"] },
+                                        then: 1,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "GRANDMASTER"] },
+                                        then: 2,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "MASTER"] },
+                                        then: 3,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "DIAMOND"] },
+                                        then: 4,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "PLATINUM"] },
+                                        then: 5,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "GOLD"] },
+                                        then: 6,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "SILVER"] },
+                                        then: 7,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "BRONZE"] },
+                                        then: 8,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "IRON"] },
+                                        then: 9,
+                                    },
+                                ],
+                                default: 10,
+                            },
                         },
                         rank: {
                             $switch: {
-                              branches: [
-                                { case: { $eq: ["$rank", 1] }, then: "I" },
-                                { case: { $eq: ["$rank", 2] }, then: "II" },
-                                { case: { $eq: ["$rank", 3] }, then: "III" },
-                                { case: { $eq: ["$rank", 4] }, then: "IV" }
-                              ],
-                              default: ""
-                            }
-                          },
-                          leaguePoints: 1,
-                          summonerName: 1,
-                          wins: 1,
-                          losses: 1
-                    }
+                                branches: [
+                                    { case: { $eq: ["$rank", "I"] }, then: 1 },
+                                    { case: { $eq: ["$rank", "II"] }, then: 2 },
+                                    {
+                                        case: { $eq: ["$rank", "III"] },
+                                        then: 3,
+                                    },
+                                    { case: { $eq: ["$rank", "IV"] }, then: 4 },
+                                ],
+                                default: 5,
+                            },
+                        },
+                        summonerId: 1,
+                        leaguePoints: 1,
+                        summonerName: 1,
+                        wins: 1,
+                        losses: 1,
+                        profileIconId: 1,
+                        level: 1,
+                    },
+                },
+                {
+                    $sort: {
+                        tier: 1,
+                        rank: 1,
+                        leaguePoints: -1,
+                        summonerName: 1,
+                    },
+                },
+                {
+                    $project: {
+                        tier: {
+                            $switch: {
+                                branches: [
+                                    {
+                                        case: { $eq: ["$tier", 1] },
+                                        then: "CHALLENGER",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 2] },
+                                        then: "GRANDMASTER",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 3] },
+                                        then: "MASTER",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 4] },
+                                        then: "DIAMOND",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 5] },
+                                        then: "PLATINUM",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 6] },
+                                        then: "GOLD",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 7] },
+                                        then: "SILVER",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 8] },
+                                        then: "BRONZE",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 9] },
+                                        then: "IRON",
+                                    },
+                                ],
+                                default: "UNRANK",
+                            },
+                        },
+                        rank: {
+                            $switch: {
+                                branches: [
+                                    { case: { $eq: ["$rank", 1] }, then: "I" },
+                                    { case: { $eq: ["$rank", 2] }, then: "II" },
+                                    {
+                                        case: { $eq: ["$rank", 3] },
+                                        then: "III",
+                                    },
+                                    { case: { $eq: ["$rank", 4] }, then: "IV" },
+                                ],
+                                default: "",
+                            },
+                        },
+                        summonerId: 1,
+                        leaguePoints: 1,
+                        summonerName: 1,
+                        wins: 1,
+                        losses: 1,
+                        profileIconId: 1,
+                        level: 1,
+                    },
                 },
             ]);
+
             return res.status(200).json({
                 message: "Thành công",
                 data: data,
@@ -175,80 +263,165 @@ const RankController = {
         try {
             const data = await Rank.aggregate([
                 {
-                  $match: { queueType: "RANKED_FLEX_SR" }
+                    $match: { queueType: "RANKED_FLEX_SR" },
                 },
                 {
-                  $project: {
-                    tier: {
-                      $switch: {
-                        branches: [
-                          { case: { $eq: ["$tier", "CHALLENGER"] }, then: 1 },
-                          { case: { $eq: ["$tier", "GRANDMASTER"] }, then: 2 },
-                          { case: { $eq: ["$tier", "MASTER"] }, then: 3 },
-                          { case: { $eq: ["$tier", "DIAMOND"] }, then: 4 },
-                          { case: { $eq: ["$tier", "PLATINUM"] }, then: 5 },
-                          { case: { $eq: ["$tier", "GOLD"] }, then: 6 },
-                          { case: { $eq: ["$tier", "SILVER"] }, then: 7 },
-                          { case: { $eq: ["$tier", "BRONZE"] }, then: 8 },
-                          { case: { $eq: ["$tier", "IRON"] }, then: 9 },
-                        ],
-                        default: 10
-                      }
+                    $lookup: {
+                        from: "Ingame",
+                        localField: "summonerId",
+                        foreignField: "id",
+                        as: "summoner",
                     },
-                    rank: {
-                      $switch: {
-                        branches: [
-                          { case: { $eq: ["$rank", "I"] }, then: 1 },
-                          { case: { $eq: ["$rank", "II"] }, then: 2 },
-                          { case: { $eq: ["$rank", "III"] }, then: 3 },
-                          { case: { $eq: ["$rank", "IV"] }, then: 4 }
-                        ],
-                        default: 5
-                      }
-                    },
-                    leaguePoints: 1,
-                    summonerName: 1,
-                    wins: 1,
-                    losses: 1
-                  }
                 },
                 {
-                  $sort: { tier: 1, rank: 1, leaguePoints: -1, summonerName: 1 }
+                    $addFields: {
+                        profileIconId: {
+                            $arrayElemAt: ["$summoner.profileIconId", 0],
+                        },
+                        level: { $arrayElemAt: ["$summoner.summonerLevel", 0] },
+                    },
                 },
                 {
                     $project: {
                         tier: {
                             $switch: {
-                              branches: [
-                                { case: { $eq: ["$tier", 1] }, then: "CHALLENGER" },
-                                { case: { $eq: ["$tier", 2] }, then: "GRANDMASTER" },
-                                { case: { $eq: ["$tier", 3] }, then: "MASTER" },
-                                { case: { $eq: ["$tier", 4] }, then: "DIAMOND" },
-                                { case: { $eq: ["$tier", 5] }, then: "PLATINUM" },
-                                { case: { $eq: ["$tier", 6] }, then: "GOLD" },
-                                { case: { $eq: ["$tier", 7] }, then: "SILVER" },
-                                { case: { $eq: ["$tier", 8] }, then: "BRONZE" },
-                                { case: { $eq: ["$tier", 9] }, then: "IRON" },
-                              ],
-                              default: "UNRANK"
-                            }
+                                branches: [
+                                    {
+                                        case: { $eq: ["$tier", "CHALLENGER"] },
+                                        then: 1,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "GRANDMASTER"] },
+                                        then: 2,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "MASTER"] },
+                                        then: 3,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "DIAMOND"] },
+                                        then: 4,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "PLATINUM"] },
+                                        then: 5,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "GOLD"] },
+                                        then: 6,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "SILVER"] },
+                                        then: 7,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "BRONZE"] },
+                                        then: 8,
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", "IRON"] },
+                                        then: 9,
+                                    },
+                                ],
+                                default: 10,
+                            },
                         },
                         rank: {
                             $switch: {
-                              branches: [
-                                { case: { $eq: ["$rank", 1] }, then: "I" },
-                                { case: { $eq: ["$rank", 2] }, then: "II" },
-                                { case: { $eq: ["$rank", 3] }, then: "III" },
-                                { case: { $eq: ["$rank", 4] }, then: "IV" }
-                              ],
-                              default: ""
-                            }
-                          },
-                          leaguePoints: 1,
-                          summonerName: 1,
-                          wins: 1,
-                          losses: 1
-                    }
+                                branches: [
+                                    { case: { $eq: ["$rank", "I"] }, then: 1 },
+                                    { case: { $eq: ["$rank", "II"] }, then: 2 },
+                                    {
+                                        case: { $eq: ["$rank", "III"] },
+                                        then: 3,
+                                    },
+                                    { case: { $eq: ["$rank", "IV"] }, then: 4 },
+                                ],
+                                default: 5,
+                            },
+                        },
+                        leaguePoints: 1,
+                        summonerName: 1,
+                        wins: 1,
+                        losses: 1,
+                        profileIconId: 1,
+                        level: 1,
+                    },
+                },
+                {
+                    $sort: {
+                        tier: 1,
+                        rank: 1,
+                        leaguePoints: -1,
+                        summonerName: 1,
+                    },
+                },
+                {
+                    $project: {
+                        tier: {
+                            $switch: {
+                                branches: [
+                                    {
+                                        case: { $eq: ["$tier", 1] },
+                                        then: "CHALLENGER",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 2] },
+                                        then: "GRANDMASTER",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 3] },
+                                        then: "MASTER",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 4] },
+                                        then: "DIAMOND",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 5] },
+                                        then: "PLATINUM",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 6] },
+                                        then: "GOLD",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 7] },
+                                        then: "SILVER",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 8] },
+                                        then: "BRONZE",
+                                    },
+                                    {
+                                        case: { $eq: ["$tier", 9] },
+                                        then: "IRON",
+                                    },
+                                ],
+                                default: "UNRANK",
+                            },
+                        },
+                        rank: {
+                            $switch: {
+                                branches: [
+                                    { case: { $eq: ["$rank", 1] }, then: "I" },
+                                    { case: { $eq: ["$rank", 2] }, then: "II" },
+                                    {
+                                        case: { $eq: ["$rank", 3] },
+                                        then: "III",
+                                    },
+                                    { case: { $eq: ["$rank", 4] }, then: "IV" },
+                                ],
+                                default: "",
+                            },
+                        },
+                        leaguePoints: 1,
+                        summonerName: 1,
+                        wins: 1,
+                        losses: 1,
+                        profileIconId: 1,
+                        level: 1,
+                    },
                 },
             ]);
             return res.status(200).json({
