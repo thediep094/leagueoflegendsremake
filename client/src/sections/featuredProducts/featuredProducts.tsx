@@ -20,11 +20,16 @@ const FeaturedProducts = () => {
   return (
     <div className="featuredProduct">
       <div className="container">
-        <div className="row">
+        <div
+          className="row"
+          style={{
+            position: "relative",
+          }}
+        >
           {loading ? (
             <Loading />
           ) : (
-            data?.map((item: any, index: any) => {
+            data?.map((item: IProduct, index: any) => {
               return (
                 <div
                   className="col-12 col-lg-3"
@@ -33,7 +38,7 @@ const FeaturedProducts = () => {
                     marginBottom: "10px",
                   }}
                 >
-                  <a href={`/product/${item.id}`}>
+                  <a href={`/product/${item._id}`}>
                     <ProductItem data={item as IProduct} key={index} />
                   </a>
                 </div>

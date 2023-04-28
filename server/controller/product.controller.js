@@ -30,13 +30,12 @@ const ProductController = {
         // Muốn lấy ảnh dùng thẻ img
         // <img src="data:image/png;base64,<đoạn base64 bên trên>" alt=""></img>
         try {
-            
             const { images, thumbnails } = req.files;
             const savedImages = [];
             for (let i = 0; i < images.length; i++) {
                 const newImage = {
                     name: images[i].originalname,
-                    base64: Buffer.from(images[i].buffer).toString('base64'),
+                    base64: Buffer.from(images[i].buffer).toString("base64"),
                 };
                 savedImages.push(newImage);
             }
@@ -45,7 +44,9 @@ const ProductController = {
             for (let i = 0; i < thumbnails.length; i++) {
                 const newThumbnail = {
                     name: thumbnails[i].originalname,
-                    base64: Buffer.from(thumbnails[i].buffer).toString('base64'),
+                    base64: Buffer.from(thumbnails[i].buffer).toString(
+                        "base64",
+                    ),
                 };
                 savedThumbnails.push(newThumbnail);
             }
@@ -88,14 +89,14 @@ const ProductController = {
             const { page, limit } = req.query;
 
             const aggregateQuery = [
-                { $sort: { createdAt: -1 } },
-
                 { $skip: (Number(page) - 1) * Number(limit) },
 
                 { $limit: Number(limit) },
             ];
 
-            const productData = await Product.aggregate(aggregateQuery);
+            const productData = await Product.aggregate(
+                aggregateQuery,
+            ).allowDiskUse(true);
 
             if (productData.length > 0) {
                 return res.status(200).json({
@@ -116,14 +117,14 @@ const ProductController = {
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            
+
             const { images, thumbnails } = req.files;
             console.log(1);
             const savedImages = [];
             for (let i = 0; i < images.length; i++) {
                 const newImage = {
                     name: images[i].originalname,
-                    base64: Buffer.from(images[i].buffer).toString('base64'),
+                    base64: Buffer.from(images[i].buffer).toString("base64"),
                 };
                 savedImages.push(newImage);
             }
@@ -131,7 +132,9 @@ const ProductController = {
             for (let i = 0; i < thumbnails.length; i++) {
                 const newThumbnail = {
                     name: thumbnails[i].originalname,
-                    base64: Buffer.from(thumbnails[i].buffer).toString('base64'),
+                    base64: Buffer.from(thumbnails[i].buffer).toString(
+                        "base64",
+                    ),
                 };
                 savedThumbnails.push(newThumbnail);
             }

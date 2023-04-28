@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { EffectFade, Navigation, Pagination, Thumbs } from "swiper";
 import "swiper/swiper.min.css";
@@ -9,11 +9,16 @@ import "../styles/pages/Product.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import axios from "axios";
+import { IProduct } from "../types/product";
+import { API_LINK } from "../default-value";
+import { useParams } from "react-router-dom";
 
 SwiperCore.use([Navigation, Thumbs]);
 const Product = () => {
+  const { id } = useParams();
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
   const [openDescription, setOpenDescription] = useState(false);
+  const [loading, setLoading] = useState(false);
   const user = useSelector((state: RootState) => state.account.user);
   const testData = {
     id: 2,
@@ -65,7 +70,20 @@ const Product = () => {
     ],
   };
 
-  const handleAddToCart = (product_id: number) => {
+  const [data, setData] = useState<IProduct>();
+
+  const fetchData = async () => {
+    setLoading(true);
+    const res = await axios.get(`${API_LINK}/products/${id}`);
+    setData(res.data.data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleAddToCart = (product_id: string) => {
     const addCart = async () => {
       try {
         if (user) {
@@ -89,7 +107,7 @@ const Product = () => {
   return (
     <div className="product">
       <Header />
-      {testData ? (
+      {data ? (
         <div className="product-wrapper">
           <div className="product-wrapper__img">
             <div className="product-wrappper__img-swiper">
@@ -102,13 +120,24 @@ const Product = () => {
                 direction="vertical"
                 className="product-wrapper__img-thumbs"
               >
-                {testData.thumbnail_image.map((item: any, index: any) => {
-                  return (
-                    <SwiperSlide key={index}>
-                      <img src={`${item.img}`} alt="" />
-                    </SwiperSlide>
-                  );
-                })}
+                {data
+                  ? data.images?.map((item: any, index: any) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <img
+                            src={`data:image/jpeg;base64,${item.base64}`}
+                            alt=""
+                          />
+                        </SwiperSlide>
+                      );
+                    })
+                  : testData.thumbnail_image.map((item: any, index: any) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <img src={`${item.img}`} alt="" />
+                        </SwiperSlide>
+                      );
+                    })}
               </Swiper>
               <Swiper
                 spaceBetween={10}
@@ -120,20 +149,31 @@ const Product = () => {
                 thumbs={{ swiper: thumbsSwiper }}
                 className="product-wrapper__img-main"
               >
-                {testData.thumbnail_image.map((item, index) => {
-                  return (
-                    <SwiperSlide key={index}>
-                      <img src={`${item.img}`} alt="" />
-                    </SwiperSlide>
-                  );
-                })}
+                {data
+                  ? data.images?.map((item, index) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <img
+                            src={`data:image/jpeg;base64,${item.base64}`}
+                            alt=""
+                          />
+                        </SwiperSlide>
+                      );
+                    })
+                  : testData.thumbnail_image.map((item, index) => {
+                      return (
+                        <SwiperSlide key={index}>
+                          <img src={`${item.img}`} alt="" />
+                        </SwiperSlide>
+                      );
+                    })}
               </Swiper>
             </div>
             <div className="product-wrapper__img-more">
-              {testData.images.map((item, index) => {
+              {data.thumbnail_images?.map((item, index) => {
                 return (
                   <div className="product-wrapper__img-more-item" key={index}>
-                    <img src={`${item.img}`} alt="" />
+                    <img src={`data:image/jpeg;base64,${item.base64}`} alt="" />
                   </div>
                 );
               })}
@@ -142,34 +182,27 @@ const Product = () => {
           <div className="product-wrapper__info">
             <div className="shape-top"></div>
             <div className="product-wrapper__info-tags">
-              {testData.tags.map((tag: any, index: any) => {
-                return (
-                  <div
-                    className="product-wrapper__info-tag"
-                    style={{
-                      backgroundColor: `${tag.background}`,
-                      color: `${tag.color}`,
-                    }}
-                    key={index}
-                  >
-                    {tag.title}
-                  </div>
-                );
-              })}
+              <div
+                className="product-wrapper__info-tag"
+                style={{
+                  backgroundColor: `#ffffff`,
+                  color: `#2b2a39`,
+                }}
+              >
+                {data.tags}
+              </div>
             </div>
 
             <div className="product-wrapper__info-heading">
-              <div className="product-wrapper__info-title">{testData.name}</div>
-              <div className="product-wrapper__info-price">
-                ${testData.price}
-              </div>
+              <div className="product-wrapper__info-title">{data.name}</div>
+              <div className="product-wrapper__info-price">${data.price}</div>
             </div>
 
             <div
               className="product-wrapper__info-button"
-              onClick={() => handleAddToCart(testData.id)}
+              onClick={() => handleAddToCart(data._id)}
             >
-              <ButtonShop name={`${testData.price} - Add to Cart`} />
+              <ButtonShop name={`${data.price} - Add to Cart`} />
             </div>
 
             <div className="product-wrapper__info-alert">
@@ -198,7 +231,7 @@ const Product = () => {
                 className={`product-wrapper__info-description-content ${
                   openDescription ? "active" : ""
                 }`}
-                dangerouslySetInnerHTML={{ __html: testData.description }}
+                dangerouslySetInnerHTML={{ __html: data.description }}
               ></div>
             </div>
             <div className="shape-bot"></div>

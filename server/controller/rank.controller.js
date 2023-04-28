@@ -16,7 +16,7 @@ const RankController = {
                     rank: data,
                 });
             }
-            console.log(summonerId);
+
             await axios
                 .get(
                     `https://vn2.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}`,
