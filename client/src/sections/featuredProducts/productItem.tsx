@@ -8,22 +8,21 @@ const ProductItem = (data: TProp) => {
   return (
     <div className="productItem">
       <div className="productItem__img-wrapper">
-        <img src={data.data.img} alt="" className="productItem__img" />
+        <img
+          src={`data:image/jpeg;base64,${data.data.images[0].base64}`}
+          alt=""
+          className="productItem__img"
+        />
         <div className="productItem__tags">
-          {data.data.tags.map((item, index) => {
-            return (
-              <div
-                className="productItem__tag"
-                key={index}
-                style={{
-                  backgroundColor: `${item.background}`,
-                  color: `${item.color}`,
-                }}
-              >
-                {item.title}
-              </div>
-            );
-          })}
+          <div
+            className="productItem__tag"
+            style={{
+              backgroundColor: `#cd3b37`,
+              color: `#ffffff`,
+            }}
+          >
+            {data.data.tags}
+          </div>
         </div>
       </div>
       <div className="productItem__title">{data.data.name}</div>

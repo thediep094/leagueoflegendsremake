@@ -5,17 +5,19 @@ import axios from "axios";
 import { API_LINK } from "../default-value";
 import { INew } from "../types/new";
 import Loading from "../components/Loading";
+import { IProduct } from "../types/product";
 const ProductAdmin = () => {
-  const [listNews, setListNews] = useState<INew[]>([]);
+  const [listNews, setListNews] = useState<IProduct[]>([]);
   const [idUpdate, setIdUpdate] = useState<string>("");
   const [data, setData] = useState({
-    title: "",
-    subtitle: "",
+    name: "",
+    price: 0,
+    compare_at_price: 0,
     description: "",
-    expect: "",
-    author: "",
+    estimate_ship_date: "",
     tags: "",
-    img: null,
+    images: [] as Array<File>,
+    thumbnails: [] as Array<File>,
   });
 
   const [loading, setLoading] = useState(false);
@@ -27,82 +29,106 @@ const ProductAdmin = () => {
     }));
   };
 
-  const setDataInputToUpdate = (item: INew) => {
+  const setDataInputToUpdate = (item: IProduct) => {
     setData({
       ...data,
-      title: item.title ? item.title : "",
-      subtitle: item.subtitle ? item.subtitle : "",
+      name: item.name ? item.name : "",
+      price: item.price ? item.price : 0,
+      compare_at_price: item.compare_at_price ? item.compare_at_price : 0,
       description: item.description ? item.description : "",
-      expect: item.expect ? item.expect : "",
-      author: item.author ? item.author : "",
+      estimate_ship_date: item.estimate_ship_date
+        ? item.estimate_ship_date
+        : "",
       tags: item.tags ? item.tags : "",
     });
   };
 
   const fetchNews = async () => {
     setLoading(true);
-    const res = await axios.get(`${API_LINK}/new/`);
+    const res = await axios.get(`${API_LINK}/products/?page=1&limit=20`);
     setListNews(res.data.data);
     setLoading(false);
   };
-
   const handleFileInputChange = (event: any) => {
-    const file = event.target.files[0];
-    setData({ ...data, img: file });
+    const files = event.target.files;
+    let fileArray = [];
+    for (let i = 0; i < files.length; i++) {
+      fileArray.push(files.item(i));
+    }
+    setData({ ...data, images: fileArray });
+  };
+
+  const handleFileInputChange2 = (event: any) => {
+    const files = event.target.files;
+    let fileArray = [];
+    for (let i = 0; i < files.length; i++) {
+      fileArray.push(files.item(i));
+    }
+    setData({ ...data, thumbnails: fileArray });
   };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("subtitle", data.subtitle);
+    formData.append("name", data.name);
+    formData.append("price", data.price.toString());
+    formData.append("compare_at_price", data.compare_at_price.toString());
     formData.append("description", data.description);
-    formData.append("expect", data.expect);
-    formData.append("author", data.author);
+    formData.append("estimate_ship_date", data.estimate_ship_date);
     formData.append("tags", data.tags);
-    if (data.img) {
-      formData.append("img", data.img);
+    for (let i = 0; i < data.images.length; i++) {
+      formData.append("images", data.images[i]);
     }
 
-    const res = await axios.post(`${API_LINK}/new/`, formData);
+    for (let i = 0; i < data.thumbnails.length; i++) {
+      formData.append("thumbnails", data.thumbnails[i]);
+    }
+
+    const res = await axios.post(`${API_LINK}/products/create`, formData);
     fetchNews();
     setData({
-      title: "",
-      subtitle: "",
+      name: "",
+      price: 0,
+      compare_at_price: 0,
       description: "",
-      expect: "",
-      author: "",
+      estimate_ship_date: "",
       tags: "",
-      img: null,
+      images: [],
+      thumbnails: [],
     });
   };
 
   const handleDelete = async (id: string) => {
-    const res = await axios.delete(`${API_LINK}/new/${id}`);
+    const res = await axios.delete(`${API_LINK}/products/${id}`);
     fetchNews();
   };
 
   const handleUpdate = async (id: string) => {
     const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("subtitle", data.subtitle);
+    formData.append("name", data.name);
+    formData.append("price", data.price.toString());
+    formData.append("compare_at_price", data.compare_at_price.toString());
     formData.append("description", data.description);
-    formData.append("expect", data.expect);
-    formData.append("author", data.author);
+    formData.append("estimate_ship_date", data.estimate_ship_date);
     formData.append("tags", data.tags);
-    if (data.img) {
-      formData.append("img", data.img);
+    for (let i = 0; i < data.images.length; i++) {
+      formData.append("images", data.images[i]);
     }
-    const res = await axios.put(`${API_LINK}/new/${id}`, formData);
+
+    for (let i = 0; i < data.thumbnails.length; i++) {
+      formData.append("thumbnails", data.thumbnails[i]);
+    }
+    const res = await axios.put(`${API_LINK}/products/update/${id}`, formData);
     fetchNews();
     setData({
-      title: "",
-      subtitle: "",
+      name: "",
+      price: 0,
+      compare_at_price: 0,
       description: "",
-      expect: "",
-      author: "",
+      estimate_ship_date: "",
       tags: "",
-      img: null,
+      images: [],
+      thumbnails: [],
     });
   };
 
@@ -117,29 +143,40 @@ const ProductAdmin = () => {
         <div className="newAdmin__add">
           <form onSubmit={(e) => e.preventDefault()}>
             <div>
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title">Name</label>
               <input
                 type="text"
-                id="title"
-                name="title"
-                value={data.title}
+                id="name"
+                name="name"
+                value={data.name}
                 placeholder="e.g. New about your website"
                 onChange={(e: any) => handleInputChange(e)}
               />
             </div>
             <div>
-              <label htmlFor="subtitle">Subtitle</label>
+              <label htmlFor="name">Price</label>
               <input
-                type="text"
-                id="subtitle"
-                name="subtitle"
-                value={data.subtitle}
-                placeholder="Subtitle"
+                type="number"
+                id="price"
+                name="price"
+                value={data.price}
+                placeholder="price"
                 onChange={(e: any) => handleInputChange(e)}
               />
             </div>
             <div>
-              <label htmlFor="description">Description</label>
+              <label htmlFor="name">compare_at_price</label>
+              <input
+                type="number"
+                id="compare_at_price"
+                name="compare_at_price"
+                value={data.compare_at_price}
+                placeholder="compare_at_price"
+                onChange={(e: any) => handleInputChange(e)}
+              />
+            </div>
+            <div>
+              <label htmlFor="compare_at_price">Description</label>
               <textarea
                 id="description"
                 placeholder="Description"
@@ -149,26 +186,16 @@ const ProductAdmin = () => {
               ></textarea>
             </div>
             <div>
-              <label htmlFor="description">Expect</label>
+              <label htmlFor="estimate_ship_date">estimate_ship_date</label>
               <textarea
-                id="expect"
-                placeholder="Expect"
-                value={data.expect}
-                name="expect"
+                id="estimate_ship_date"
+                placeholder="estimate_ship_date"
+                value={data.estimate_ship_date}
+                name="estimate_ship_date"
                 onChange={(e: any) => handleInputChange(e)}
               ></textarea>
             </div>
-            <div>
-              <label htmlFor="author">Author</label>
-              <input
-                type="text"
-                id="author"
-                name="author"
-                value={data.author}
-                placeholder="Author"
-                onChange={(e: any) => handleInputChange(e)}
-              />
-            </div>
+
             <div>
               <label htmlFor="tags">Tags</label>
               <input
@@ -181,13 +208,25 @@ const ProductAdmin = () => {
               />
             </div>
             <div>
-              <label htmlFor="image">Image</label>
+              <label htmlFor="image">Images</label>
               <input
                 type="file"
-                id="img"
-                name="img"
+                id="images"
+                name="images"
                 accept="image/*"
+                multiple
                 onChange={(e: any) => handleFileInputChange(e)}
+              />
+            </div>
+            <div>
+              <label htmlFor="image">Thumbnails</label>
+              <input
+                type="file"
+                id="thumbnails"
+                name="thumbnails"
+                accept="image/*"
+                multiple
+                onChange={(e: any) => handleFileInputChange2(e)}
               />
             </div>
             <button type="submit" onClick={(e) => handleSubmit(e)}>
@@ -208,30 +247,27 @@ const ProductAdmin = () => {
           {loading ? (
             <Loading />
           ) : listNews ? (
-            listNews.map((item: INew) => {
+            listNews.map((item: IProduct) => {
               return (
-                <div className="newAdmin__item" key={item._id}>
-                  {/* <div className="newAdmin__item-checkbox">
-                      <input type="checkbox" />
-                    </div> */}
+                <div className="newAdmin__item" key={item?._id}>
                   <img
-                    src={`data:image/jpeg;base64,${item.img}`}
+                    src={`data:image/jpeg;base64,${item?.images[0].base64}`}
                     className="newAdmin__item-img"
                     alt=""
                   />
-                  <div className="newAdmin__item-title">{item.title}</div>
+                  <div className="newAdmin__item-title">{item?.name}</div>
                   <button
                     className="newAdmin__item-update"
                     onClick={() => {
                       setDataInputToUpdate(item);
-                      setIdUpdate(item._id);
+                      setIdUpdate(item?._id);
                     }}
                   >
                     Update
                   </button>
                   <button
                     className="newAdmin__item-delete"
-                    onClick={() => handleDelete(item._id)}
+                    onClick={() => handleDelete(item?._id)}
                   >
                     Delete
                   </button>

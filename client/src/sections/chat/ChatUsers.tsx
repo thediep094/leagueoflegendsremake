@@ -100,7 +100,6 @@ const ChatUsers = ({ socket }: any) => {
       if (data.room === roomId) setMessageList((list: any) => [...list, data]);
     });
   }, [socket, roomId]);
-  console.log(user);
   return (
     <div className="chat-users">
       <div className="main-user">

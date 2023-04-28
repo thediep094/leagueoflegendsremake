@@ -18,6 +18,7 @@ import Chat from "./pages/Chat";
 import New from "./pages/New";
 import SignUp from "./pages/SignUp";
 import NewAdmin from "./pages/NewAdmin";
+import ProductAdmin from "./pages/ProductAdmin";
 const socket = io("http://localhost:8000").connect();
 function App() {
   return (
@@ -44,7 +45,7 @@ function App() {
             element={<ChampionView />}
           />
           <Route path="/admin/new" element={<NewAdmin />} />
-          <Route path="/admin/product" element={<NewAdmin />} />
+          <Route path="/admin/product" element={<ProductAdmin />} />
         </Routes>
       </BrowserRouter>
     </div>
