@@ -18,5 +18,12 @@ userRouter.get(
     authMiddleware.verifiyToken,
     userController.getUserByID,
 );
+
+userRouter.get(
+    // "/:id",
+    "/me/:id",
+    userController.getUserwithRank,
+);
+
 userRouter.get("/all", userController.getAllUser);
 module.exports = userRouter;

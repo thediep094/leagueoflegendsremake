@@ -1,3 +1,5 @@
+const InGame = require("../model/Ingame");
+const Rank = require("../model/Rank");
 const User = require("../model/User");
 const mongoose = require("mongoose");
 
@@ -90,6 +92,30 @@ const UserController = {
                 error: error,
             });
         }
+    },
+    getUserwithRank: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const userData = await User.findById(id);
+            const ingameData = await InGame.findOne({ name: userData.ingame });
+            const rankData = await Rank.find({ summonerName: userData.ingame });
+            const result = {};
+            result.user = userData;
+            if (ingameData) {
+                result.ingame = ingameData;
+            }
+            result.rank = (rankData.length > 0) ? rankData : [];
+            return res.status(200).json({
+                message: "Thành công",
+                data: result,
+            })
+        } catch (error) {
+            return res.status(500).json({
+                message: "Server error",
+                error: error,
+            }); 
+        }
+
     },
     update: async (req, res) => {
         try {
