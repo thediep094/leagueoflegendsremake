@@ -94,14 +94,14 @@ const RankController = {
                         as: "summoner",
                     },
                 },
-                {
-                    $addFields: {
-                        profileIconId: {
-                            $arrayElemAt: ["$summoner.profileIconId", 0],
-                        },
-                        level: { $arrayElemAt: ["$summoner.summonerLevel", 0] },
-                    },
-                },
+                // {
+                //     $addFields: {
+                //         profileIconId: {
+                //             $arrayElemAt: ["$summoner.profileIconId", 0],
+                //         },
+                //         level: { $arrayElemAt: ["$summoner.summonerLevel", 0] },
+                //     },
+                // },
                 {
                     $project: {
                         tier: {
@@ -166,8 +166,8 @@ const RankController = {
                         summonerName: 1,
                         wins: 1,
                         losses: 1,
-                        profileIconId: 1,
-                        level: 1,
+                        "summoner.profileIconId": 1,
+                        "summoner.summonerLevel": 1
                     },
                 },
                 {
@@ -242,8 +242,8 @@ const RankController = {
                         summonerName: 1,
                         wins: 1,
                         losses: 1,
-                        profileIconId: 1,
-                        level: 1,
+                        "summoner.profileIconId": 1,
+                        "summoner.summonerLevel": 1
                     },
                 },
             ]);
