@@ -64,7 +64,7 @@ const refresh = async (refreshToken) => {
 const deleteTokenDB = async (user) => {
     try {
         const token = await Token.find({ userID: user._id });
-        console.log("đã tìm thấy: " + token.length);
+        // console.log("đã tìm thấy: " + token.length);
         if (token.length > 0) {
             // console.log(token[0].userID);
             await Token.deleteMany({ userID: token[0].userID });
