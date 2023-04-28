@@ -6,6 +6,7 @@ const messageRouter = require("./message.route");
 const productRouter = require("./product.route");
 const ingameRouter = require("./ingame.route");
 const rankRouter = require("./rank.route");
+const newRouter = require("./new.route");
 const router = express.Router();
 
 router.use("/rank", rankRouter);
@@ -15,5 +16,6 @@ router.use("/users", userRouter);
 router.use("/auth", authRouter);
 router.use("/chat", BoxChatRouter);
 router.use("/message", messageRouter);
+router.use("/new", newRouter);
 
 module.exports = router;

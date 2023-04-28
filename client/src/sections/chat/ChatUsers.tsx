@@ -101,11 +101,20 @@ const ChatUsers = ({ socket }: any) => {
     <div className="chat-users">
       <div className="main-user">
         <div className="main-user__avatar">
-          <img src={user?.mainAva} alt="" />
+          <img
+            src={
+              user?.mainAva
+                ? user?.mainAva
+                : "https://ddragon-webp.lolmath.net/latest/img/profileicon/5710.webp"
+            }
+            alt=""
+          />
         </div>
 
         <div className="main-user__info">
-          <div className="main-user__name">{user?.ingame}</div>
+          <div className="main-user__name">
+            {user?.ingame ? user?.ingame : "Anonymous"}
+          </div>
           <div className="main-user__status">
             <div></div>
             Online
