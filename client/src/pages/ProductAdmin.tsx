@@ -5,7 +5,7 @@ import axios from "axios";
 import { API_LINK } from "../default-value";
 import { INew } from "../types/new";
 import Loading from "../components/Loading";
-const NewAdmin = () => {
+const ProductAdmin = () => {
   const [listNews, setListNews] = useState<INew[]>([]);
   const [idUpdate, setIdUpdate] = useState<string>("");
   const [data, setData] = useState({
@@ -245,4 +245,4 @@ const NewAdmin = () => {
   );
 };
 
-export default NewAdmin;
+export default ProductAdmin;

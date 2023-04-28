@@ -5,6 +5,7 @@ import { API_LINK } from "../../default-value";
 import { IAccount } from "../../types/account";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import Loading from "../../components/Loading";
 const ChatUsers = ({ socket }: any) => {
   const [openPopup, setOpenPopup] = useState(false);
   const [clickUser, setClickUser] = useState<IAccount>();
@@ -13,7 +14,7 @@ const ChatUsers = ({ socket }: any) => {
   const [messageList, setMessageList] = useState<any>([]);
   const [currentMessage, setCurrentMessage] = useState("");
   const chatParent = useRef<HTMLDivElement>(null);
-
+  const [loadingMessage, setLoadingMessage] = useState(false);
   useEffect(() => {
     const domNode = chatParent.current;
     if (domNode) {
@@ -35,6 +36,7 @@ const ChatUsers = ({ socket }: any) => {
 
   const clickUserHandle = async (item: IAccount) => {
     setMessageList([]);
+    setLoadingMessage(true);
     if (user) {
       setClickUser(item);
       setOpenPopup(true);
@@ -58,6 +60,7 @@ const ChatUsers = ({ socket }: any) => {
           setMessageList((list: any) => [...list, messageData]);
       });
       setRoomId(resId.data.id);
+      setLoadingMessage(false);
     } else {
       alert("Bạn cần đăng nhập");
     }
@@ -188,17 +191,21 @@ const ChatUsers = ({ socket }: any) => {
           </div>
         </div>
         <div className="chat__popup-content" ref={chatParent}>
-          {messageList.map((message: any) => {
-            return (
-              <div
-                className={`chat__popup-content-comment ${
-                  message.type == "user" ? "user" : "other-user"
-                }`}
-              >
-                {message?.comment}
-              </div>
-            );
-          })}
+          {loadingMessage ? (
+            <Loading />
+          ) : (
+            messageList.map((message: any) => {
+              return (
+                <div
+                  className={`chat__popup-content-comment ${
+                    message.type == "user" ? "user" : "other-user"
+                  }`}
+                >
+                  {message?.comment}
+                </div>
+              );
+            })
+          )}
         </div>
         <div className="chat__popup-input">
           <input

@@ -44,6 +44,7 @@ function App() {
             element={<ChampionView />}
           />
           <Route path="/admin/new" element={<NewAdmin />} />
+          <Route path="/admin/product" element={<NewAdmin />} />
         </Routes>
       </BrowserRouter>
     </div>

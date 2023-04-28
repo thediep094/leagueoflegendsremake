@@ -7,11 +7,15 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_LINK } from "../../default-value";
 import { INew } from "../../types/new";
+import Loading from "../../components/Loading";
 const NewAll = () => {
   const [listNews, setListNews] = useState<INew[]>();
+  const [loading, setLoading] = useState(false);
   const fetchNews = async () => {
+    setLoading(true);
     const res = await axios(`${API_LINK}/new/`);
     setListNews(res.data.data);
+    setLoading(false);
   };
   useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -22,6 +26,7 @@ const NewAll = () => {
       <div className="newsAll__tag">LATEST NEWS</div>
       <div className="newsAll__container">
         <div className="newsAll__container__left">
+          {loading ? <Loading /> : null}
           {listNews?.map((item: INew, index: number) => {
             return (
               <div

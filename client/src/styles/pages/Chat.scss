@@ -378,6 +378,7 @@
       flex: 1;
       padding: 10px;
       overflow: auto;
+      position: relative;
       &:hover {
         &::-webkit-scrollbar-thumb {
           background-color: #c89b3c;
