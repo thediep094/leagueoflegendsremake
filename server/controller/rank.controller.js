@@ -46,6 +46,41 @@ const RankController = {
             });
         }
     },
+    updateRankbyUsername: async (req, res) => {
+        try {
+            const { username } = req.body;
+
+            const summonerId = await getSummonerId(username);
+            axios
+                .get(
+                    `https://vn2.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}`,
+                    {
+                        headers: {
+                            "X-Riot-Token": process.env.RIOT_KEY,
+                        },
+                    },
+                )
+                .then(async (response) => {
+                    const rankData = response.data;
+                    const result = await Rank.deleteMany({ summonerId });
+                    const updateRanks = await Rank.create(rankData);
+                    return res.status(200).json({
+                        message: "Thành công",
+                        data: updateRanks,
+                    });
+                })
+                .catch(function (err) {
+                    return res.status(404).json({
+                        message: "Rank không tồn tại",
+                    });
+                });
+        } catch (error) {
+            return res.status(500).json({
+                message: "Server error",
+                error: error,
+            });
+        }
+    },
     
 };
 

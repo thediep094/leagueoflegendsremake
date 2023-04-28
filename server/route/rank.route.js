@@ -7,5 +7,10 @@ rankRouter.get(
     rankController.getRankByUsername,
 );
 
+rankRouter.get(
+    "/update",
+    rankController.updateRankbyUsername,
+);
+
 
 module.exports = rankRouter;
