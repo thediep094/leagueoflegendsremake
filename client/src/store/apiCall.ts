@@ -20,19 +20,30 @@ export const login = async (dispatch: any, user: any) => {
 export const register = async (dispatch: any, user: any) => {
   dispatch(loginStart());
   try {
-    const res = await axios.post(`${API_LINK}/users/`, {
-      fullname: user.fullname,
-      username: user.username,
-      password: user.password,
-      date: user.date,
-      mail: user.mail,
-      ingame: user.ingame,
-      mainAva: user.mainAva,
-    });
-    console.log(res.data);
-    // dispatch(loginSuccess(res.data.user));
-    // localStorage.setItem("accessToken", res.data.token.accessToken);
-    alert("Tạo tài khoản thành công");
+    if (user.ingame) {
+      try {
+        const res2 = await axios.get(
+          `${API_LINK}/ingame/search?summonerName=${user.ingame}`
+        );
+        const res = await axios.post(`${API_LINK}/users/`, {
+          fullname: user.fullname,
+          username: user.username,
+          password: user.password,
+          date: user.date,
+          mail: user.mail,
+          ingame: user.ingame,
+          mainAva: user.mainAva,
+        });
+        alert("Tạo tài khoản thành công");
+      } catch (error) {
+        alert("Không tồn tại tài khoản game này");
+      }
+      try {
+        const res3 = await axios.post(`${API_LINK}/rank/search/`, {
+          username: user.username,
+        });
+      } catch (error) {}
+    }
   } catch (error) {
     dispatch(loginFailure());
     alert("Tạo tài khoản thất bại");

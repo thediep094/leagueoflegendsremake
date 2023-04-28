@@ -12,5 +12,4 @@ const getSummonerId = async (username) => {
     }
 };
 
-
 module.exports = { getSummonerId };

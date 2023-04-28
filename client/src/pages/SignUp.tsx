@@ -23,7 +23,7 @@ const SignUp = () => {
     mail: "",
     ingame: "",
     mainAva:
-      "https://static.wikia.nocookie.net/leagueoflegends/images/1/18/2017_Worlds_Pick%27em_Master_Poro_profileicon.png/revision/latest?cb=20170913013533",
+      "	https://ddragon-webp.lolmath.net/latest/img/profileicon/5710.webp",
   });
   const accessToken = localStorage.getItem("accessToken");
   const user = useSelector((state: RootState) => state.account.user);
@@ -36,7 +36,7 @@ const SignUp = () => {
       password: userForm.password,
       date: userForm.date,
       mail: userForm.mail,
-      ingame: userForm.ingame,
+      ingame: userForm.ingame ? userForm.ingame : "Clone Account",
       mainAva: userForm.mainAva,
     });
   };

@@ -8,16 +8,16 @@ const RankController = {
     getRankByUsername: async (req, res) => {
         try {
             const { username } = req.body;
-
             const summonerId = await getSummonerId(username);
-            const data = await Rank.findOne({ summonerId: summonerId });
-            if (data) {
+            const data = await Rank.find({ summonerId: summonerId });
+            if (data.length > 0) {
                 return res.status(200).json({
                     message: "Thành công",
                     rank: data,
                 });
             }
-            axios
+            console.log(summonerId);
+            await axios
                 .get(
                     `https://vn2.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}`,
                     {
@@ -50,7 +50,7 @@ const RankController = {
             const { username } = req.body;
 
             const summonerId = await getSummonerId(username);
-            axios
+            await axios
                 .get(
                     `https://vn2.api.riotgames.com/lol/league/v4/entries/by-summoner/${summonerId}`,
                     {
@@ -159,7 +159,7 @@ const RankController = {
                         wins: 1,
                         losses: 1,
                         "summoner.profileIconId": 1,
-                        "summoner.summonerLevel": 1
+                        "summoner.summonerLevel": 1,
                     },
                 },
                 {
@@ -235,7 +235,7 @@ const RankController = {
                         wins: 1,
                         losses: 1,
                         "summoner.profileIconId": 1,
-                        "summoner.summonerLevel": 1
+                        "summoner.summonerLevel": 1,
                     },
                 },
             ]);
@@ -330,7 +330,7 @@ const RankController = {
                         wins: 1,
                         losses: 1,
                         "summoner.profileIconId": 1,
-                        "summoner.summonerLevel": 1
+                        "summoner.summonerLevel": 1,
                     },
                 },
                 {
@@ -406,7 +406,7 @@ const RankController = {
                         wins: 1,
                         losses: 1,
                         "summoner.profileIconId": 1,
-                        "summoner.summonerLevel": 1
+                        "summoner.summonerLevel": 1,
                     },
                 },
             ]);

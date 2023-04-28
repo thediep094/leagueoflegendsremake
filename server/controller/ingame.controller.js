@@ -6,6 +6,7 @@ const InGameController = {
     getIngameBySummonerName: async (req, res) => {
         try {
             const { summonerName } = req.query;
+
             if (!summonerName) {
                 return res.status(404).json({
                     message: "Ingame không tồn tại",
@@ -18,7 +19,7 @@ const InGameController = {
                     ingame: data,
                 });
             }
-            axios
+            await axios
                 .get(
                     `https://vn2.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summonerName}`,
                     {
