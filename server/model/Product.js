@@ -7,10 +7,9 @@ const productSchema = new Schema(
         compare_at_price: { type: Number },
         description: { type: String },
         estimate_ship_date: { type: Date, default: Date.now },
-        img: { type: String, default: "" },
         tags: { type: Array },
-        images: [{ img: String }],
-        thumnail_images: [{ img: String }],
+        images: [{ name: String, base64: String }],
+        thumbnails: [{ name: String, base64: String }],
     },
     {
         timestamps: true,
