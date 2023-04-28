@@ -12,5 +12,15 @@ rankRouter.get(
     rankController.updateRankbyUsername,
 );
 
+rankRouter.get(
+    "/solo",
+    rankController.getAllRankSolo,
+);
+
+rankRouter.get(
+    "/flex",
+    rankController.getAllRankFlex,
+);
+
 
 module.exports = rankRouter;

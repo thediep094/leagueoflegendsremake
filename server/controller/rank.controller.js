@@ -27,7 +27,6 @@ const RankController = {
                     },
                 )
                 .then(async (response) => {
-                    console.log(response.data);
                     const rankData = await Rank.create(response.data);
                     return res.status(200).json({
                         message: "Thành công",
@@ -81,7 +80,188 @@ const RankController = {
             });
         }
     },
-    
+    getAllRankSolo: async (req, res) => {
+        try {
+            const data = await Rank.aggregate([
+                {
+                  $match: { queueType: "RANKED_SOLO_5x5" }
+                },
+                {
+                  $project: {
+                    tier: {
+                      $switch: {
+                        branches: [
+                          { case: { $eq: ["$tier", "CHALLENGER"] }, then: 1 },
+                          { case: { $eq: ["$tier", "GRANDMASTER"] }, then: 2 },
+                          { case: { $eq: ["$tier", "MASTER"] }, then: 3 },
+                          { case: { $eq: ["$tier", "DIAMOND"] }, then: 4 },
+                          { case: { $eq: ["$tier", "PLATINUM"] }, then: 5 },
+                          { case: { $eq: ["$tier", "GOLD"] }, then: 6 },
+                          { case: { $eq: ["$tier", "SILVER"] }, then: 7 },
+                          { case: { $eq: ["$tier", "BRONZE"] }, then: 8 },
+                          { case: { $eq: ["$tier", "IRON"] }, then: 9 },
+                        ],
+                        default: 10
+                      }
+                    },
+                    rank: {
+                      $switch: {
+                        branches: [
+                          { case: { $eq: ["$rank", "I"] }, then: 1 },
+                          { case: { $eq: ["$rank", "II"] }, then: 2 },
+                          { case: { $eq: ["$rank", "III"] }, then: 3 },
+                          { case: { $eq: ["$rank", "IV"] }, then: 4 }
+                        ],
+                        default: 5
+                      }
+                    },
+                    leaguePoints: 1,
+                    summonerName: 1,
+                    wins: 1,
+                    losses: 1
+                  }
+                },
+                {
+                  $sort: { tier: 1, rank: 1, leaguePoints: -1, summonerName: 1 }
+                },
+                {
+                    $project: {
+                        tier: {
+                            $switch: {
+                              branches: [
+                                { case: { $eq: ["$tier", 1] }, then: "CHALLENGER" },
+                                { case: { $eq: ["$tier", 2] }, then: "GRANDMASTER" },
+                                { case: { $eq: ["$tier", 3] }, then: "MASTER" },
+                                { case: { $eq: ["$tier", 4] }, then: "DIAMOND" },
+                                { case: { $eq: ["$tier", 5] }, then: "PLATINUM" },
+                                { case: { $eq: ["$tier", 6] }, then: "GOLD" },
+                                { case: { $eq: ["$tier", 7] }, then: "SILVER" },
+                                { case: { $eq: ["$tier", 8] }, then: "BRONZE" },
+                                { case: { $eq: ["$tier", 9] }, then: "IRON" },
+                              ],
+                              default: "UNRANK"
+                            }
+                        },
+                        rank: {
+                            $switch: {
+                              branches: [
+                                { case: { $eq: ["$rank", 1] }, then: "I" },
+                                { case: { $eq: ["$rank", 2] }, then: "II" },
+                                { case: { $eq: ["$rank", 3] }, then: "III" },
+                                { case: { $eq: ["$rank", 4] }, then: "IV" }
+                              ],
+                              default: ""
+                            }
+                          },
+                          leaguePoints: 1,
+                          summonerName: 1,
+                          wins: 1,
+                          losses: 1
+                    }
+                },
+            ]);
+            return res.status(200).json({
+                message: "Thành công",
+                data: data,
+            });
+        } catch (error) {
+            return res.status(500).json({
+                message: "Server error",
+                error: error,
+            });
+        }
+    },
+    getAllRankFlex: async (req, res) => {
+        try {
+            const data = await Rank.aggregate([
+                {
+                  $match: { queueType: "RANKED_FLEX_SR" }
+                },
+                {
+                  $project: {
+                    tier: {
+                      $switch: {
+                        branches: [
+                          { case: { $eq: ["$tier", "CHALLENGER"] }, then: 1 },
+                          { case: { $eq: ["$tier", "GRANDMASTER"] }, then: 2 },
+                          { case: { $eq: ["$tier", "MASTER"] }, then: 3 },
+                          { case: { $eq: ["$tier", "DIAMOND"] }, then: 4 },
+                          { case: { $eq: ["$tier", "PLATINUM"] }, then: 5 },
+                          { case: { $eq: ["$tier", "GOLD"] }, then: 6 },
+                          { case: { $eq: ["$tier", "SILVER"] }, then: 7 },
+                          { case: { $eq: ["$tier", "BRONZE"] }, then: 8 },
+                          { case: { $eq: ["$tier", "IRON"] }, then: 9 },
+                        ],
+                        default: 10
+                      }
+                    },
+                    rank: {
+                      $switch: {
+                        branches: [
+                          { case: { $eq: ["$rank", "I"] }, then: 1 },
+                          { case: { $eq: ["$rank", "II"] }, then: 2 },
+                          { case: { $eq: ["$rank", "III"] }, then: 3 },
+                          { case: { $eq: ["$rank", "IV"] }, then: 4 }
+                        ],
+                        default: 5
+                      }
+                    },
+                    leaguePoints: 1,
+                    summonerName: 1,
+                    wins: 1,
+                    losses: 1
+                  }
+                },
+                {
+                  $sort: { tier: 1, rank: 1, leaguePoints: -1, summonerName: 1 }
+                },
+                {
+                    $project: {
+                        tier: {
+                            $switch: {
+                              branches: [
+                                { case: { $eq: ["$tier", 1] }, then: "CHALLENGER" },
+                                { case: { $eq: ["$tier", 2] }, then: "GRANDMASTER" },
+                                { case: { $eq: ["$tier", 3] }, then: "MASTER" },
+                                { case: { $eq: ["$tier", 4] }, then: "DIAMOND" },
+                                { case: { $eq: ["$tier", 5] }, then: "PLATINUM" },
+                                { case: { $eq: ["$tier", 6] }, then: "GOLD" },
+                                { case: { $eq: ["$tier", 7] }, then: "SILVER" },
+                                { case: { $eq: ["$tier", 8] }, then: "BRONZE" },
+                                { case: { $eq: ["$tier", 9] }, then: "IRON" },
+                              ],
+                              default: "UNRANK"
+                            }
+                        },
+                        rank: {
+                            $switch: {
+                              branches: [
+                                { case: { $eq: ["$rank", 1] }, then: "I" },
+                                { case: { $eq: ["$rank", 2] }, then: "II" },
+                                { case: { $eq: ["$rank", 3] }, then: "III" },
+                                { case: { $eq: ["$rank", 4] }, then: "IV" }
+                              ],
+                              default: ""
+                            }
+                          },
+                          leaguePoints: 1,
+                          summonerName: 1,
+                          wins: 1,
+                          losses: 1
+                    }
+                },
+            ]);
+            return res.status(200).json({
+                message: "Thành công",
+                data: data,
+            });
+        } catch (error) {
+            return res.status(500).json({
+                message: "Server error",
+                error: error,
+            });
+        }
+    },
 };
 
 module.exports = RankController;
