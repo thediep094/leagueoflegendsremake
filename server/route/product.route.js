@@ -18,6 +18,7 @@ productRouter.post(
 
 productRouter.put(
     "/update/:id",
+    cpUpload,
     productController.update,
 );
 
