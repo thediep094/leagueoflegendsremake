@@ -88,20 +88,12 @@ const RankController = {
                 },
                 {
                     $lookup: {
-                        from: "InGame",
+                        from: "ingames",
                         localField: "summonerId",
                         foreignField: "id",
                         as: "summoner",
                     },
                 },
-                // {
-                //     $addFields: {
-                //         profileIconId: {
-                //             $arrayElemAt: ["$summoner.profileIconId", 0],
-                //         },
-                //         level: { $arrayElemAt: ["$summoner.summonerLevel", 0] },
-                //     },
-                // },
                 {
                     $project: {
                         tier: {
@@ -267,18 +259,10 @@ const RankController = {
                 },
                 {
                     $lookup: {
-                        from: "Ingame",
+                        from: "ingames",
                         localField: "summonerId",
                         foreignField: "id",
                         as: "summoner",
-                    },
-                },
-                {
-                    $addFields: {
-                        profileIconId: {
-                            $arrayElemAt: ["$summoner.profileIconId", 0],
-                        },
-                        level: { $arrayElemAt: ["$summoner.summonerLevel", 0] },
                     },
                 },
                 {
@@ -340,12 +324,13 @@ const RankController = {
                                 default: 5,
                             },
                         },
+                        summonerId: 1,
                         leaguePoints: 1,
                         summonerName: 1,
                         wins: 1,
                         losses: 1,
-                        profileIconId: 1,
-                        level: 1,
+                        "summoner.profileIconId": 1,
+                        "summoner.summonerLevel": 1
                     },
                 },
                 {
@@ -415,15 +400,17 @@ const RankController = {
                                 default: "",
                             },
                         },
+                        summonerId: 1,
                         leaguePoints: 1,
                         summonerName: 1,
                         wins: 1,
                         losses: 1,
-                        profileIconId: 1,
-                        level: 1,
+                        "summoner.profileIconId": 1,
+                        "summoner.summonerLevel": 1
                     },
                 },
             ]);
+
             return res.status(200).json({
                 message: "Thành công",
                 data: data,
