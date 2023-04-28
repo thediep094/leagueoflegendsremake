@@ -1,0 +1,11 @@
+const express = require("express");
+const newRouter = express.Router();
+const newController = require("../controller/new.controller");
+const multer = require("multer");
+const upload = multer({ storage: multer.memoryStorage() });
+newRouter.put("/:id", upload.single("img"), newController.updateNewById);
+newRouter.delete("/:id", newController.deleteNewById);
+newRouter.post("/", upload.single("img"), newController.create);
+newRouter.get("/:id", newController.getNewById);
+newRouter.get("/", newController.getAllNews);
+module.exports = newRouter;

@@ -1,11 +1,32 @@
 .product-list {
-    font-family: var(--font-heading-family);
-    margin: 5rem;
-
     h2 {
-        font-size: 2rem;
-        font-weight: bold;
         margin-bottom: 1rem;
+    }
+
+    .controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+
+        input[type="text"] {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+
+        label {
+            margin-right: 0.5rem;
+        }
+
+        select {
+            padding: 0.5rem;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: inherit;
+        }
     }
 
     table {
@@ -23,9 +44,7 @@
             background-color: #f0f0f0;
             font-weight: bold;
         }
-        tr:nth-child(even) {
-            background-color: #f0f0f0;
-        }
+
         td {
             img {
                 display: block;
@@ -35,17 +54,12 @@
             }
         }
 
-        button {
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            cursor: pointer;
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
 
-            &:hover {
-                background-color: #c9302c;
-            }
+        tr:hover {
+            background-color: #e6e6e6;
         }
     }
 }

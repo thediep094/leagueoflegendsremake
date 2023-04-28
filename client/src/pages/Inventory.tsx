@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ProductList from '../sections/inventory/ProductList';
 import AddProductForm from '../sections/inventory/AddProductForm';
+import Header from '../sections/Header';
 
 interface Product {
   id: number;
@@ -43,8 +44,10 @@ const App: React.FC = () => {
 
   return (
     <div>
+      <Header/>
       <AddProductForm onAddProduct={handleAddProduct} />
       <ProductList products={products} onDeleteProduct={handleDeleteProduct} />
+      
     </div>
   );
 };

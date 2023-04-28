@@ -46,6 +46,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ onAddProduct }) => {
   };
 
   return (
+    <div className="main">
     <div className="form-main">
       <h2>Add Product</h2>
       <form onSubmit={handleSubmit}>
@@ -82,6 +83,7 @@ const AddProductForm: React.FC<AddProductFormProps> = ({ onAddProduct }) => {
         </div>
         <button type="submit">Add Product</button>
       </form>
+    </div>
     </div>
   );
 };

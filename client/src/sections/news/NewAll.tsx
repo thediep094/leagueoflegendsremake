@@ -3,6 +3,7 @@ import Aos from "aos";
 import { newsLeft } from "../../data/newsLeft";
 import { newsRight } from "../../data/newsRight";
 import "../../styles/sections/news/newAll.scss";
+import { Link } from "react-router-dom";
 const NewAll = () => {
   useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -19,13 +20,23 @@ const NewAll = () => {
                 key={newsLeft[index].id}
                 data-aos="fade-right"
               >
-                <div className="newsAll__container__left__item__img">
-                  <img src={newsLeft[index].img} alt="" />
-                  <div className="newsAll__container__left__item__img__border"></div>
-                </div>
+                <Link to={`/new/${item.id}`}>
+                  <div className="newsAll__container__left__item__img">
+                    <img src={newsLeft[index].img} alt="" />
+                    <div className="newsAll__container__left__item__img__border"></div>
+                  </div>
+                </Link>
                 <div className="newsAll__container__left__item__title">
                   <p>{newsLeft[index].type}</p>
-                  <h1>{newsLeft[index].title}</h1>
+                  <Link
+                    to={`/new/${item.id}`}
+                    style={{
+                      textDecoration: "none",
+                      color: "#000",
+                    }}
+                  >
+                    <h1>{newsLeft[index].title}</h1>
+                  </Link>
                   <span>{newsLeft[index].description}</span>
                   <h2>{newsLeft[index].time}</h2>
                 </div>
