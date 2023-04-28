@@ -116,6 +116,27 @@ const ProductController = {
     update: async (req, res) => {
         try {
             const { id } = req.params;
+            
+            const { images, thumbnails } = req.files;
+            console.log(1);
+            const savedImages = [];
+            for (let i = 0; i < images.length; i++) {
+                const newImage = {
+                    name: images[i].originalname,
+                    base64: Buffer.from(images[i].buffer).toString('base64'),
+                };
+                savedImages.push(newImage);
+            }
+            const savedThumbnails = [];
+            for (let i = 0; i < thumbnails.length; i++) {
+                const newThumbnail = {
+                    name: thumbnails[i].originalname,
+                    base64: Buffer.from(thumbnails[i].buffer).toString('base64'),
+                };
+                savedThumbnails.push(newThumbnail);
+            }
+            req.body.images = savedImages;
+            req.body.thumbnails = savedThumbnails;
             const data = await Product.findByIdAndUpdate(id, req.body);
             if (data) {
                 return res.status(200).json({
