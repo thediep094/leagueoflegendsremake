@@ -8,11 +8,6 @@ export interface IProduct {
   description: string;
   estimate_ship_date: string;
   tags: string;
-  thumbnails: IImage[];
-  images: IImage[];
-}
-
-export interface IImage {
-  base64: string;
-  img: string;
+  thumbnails: string[];
+  images: string[];
 }
