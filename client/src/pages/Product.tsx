@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 import axios from "axios";
 import { IProduct } from "../types/product";
-import { API_LINK } from "../default-value";
+import { API_IMAGES, API_LINK } from "../default-value";
 import { useParams } from "react-router-dom";
 
 SwiperCore.use([Navigation, Thumbs]);
@@ -124,10 +124,7 @@ const Product = () => {
                   ? data.images?.map((item: any, index: any) => {
                       return (
                         <SwiperSlide key={index}>
-                          <img
-                            src={`data:image/jpeg;base64,${item.base64}`}
-                            alt=""
-                          />
+                          <img src={`${API_IMAGES}/images/${item}`} alt="" />
                         </SwiperSlide>
                       );
                     })
@@ -153,10 +150,7 @@ const Product = () => {
                   ? data.images?.map((item, index) => {
                       return (
                         <SwiperSlide key={index}>
-                          <img
-                            src={`data:image/jpeg;base64,${item.base64}`}
-                            alt=""
-                          />
+                          <img src={`${API_IMAGES}/images/${item}`} alt="" />
                         </SwiperSlide>
                       );
                     })
@@ -170,10 +164,10 @@ const Product = () => {
               </Swiper>
             </div>
             <div className="product-wrapper__img-more">
-              {data.thumbnail_images?.map((item, index) => {
+              {data.thumbnails?.map((item, index) => {
                 return (
                   <div className="product-wrapper__img-more-item" key={index}>
-                    <img src={`data:image/jpeg;base64,${item.base64}`} alt="" />
+                    <img src={`${API_IMAGES}/thumbnails/${item}`} alt="" />
                   </div>
                 );
               })}

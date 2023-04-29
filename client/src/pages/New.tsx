@@ -4,7 +4,7 @@ import Footer from "../sections/Footer";
 import "../styles/pages/New.scss";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { API_LINK } from "../default-value";
+import { API_IMAGES, API_LINK } from "../default-value";
 import { INew } from "../types/new";
 const New = () => {
   const { id } = useParams();
@@ -23,11 +23,11 @@ const New = () => {
       <div className="new-content">
         <div className="new__heading">
           <div className="new__heading-img-blur">
-            <img src={`data:image/jpeg;base64,${newData?.img}`} alt="" />
+            <img src={`${API_IMAGES}/news/${newData?.img}`} alt="" />
           </div>
           <div className="new__heading-info">
             <div className="new__heading-info-img">
-              <img src={`data:image/jpeg;base64,${newData?.img}`} alt="" />
+              <img src={`${API_IMAGES}/news/${newData?.img}`} alt="" />
             </div>
             <div className="new__heading-info-title">{newData?.title}</div>
             <div className="new__heading-info-subtitle">

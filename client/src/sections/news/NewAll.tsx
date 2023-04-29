@@ -5,7 +5,7 @@ import { newsRight } from "../../data/newsRight";
 import "../../styles/sections/news/newAll.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { API_LINK } from "../../default-value";
+import { API_IMAGES, API_LINK } from "../../default-value";
 import { INew } from "../../types/new";
 import Loading from "../../components/Loading";
 const NewAll = () => {
@@ -36,7 +36,7 @@ const NewAll = () => {
               >
                 <Link to={`/new/${item._id}`}>
                   <div className="newsAll__container__left__item__img">
-                    <img src={`data:image/jpeg;base64,${item.img}`} alt="" />
+                    <img src={`${API_IMAGES}/news/${item.img}`} alt="" />
                     <div className="newsAll__container__left__item__img__border"></div>
                   </div>
                 </Link>

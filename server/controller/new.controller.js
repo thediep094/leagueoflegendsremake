@@ -8,7 +8,7 @@ const NewController = {
         try {
             const { title, subtitle, description, expect, author, tags } =
                 req.body;
-            const img = Buffer.from(req.file.buffer).toString("base64");
+            const img = req.file.originalname;
             const newRecord = new New({
                 title,
                 subtitle,

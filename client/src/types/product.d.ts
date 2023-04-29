@@ -8,7 +8,7 @@ export interface IProduct {
   description: string;
   estimate_ship_date: string;
   tags: string;
-  thumbnail_images: IImage[];
+  thumbnails: IImage[];
   images: IImage[];
 }
 

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../sections/Header";
 import "../styles/pages/Admin.scss";
 import axios from "axios";
-import { API_LINK } from "../default-value";
+import { API_IMAGES, API_LINK } from "../default-value";
 import { INew } from "../types/new";
 import Loading from "../components/Loading";
 const NewAdmin = () => {
@@ -215,7 +215,7 @@ const NewAdmin = () => {
                       <input type="checkbox" />
                     </div> */}
                   <img
-                    src={`data:image/jpeg;base64,${item.img}`}
+                    src={`${API_IMAGES}/news/${item.img}  `}
                     className="newAdmin__item-img"
                     alt=""
                   />

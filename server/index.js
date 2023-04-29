@@ -22,6 +22,7 @@ connectDB();
 app.use(cors());
 app.use("/images", express.static("public/uploads/images"));
 app.use("/thumbnails", express.static("public/uploads/thumbnails"));
+app.use("/news", express.static("public/uploads/news"));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use("/api/v1", router);

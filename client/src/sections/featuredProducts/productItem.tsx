@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/sections/featuredProducts/productItem.scss";
 import { IProduct } from "../../types/product";
+import { API_IMAGES } from "../../default-value";
 type TProp = {
   data: IProduct;
 };
@@ -9,7 +10,7 @@ const ProductItem = (data: TProp) => {
     <div className="productItem">
       <div className="productItem__img-wrapper">
         <img
-          src={`data:image/jpeg;base64,${data.data.images[0].base64}`}
+          src={`${API_IMAGES}/images/${data.data.images[0]}`}
           alt=""
           className="productItem__img"
         />
