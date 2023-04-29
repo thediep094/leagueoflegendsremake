@@ -20,6 +20,8 @@ const connectDB = async () => {
 connectDB();
 
 app.use(cors());
+app.use("/images", express.static("public/uploads/images"));
+app.use("/thumbnails", express.static("public/uploads/thumbnails"));
 app.use(bodyParser.json());
 app.use(express.json());
 app.use("/api/v1", router);
