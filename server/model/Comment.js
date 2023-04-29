@@ -3,8 +3,8 @@ const Schema = mongoose.Schema;
 
 const CommentSchema = new Schema(
     {
-        userID: { type: Schema.Types.ObjectId }, 
-        productID: { type: Schema.Types.ObjectId },    
+        userId: { type: Schema.Types.ObjectId }, 
+        productId: { type: Schema.Types.ObjectId },    
         rate: { type: Number },
         cmt: { type: String },
     },
