@@ -1,5 +1,6 @@
 .championItem {
-  cursor: pointer;
+  cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+    auto !important;
   margin-bottom: 20px;
   clip-path: polygon(calc(100% - 10%) 0, 100% 10%, 100% 100%, 0 100%, 0 0);
   transition: all 0.3s ease-in-out;

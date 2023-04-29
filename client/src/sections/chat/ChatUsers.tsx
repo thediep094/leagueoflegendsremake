@@ -25,7 +25,7 @@ const ChatUsers = ({ socket }: any) => {
 
   useEffect(() => {
     const fetchAllUser = async () => {
-      const res = await axios.get(`${API_LINK}/users/all?page=1&limit=50`);
+      const res = await axios.get(`${API_LINK}/users/all?page=1&limit=200`);
       setUsersData(res.data.data);
     };
     fetchAllUser();
@@ -37,6 +37,9 @@ const ChatUsers = ({ socket }: any) => {
   const clickUserHandle = async (item: IAccount) => {
     setMessageList([]);
     setLoadingMessage(true);
+    document
+      .getElementById(`chat-user-${item._id}`)
+      ?.classList.remove("have-message");
     if (user) {
       setClickUser(item);
       setOpenPopup(true);
@@ -87,6 +90,8 @@ const ChatUsers = ({ socket }: any) => {
         name: account?.ingame ? account?.ingame : "Anounymous",
         comment: currentMessage,
         avatar: account.mainAva,
+        fromUser: user?._id,
+        toUser: clickUser?._id,
       };
 
       await socket.emit("send_message", messageSendData);
@@ -97,7 +102,16 @@ const ChatUsers = ({ socket }: any) => {
 
   useEffect(() => {
     socket.on("receive_message", (data: any) => {
-      if (data.room === roomId) setMessageList((list: any) => [...list, data]);
+      if (data.room === roomId) {
+        setMessageList((list: any) => [...list, data]);
+      }
+    });
+    socket.on("receive_alert", (data: any) => {
+      if (user?._id === data.toUser) {
+        document
+          .getElementById(`chat-user-${data.fromUser}`)
+          ?.classList.add("have-message");
+      }
     });
   }, [socket, roomId]);
   return (
@@ -141,6 +155,7 @@ const ChatUsers = ({ socket }: any) => {
             <div
               className="chat-user"
               key={index}
+              id={`chat-user-${item._id}`}
               onClick={() => {
                 clickUserHandle(item);
               }}

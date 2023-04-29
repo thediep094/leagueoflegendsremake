@@ -69,10 +69,12 @@
             align-items: center;
             text-align: center;
             padding: 10px;
-            cursor: pointer;
+            cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+              auto !important;
             .btn--add {
               color: var(--tertiary-color);
-              cursor: pointer;
+              cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+                auto !important;
             }
             h1 {
               font-size: 14px;
@@ -123,10 +125,12 @@
             align-items: center;
             text-align: center;
             padding: 10px;
-            cursor: pointer;
+            cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+              auto !important;
             .btn--add {
               color: var(--tertiary-color);
-              cursor: pointer;
+              cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+                auto !important;
             }
             h1 {
               font-size: 14 * 0.8px;

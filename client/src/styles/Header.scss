@@ -38,7 +38,8 @@
     width: 95px;
     fill: #f9f9f9;
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
     &:hover {
       fill: #eb0029;
     }

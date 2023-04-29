@@ -85,6 +85,14 @@ body {
   color: rgb(1, 1, 1);
   // font-size: 62.5%;
   font-family: var(--font-body-family);
+  cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor.png"),
+    auto;
+}
+
+a,
+button {
+  cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+    auto !important;
 }
 
 :root {

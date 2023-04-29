@@ -53,7 +53,8 @@
         display: flex;
         flex-direction: row;
         padding-bottom: 50px;
-        cursor: pointer;
+        cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+          auto !important;
         .newsAll__container__left__item__img {
           width: 420px;
           height: 220px;
@@ -139,7 +140,8 @@
         margin-bottom: 20px;
         transition: all 0.5s ease;
         padding-bottom: 20px;
-        cursor: pointer;
+        cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+          auto !important;
         img {
           width: 300px;
           height: 100px;
@@ -195,7 +197,8 @@
           display: flex;
           flex-direction: row;
           padding-bottom: 50px;
-          cursor: pointer;
+          cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+            auto !important;
           .newsAll__container__left__item__img {
             width: 420px;
             height: 220px;
@@ -278,7 +281,8 @@
           padding-bottom: 50px;
           align-items: center;
           justify-content: center;
-          cursor: pointer;
+          cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+            auto !important;
           .newsAll__container__left__item__img {
             @media screen and (min-width: 475px) {
               width: 420px;
@@ -380,7 +384,8 @@
         .newsAll__footer__icon {
           padding: 0 5px;
           font-size: 35px;
-          cursor: pointer;
+          cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+            auto !important;
         }
       }
     }
@@ -401,7 +406,8 @@
           padding: 0 5px;
           font-size: 20px;
           padding-right: 10px;
-          cursor: pointer;
+          cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+            auto !important;
         }
       }
     }

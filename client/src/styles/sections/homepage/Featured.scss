@@ -110,7 +110,8 @@
             top: -5px;
             border: 1px solid #d0a85c;
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
+            cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+              auto !important;
             &:hover {
               clip-path: polygon(
                 0 0,
@@ -211,7 +212,8 @@
             top: -5px;
             border: 1px solid #d0a85c;
             transition: all 0.3s ease-in-out;
-            cursor: pointer;
+            cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+              auto !important;
             &:hover {
               clip-path: polygon(
                 0 0,

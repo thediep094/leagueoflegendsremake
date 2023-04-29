@@ -13,7 +13,8 @@
     object-fit: cover;
     background-color: rgb(242, 242, 242);
     transition: all 0.3s ease-in-out;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
   }
 
   .productItem__title {
@@ -21,13 +22,15 @@
     font-size: 15px;
     letter-spacing: 0.05em;
     color: rgb(43, 42, 41);
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
   }
 
   .productItem__price {
     margin-top: 3px;
     color: rgb(101, 100, 98);
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
   }
   &:hover {
     .productItem__img {

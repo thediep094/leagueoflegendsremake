@@ -212,7 +212,19 @@
       flex-direction: row;
       padding: 10px;
       align-items: center;
-      cursor: pointer;
+      cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+        auto;
+      &.have-message {
+        &::after {
+          content: "";
+          position: absolute;
+          right: 10px;
+          width: 20px;
+          height: 20px;
+          background-color: #c8aa6e;
+          clip-path: polygon(70% 21%, 99% 0, 100% 100%, 0 100%, 0 21%);
+        }
+      }
       &:hover {
         background-color: rgba(#cdfafa, 0.2);
         border-left: 4px solid #43d343;
@@ -364,7 +376,9 @@
     .chat__popup-heading-button {
       color: #ffdd8d;
       font-weight: bold;
-      cursor: pointer;
+      cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+        auto;
+
       width: 20px;
       text-align: center;
     }

@@ -78,7 +78,8 @@
           height: 30px;
           padding: 10px 0;
           border-radius: 5px;
-          cursor: pointer;
+          cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+            auto !important;
           transition: all 0.2s ease-in-out;
           &:hover {
             opacity: 0.5;
@@ -87,7 +88,8 @@
       }
 
       .signIn__login {
-        cursor: pointer;
+        cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+          auto !important;
         display: flex;
         margin-top: 20px;
         padding: 15px 35px;
@@ -188,7 +190,8 @@
           height: 30px;
           padding: 10px 0;
           border-radius: 5px;
-          cursor: pointer;
+          cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+            auto !important;
           transition: all 0.2s ease-in-out;
           &:hover {
             opacity: 0.5;
@@ -359,7 +362,8 @@
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     transition: all ease 0.4s;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
   }
 
   .social-media-login .media-item:hover {
@@ -398,12 +402,14 @@
     border-radius: 5px;
     width: 20px;
     height: 20px;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
     display: inline-block;
   }
 
   .save-login label {
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
   }
 
   .save-login input[type="checkbox"]:checked {
@@ -413,7 +419,8 @@
   .save-login .check-icon {
     width: 0.8em;
     height: 0.8em;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
     left: 3px;
     position: absolute;
     color: var(--gray-200);
@@ -421,7 +428,8 @@
 
   .login-sucess {
     width: 4.5em;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
     height: 4.5em;
     border: 3px solid var(--gray-200);
     border-radius: 30%;
@@ -452,7 +460,8 @@
     color: var(--gray-300);
     font-size: 0.9em;
     font-weight: bold;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
   }
 
   .other-actions a {
@@ -464,7 +473,8 @@
     color: var(--gray-300);
     font-size: 0.9em;
     font-weight: bold;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
     &:hover {
       color: var(--black-200);
     }

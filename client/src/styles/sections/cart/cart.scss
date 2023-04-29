@@ -50,7 +50,8 @@
   .cart-items__item-remove {
     align-self: end;
     text-decoration: underline;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
   }
 
   .cart-items__tiem {
