@@ -88,7 +88,7 @@ function Header() {
         </div>
       </div>
       <div className="header__account">
-        {user?.username ? (
+        {user ? (
           <div className="header__account-login" onClick={() => handleLogout()}>
             Logout
           </div>
@@ -246,7 +246,7 @@ function Header() {
           </div>
 
           <div className="menu-drawer__account">
-            {user?.username ? null : (
+            {user ? null : (
               <div className="menu-drawer__account-login">
                 <Link to={"/login"}>Login</Link>
               </div>

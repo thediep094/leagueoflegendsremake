@@ -10,6 +10,7 @@ authRouter.post(
     userMiddleware.checkRequiredLogin,
     authController.login,
 );
+authRouter.post("/loginGoogle", authController.loginGoogle);
 authRouter.post(
     "/logout",
     authMiddleware.checkRequired,

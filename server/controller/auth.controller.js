@@ -77,6 +77,41 @@ const AuthController = {
             });
         }
     },
+    loginGoogle: async (req, res) => {
+        try {
+            const { email, displayName, photoUrl } = req.body;
+
+            let user = await User.findOne({ mail: email });
+
+            if (!user) {
+                user = await User.create({
+                    mail: email,
+                    fullname: displayName,
+                    ingame: displayName,
+                    mainAva: photoUrl,
+                });
+            }
+
+            await deleteTokenDB(user);
+
+            const token = await spawnToken(user);
+            const newToken = await Token.create({
+                userID: user._id,
+                token: token.refreshToken,
+            });
+
+            return res.status(200).json({
+                message: "Đăng nhập thành công",
+                email: user.email,
+                token,
+            });
+        } catch (error) {
+            return res.status(500).json({
+                message: "Server error",
+                error: error,
+            });
+        }
+    },
 };
 
 module.exports = AuthController;
