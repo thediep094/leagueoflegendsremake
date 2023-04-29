@@ -5,7 +5,7 @@ export interface IAccount {
   fullname: string;
   ingame: string;
   username: string;
-  email: string;
+  mail: string;
   date: string;
 }
 

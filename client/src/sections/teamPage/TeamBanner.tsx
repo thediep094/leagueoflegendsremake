@@ -2,8 +2,11 @@ import React from "react";
 import "../../styles/base.scss";
 import "../../styles/sections/teamPage/TeamBanner.scss";
 import { IIngame } from "../../types/account";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
 
 const TeamBanner = ({ teamData }: any) => {
+  const user = useSelector((state: RootState) => state.account.user);
   return (
     <div className="team-banner-container">
       <div
@@ -15,13 +18,25 @@ const TeamBanner = ({ teamData }: any) => {
 
       <div className="team-logo">
         <img
-          src={`https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${teamData.profileIconId}.png`}
-          alt={teamData.name}
+          src={
+            teamData
+              ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${teamData?.profileIconId}.png`
+              : user?.mainAva
+          }
+          alt={
+            teamData
+              ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${teamData?.profileIconId}.png`
+              : user?.mainAva
+          }
         />
       </div>
       <div className="team-info">
-        <div className="team-name">{teamData.name}</div>
-        <div className="team-level">Level: {teamData.summonerLevel}</div>
+        <div className="team-name">
+          {teamData?.name ? teamData?.name : user?.fullname}
+        </div>
+        <div className="team-level">
+          Level: {teamData?.summonerLevel ? teamData?.summonerLevel : 1}
+        </div>
       </div>
     </div>
   );

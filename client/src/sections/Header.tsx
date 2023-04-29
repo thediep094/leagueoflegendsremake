@@ -89,6 +89,11 @@ function Header() {
       </div>
       <div className="header__account">
         {user ? (
+          <Link to={`/profile/${user._id}`} className="header__account-avatar">
+            <img src={user.mainAva} alt="" />
+          </Link>
+        ) : null}
+        {user ? (
           <div className="header__account-login" onClick={() => handleLogout()}>
             Logout
           </div>
@@ -246,7 +251,23 @@ function Header() {
           </div>
 
           <div className="menu-drawer__account">
-            {user ? null : (
+            {user ? (
+              <Link
+                to={`/profile/${user._id}`}
+                className="header__account-avatar-menudrawer"
+              >
+                <img src={user.mainAva} alt="" />
+              </Link>
+            ) : null}
+
+            {user ? (
+              <div
+                className="menu-drawer__account-login"
+                onClick={() => handleLogout()}
+              >
+                <a href="#">Logout</a>
+              </div>
+            ) : (
               <div className="menu-drawer__account-login">
                 <Link to={"/login"}>Login</Link>
               </div>

@@ -12,7 +12,7 @@ userRouter.post(
     userController.create,
 );
 
-userRouter.put("/:id", userMiddleware.checkExist, userController.update);
+userRouter.put("/:id", userController.update);
 userRouter.get(
     // "/:id",
     "/",

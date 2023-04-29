@@ -14,4 +14,9 @@ export interface IRank {
   ];
   tier: string;
   rank: string;
+  user: [
+    {
+      _id: string;
+    }
+  ];
 }

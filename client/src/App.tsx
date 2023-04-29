@@ -39,7 +39,7 @@ function App() {
           <Route path="/register" element={<SignUp />} />
           <Route path="/rank" element={<Rank />} />
           <Route path="/chat" element={<Chat socket={socket} />} />
-          <Route path="/teampage/:id" element={<TeamPage />} />
+          <Route path="/profile/:id" element={<TeamPage />} />
           <Route
             path="/champions/championview/:name"
             element={<ChampionView />}

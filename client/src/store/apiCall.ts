@@ -25,17 +25,7 @@ export const register = async (dispatch: any, user: any) => {
         const res2 = await axios.get(
           `${API_LINK}/ingame/search?summonerName=${user.ingame}`
         );
-        console.log({
-          fullname: user.fullname,
-          username: user.username,
-          password: user.password,
-          date: user.date,
-          mail: user.mail,
-          ingame: user.ingame,
-          mainAva: res2.data.ingame.profileIconId
-            ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${res2.data.ingame.profileIconId}.png`
-            : user.mainAva,
-        });
+
         const res = await axios.post(`${API_LINK}/users/`, {
           fullname: user.fullname,
           username: user.username,

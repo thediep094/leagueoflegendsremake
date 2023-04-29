@@ -14,8 +14,8 @@ const Rank: React.FC = () => {
   const fetchDataSolo = async () => {
     setLoading(true);
     const res = await axios.get(`${API_LINK}/rank/solo/`);
-    setRanksList(res.data.data);
-    console.log(res.data);
+    const filterData = res.data.data.filter((item: IRank) => item.user[0]?._id);
+    setRanksList(filterData);
     setLoading(false);
     setFlex(false);
   };
@@ -23,7 +23,8 @@ const Rank: React.FC = () => {
   const fetchDataFlex = async () => {
     setLoading(true);
     const res = await axios.get(`${API_LINK}/rank/flex/`);
-    setRanksList(res.data.data);
+    const filterData = res.data.data.filter((item: IRank) => item.user[0]?._id);
+    setRanksList(filterData);
     setLoading(false);
     setFlex(true);
   };

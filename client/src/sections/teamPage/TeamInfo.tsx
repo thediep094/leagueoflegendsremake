@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import "../../styles/base.scss";
 import "../../styles/sections/teamPage/TeamInfo.scss";
 import { IRank } from "../../types/rank";
@@ -31,23 +31,29 @@ const TeamInfo = ({ rank }: any) => {
               background: `url(https://nexus.leagueoflegends.com/wp-content/uploads/2018/04/LOL_CMS_203_Article_02_vbzxgdg7pain9awag9wt.jpg)`,
             }}
           >
-            <div className="rank-info__text">
-              <div className="rank-info__tier">Solo/Duo: {rankSolo.tier}</div>
-              <div className="rank-info__rank">
-                {rankSolo.rank} - {rankSolo.leaguePoints}points
-              </div>
-            </div>
-            <div className="rank-info__img">
-              <img
-                src={
-                  process.env.PUBLIC_URL +
-                  `/lane/${
-                    imgPublic[`${rankSolo.tier as keyof typeof imgPublic}`]
-                  }`
-                }
-                alt=""
-              />
-            </div>
+            {rankSolo ? (
+              <Fragment>
+                <div className="rank-info__text">
+                  <div className="rank-info__tier">
+                    Solo/Duo: {rankSolo.tier}
+                  </div>
+                  <div className="rank-info__rank">
+                    {rankSolo.rank} - {rankSolo.leaguePoints}points
+                  </div>
+                </div>
+                <div className="rank-info__img">
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      `/lane/${
+                        imgPublic[`${rankSolo.tier as keyof typeof imgPublic}`]
+                      }`
+                    }
+                    alt=""
+                  />
+                </div>
+              </Fragment>
+            ) : null}
           </div>
         </div>
         <div className="col-12 col-lg-6 team-info__layout">
@@ -57,23 +63,28 @@ const TeamInfo = ({ rank }: any) => {
               background: `url(https://nexus.leagueoflegends.com/wp-content/uploads/2018/04/LOL_CMS_203_Article_02_vbzxgdg7pain9awag9wt.jpg)`,
             }}
           >
-            <div className="rank-info__text">
-              <div className="rank-info__tier">Flex: {rankFlex.tier}</div>
-              <div className="rank-info__rank">
-                {rankFlex.rank} - {rankFlex.leaguePoints}points
-              </div>
-            </div>
-            <div className="rank-info__img">
-              <img
-                src={
-                  process.env.PUBLIC_URL +
-                  `/lane/${
-                    imgPublic[`${rankFlex.tier as keyof typeof imgPublic}`]
-                  }`
-                }
-                alt=""
-              />
-            </div>
+            {rankFlex ? (
+              <Fragment>
+                {" "}
+                <div className="rank-info__text">
+                  <div className="rank-info__tier">Flex: {rankFlex.tier}</div>
+                  <div className="rank-info__rank">
+                    {rankFlex.rank} - {rankFlex.leaguePoints}points
+                  </div>
+                </div>
+                <div className="rank-info__img">
+                  <img
+                    src={
+                      process.env.PUBLIC_URL +
+                      `/lane/${
+                        imgPublic[`${rankFlex.tier as keyof typeof imgPublic}`]
+                      }`
+                    }
+                    alt=""
+                  />
+                </div>
+              </Fragment>
+            ) : null}
           </div>
         </div>
       </div>

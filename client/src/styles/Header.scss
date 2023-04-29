@@ -15,6 +15,25 @@
     justify-content: unset;
   }
 
+  .header__account-avatar {
+    margin-right: 10px;
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
+  .header__account-avatar-menudrawer {
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
   .header__logo {
     width: 95px;
     fill: #f9f9f9;
@@ -86,6 +105,8 @@
   .header__account-login {
     font-size: 13px;
     font-weight: 600;
+    display: flex;
+    align-items: center;
     text-transform: uppercase;
     background: rgba(128, 128, 128, 0.2);
     padding: 8px 16px;
@@ -102,6 +123,8 @@
     background: rgb(11, 196, 226);
     padding: 8px 16px;
     font-size: 13px;
+    display: flex;
+    align-items: center;
     font-weight: 600;
     text-transform: uppercase;
     border-radius: 6.4px;
@@ -234,6 +257,13 @@
   .menu-drawer__account {
     padding: 16px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__account-avatar-menudrawer {
+    display: flex;
+    justify-content: center;
   }
 
   .menu-drawer__account-playnow {
