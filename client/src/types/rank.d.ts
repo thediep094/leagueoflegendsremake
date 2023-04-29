@@ -5,6 +5,7 @@ export interface IRank {
   leaguePoints: number;
   wins: string;
   losses: string;
+  queueType: string;
   summoner: [
     {
       profileIconId: string;

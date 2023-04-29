@@ -1,52 +1,73 @@
+.teamPage {
+  background-color: #0a0e13;
+  height: 100vh;
+}
 .team-info-main {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  height: 500px;
-  opacity: 100%;
-  background: #0a0e13;
-  border-bottom: 1px solid #252c32;
-  animation: fadein 0.8s;
-  overflow: hidden;
-  transition: max-height 0.4s ease-in-out;
-  z-index: 10;
-  flex-direction: row;
-  font-family: var(--font-heading-family);
-  color: white;
-  .team-info-solo {
+  background-color: #0a0e13;
+
+  .rank-info {
+    height: 240px;
+    border: 1px solid #252c32;
+    border-left: 0;
+    padding: 24px 20px;
     display: flex;
-    flex: 1;
-    flex-direction: column;
-    position: absolute;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    transition-property: left;
-    transition-duration: 0.7s;
-    transition-timing-function: ease;
-    border-right: 1px solid #252c32;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(5px);
+    ::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.35); /* đây là màu đen */
+      z-index: -1; /* để nó ở phía sau hình ảnh */
+    }
   }
-  .team-info-flex {
+  .row {
+    margin: 0;
+  }
+  .team-info__layout {
+    padding: 0;
+    margin: 0;
+  }
+  .rank-info__text {
     display: flex;
     flex-direction: column;
-    flex: 2;
-    margin-left: 50%;
-    height: 100%;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    transition-property: left;
-    transition-duration: 0.7s;
-    transition-timing-function: ease;
-    border-right: 1px solid #252c32;
-    gap: 1rem;
-    justify-content: center;
-    align-items: center;
+    justify-content: end;
+  }
+  .rank-info__tier {
+    color: #ffffff;
+    font-family: var(--font-body-family);
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    @media screen and (min-width: 768px) {
+      font-size: 34px;
+    }
+  }
+
+  .rank-info__rank {
+    color: #8fa3b0;
+    font-family: var(--font-body-family);
+    font-size: 15px;
+    @media screen and (min-width: 768px) {
+      font-size: 20px;
+    }
+  }
+  .rank-info__img {
+    img {
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      @media screen and (min-width: 768px) {
+        right: 10%;
+      }
+    }
   }
 }

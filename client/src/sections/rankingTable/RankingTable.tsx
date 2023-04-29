@@ -10,7 +10,7 @@ const RankingTable = ({ teams }: any) => {
     <div className="ranking-table">
       <div className="group">
         {teams?.map((team: IRank, index: number) => (
-          <Link to="/teampage" className="ranking" key={index}>
+          <Link to={`/teampage/${team._id}`} className="ranking" key={index}>
             <div className="ordinal">{index + 1}</div>
             <div className="team">
               <div className="team-logo">

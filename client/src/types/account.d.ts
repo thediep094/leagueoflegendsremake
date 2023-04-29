@@ -8,3 +8,16 @@ export interface IAccount {
   email: string;
   date: string;
 }
+
+export interface IIngame {
+  _id: string;
+  id: string;
+  accountId: string;
+  puuid: string;
+  name: string;
+  profileIconId: string;
+  revisionDate: number;
+  summonerLevel: number;
+  createdAt: string;
+  updatedAt: string;
+}

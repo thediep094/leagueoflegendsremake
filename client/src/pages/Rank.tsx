@@ -15,6 +15,7 @@ const Rank: React.FC = () => {
     setLoading(true);
     const res = await axios.get(`${API_LINK}/rank/solo/`);
     setRanksList(res.data.data);
+    console.log(res.data);
     setLoading(false);
     setFlex(false);
   };

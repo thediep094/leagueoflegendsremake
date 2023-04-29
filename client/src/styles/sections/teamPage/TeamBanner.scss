@@ -1,21 +1,32 @@
 .team-banner-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   position: relative;
   height: 350px;
+  padding: 24px;
+  align-items: flex-end;
+  &::before {
+    position: absolute;
+    content: " ";
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, #000, rgba(0, 0, 0, 0));
+  }
   .team-banner {
     position: absolute;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
     width: 100%;
     height: 100%;
+    left: 0;
+    top: 0;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -1;
     @media only screen and (min-width: 768px) {
       flex-direction: row;
 
@@ -27,8 +38,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: absolute;
-    margin-bottom: 20px;
+
+    z-index: 3;
 
     img {
       width: 100px;
@@ -46,17 +57,20 @@
   .team-info {
     display: flex;
     flex-direction: column;
-    position: absolute;
     margin-right: 10px;
     font-family: var(--font-heading-family);
     color: white;
     font-weight: 700;
-    margin-left: 7rem;
+    z-index: 3;
+    margin-left: 1rem;
     .team-name {
       display: flex;
       flex-direction: row;
       align-items: center;
-      font-size: 48px;
+      font-size: 25px;
+      @media screen and (min-width: 768px) {
+        font-size: 48px;
+      }
     }
 
     .team-region {
@@ -65,15 +79,19 @@
       color: #999;
     }
     .team-level {
-      font-size: 18px;
-      font-weight: 400;
-      color: #999;
+      font-size: 15px;
+      font-weight: 600;
+      color: #8fa3b0;
+      text-transform: uppercase;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
     }
   }
 
   @media only screen and (min-width: 768px) {
     flex-direction: row;
-    align-items: center;
+    align-items: flex-end;
     text-align: left;
   }
 }

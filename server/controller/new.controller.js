@@ -87,10 +87,7 @@ const NewController = {
         try {
             const { title, subtitle, description, expect, author, tags } =
                 req.body;
-            const img = req.file
-                ? Buffer.from(req.file.buffer).toString("base64")
-                : undefined; // Kiểm tra xem file ảnh có được gửi lên hay không
-
+            const img = req.file.originalname;
             const updatedNew = {
                 title,
                 subtitle,
