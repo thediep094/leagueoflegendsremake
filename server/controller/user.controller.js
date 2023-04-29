@@ -104,23 +104,26 @@ const UserController = {
             if (ingameData) {
                 result.ingame = ingameData;
             }
-            result.rank = (rankData.length > 0) ? rankData : [];
+            result.rank = rankData.length > 0 ? rankData : [];
             return res.status(200).json({
                 message: "Thành công",
                 data: result,
-            })
+            });
         } catch (error) {
             return res.status(500).json({
                 message: "Server error",
                 error: error,
-            }); 
+            });
         }
-
     },
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            const data = await User.findByIdAndUpdate(id, req.body);
+            const data = await User.findByIdAndUpdate(id, req.body, {
+                new: true,
+            });
+            const deletedIngame = await InGame.findOneAndRemove({ name: data.ingame });
+            const deletedRank = await Rank.deleteMany({ summonerName: data.ingame });
             if (data) {
                 return res.status(200).json({
                     message: "Sửa thông tin thành công",
