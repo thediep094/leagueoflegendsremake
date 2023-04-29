@@ -1,6 +1,7 @@
 import { loginStart, loginSuccess, loginFailure } from "./slice/accountSlice";
 import axios from "axios";
 import { API_LINK } from "../default-value";
+import { fetchSuccess } from "./slice/cartSlice";
 export const login = async (dispatch: any, user: any) => {
   dispatch(loginStart());
   try {
@@ -10,6 +11,9 @@ export const login = async (dispatch: any, user: any) => {
     });
     dispatch(loginSuccess(res.data.user));
     localStorage.setItem("accessToken", res.data.token.accessToken);
+    const res3 = await axios.post(`${API_LINK}/rank/search/`, {
+      username: user.username,
+    });
     alert("Đăng nhập thành công");
   } catch (error) {
     dispatch(loginFailure());
@@ -19,41 +23,27 @@ export const login = async (dispatch: any, user: any) => {
 
 export const register = async (dispatch: any, user: any) => {
   dispatch(loginStart());
-  try {
-    if (user.ingame) {
-      try {
-        const res2 = await axios.get(
-          `${API_LINK}/ingame/search?summonerName=${user.ingame}`
-        );
 
-        const res = await axios.post(`${API_LINK}/users/`, {
-          fullname: user.fullname,
-          username: user.username,
-          password: user.password,
-          date: user.date,
-          mail: user.mail,
-          ingame: user.ingame,
-          mainAva: res2.data.ingame.profileIconId
-            ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${res2.data.ingame.profileIconId}.png`
-            : user.mainAva,
-        });
-        try {
-          alert("Tạo tài khoản thành công");
-        } catch (error) {
-          alert("Tạo tài khoản thất bại 1");
-        }
-      } catch (error) {
-        alert("Không tồn tại tài khoản game này");
-      }
-      try {
-        const res3 = await axios.post(`${API_LINK}/rank/search/`, {
-          username: user.username,
-        });
-      } catch (error) {}
-    }
-  } catch (error) {
-    dispatch(loginFailure());
-    alert("Tạo tài khoản thất bại 2");
+  if (user.ingame) {
+    const res2 = await axios.get(
+      `${API_LINK}/ingame/search?summonerName=${user.ingame}`
+    );
+    const data2 = await res2.data?.ingame?.profileIconId;
+    setTimeout(async () => {
+      const res = await axios.post(`${API_LINK}/users/`, {
+        fullname: user.fullname,
+        username: user.username,
+        password: user.password,
+        date: user.date,
+        mail: user.mail,
+        ingame: user.ingame,
+        mainAva: data2
+          ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${data2}.png`
+          : user.mainAva,
+      });
+    }, 1000);
+
+    alert("Tạo tài khoản thành công");
   }
 };
 
@@ -68,6 +58,20 @@ export const getDataFromAccessToken = async (
         Authorization: `Bearer ${accessToken}`,
       },
     });
+    try {
+      const resCart = await axios.post(
+        `${API_LINK}/cart/`,
+        {
+          verify_id: accessToken,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+      dispatch(fetchSuccess(resCart.data.cart._id));
+    } catch (error) {}
     dispatch(loginSuccess(res.data.user));
   } catch (error) {
     dispatch(loginFailure());

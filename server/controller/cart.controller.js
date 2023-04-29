@@ -54,13 +54,19 @@ const CartController = {
             let data = await Cart.aggregate(pipeline); // bị ExceededMemoryLimit tại đây nếu như lưu ảnh bằng cách cũ
             if (cart.list.length > 0) {
                 data = data[0];
+            } else {
+                return res.status(200).json({
+                    message: "Get cart thành công",
+                    cart: cart,
+                });
             }
             // 2 vòng for lồng nhau để thêm quantity vào trong productList
+
             for (let product of data.productList) {
                 product.images = product.images[0];
-                data.list.forEach((item) => {
-                    if (item.productID.equals(product._id)) {
-                        product.quantity = item.quantity;
+                data?.list?.forEach((item) => {
+                    if (item.productID.equals(product?._id)) {
+                        product.quantity = item?.quantity;
                     }
                 });
             }
@@ -258,9 +264,11 @@ const CartController = {
     },
     // xóa product trong cart by id:
     deleteProductByID: async (req, res) => {
+        console.log(req.body);
         try {
             const { id } = req.params;
             const { productID } = req.body;
+
             if (!mongoose.Types.ObjectId.isValid(productID)) {
                 return res.status(400).json({
                     message: "product id không hợp lệ",

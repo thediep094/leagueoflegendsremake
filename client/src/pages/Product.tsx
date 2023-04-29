@@ -20,6 +20,7 @@ const Product = () => {
   const [openDescription, setOpenDescription] = useState(false);
   const [loading, setLoading] = useState(false);
   const user = useSelector((state: RootState) => state.account.user);
+  const cartId = useSelector((state: RootState) => state.cart.cartId);
   const testData = {
     id: 2,
     img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt580be0785b3cde05/6410e53d7af6422f7a249cfd/2023_SG_Ecomm_Ahri_Front_Shot_Thumb_1.png",
@@ -69,7 +70,6 @@ const Product = () => {
       },
     ],
   };
-
   const [data, setData] = useState<IProduct>();
 
   const fetchData = async () => {
@@ -85,23 +85,25 @@ const Product = () => {
 
   const handleAddToCart = (product_id: string) => {
     const addCart = async () => {
+      setLoading(true);
       try {
-        if (user) {
+        if (cartId) {
           const data = {
-            product_id: product_id,
-            itemType: "apparel",
-            quantity: 1,
+            productID: product_id,
           };
-          const res = await axios.post(
-            `http://127.0.0.1:8003/cart/add/${user.id}/`,
+          const res = await axios.patch(
+            `${API_LINK}/cart/addProduct/${cartId}`,
             data
           );
-          if (res.status == 200) alert("Add successfully");
+          alert("Add successfully");
         }
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.log(error);
       }
     };
+
     addCart();
   };
   return (

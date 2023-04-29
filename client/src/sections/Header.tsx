@@ -13,13 +13,12 @@ function Header() {
   const dispatch = useDispatch();
   useEffect(() => {
     const userLocal = localStorage?.getItem("accessToken");
-
     if (!user) {
       if (userLocal) {
         getDataFromAccessToken(dispatch, userLocal);
       }
     }
-  }, []);
+  }, [user]);
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     window.location.reload();

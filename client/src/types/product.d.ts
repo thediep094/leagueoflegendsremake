@@ -10,4 +10,5 @@ export interface IProduct {
   tags: string;
   thumbnails: string[];
   images: string[];
+  quantity: string;
 }
