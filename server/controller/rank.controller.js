@@ -95,6 +95,14 @@ const RankController = {
                     },
                 },
                 {
+                    $lookup: {
+                        from: "users",
+                        localField: "summonerName",
+                        foreignField: "ingame",
+                        as: "user",
+                    },
+                },
+                {
                     $project: {
                         tier: {
                             $switch: {
@@ -160,6 +168,7 @@ const RankController = {
                         losses: 1,
                         "summoner.profileIconId": 1,
                         "summoner.summonerLevel": 1,
+                        "user._id": 1,
                     },
                 },
                 {
@@ -236,6 +245,7 @@ const RankController = {
                         losses: 1,
                         "summoner.profileIconId": 1,
                         "summoner.summonerLevel": 1,
+                        "user._id": 1,
                     },
                 },
             ]);
@@ -266,6 +276,14 @@ const RankController = {
                     },
                 },
                 {
+                    $lookup: {
+                        from: "users",
+                        localField: "summonerName",
+                        foreignField: "ingame",
+                        as: "user",
+                    },
+                },
+                {
                     $project: {
                         tier: {
                             $switch: {
@@ -331,6 +349,7 @@ const RankController = {
                         losses: 1,
                         "summoner.profileIconId": 1,
                         "summoner.summonerLevel": 1,
+                        "user._id": 1,
                     },
                 },
                 {
@@ -407,6 +426,7 @@ const RankController = {
                         losses: 1,
                         "summoner.profileIconId": 1,
                         "summoner.summonerLevel": 1,
+                        "user._id": 1,
                     },
                 },
             ]);
