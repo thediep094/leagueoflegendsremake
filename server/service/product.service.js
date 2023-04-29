@@ -1,6 +1,7 @@
 const Product = require("../model/Product");
 const mongoose = require("mongoose");
 
+// tạm thời để đấy, ko dùng
 const getProductInCart = async (listProduct) => {
     try {
         console.log(listProduct);

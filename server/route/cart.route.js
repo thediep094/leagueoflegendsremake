@@ -1,13 +1,14 @@
 const express = require("express");
-const CartRouter = express.Router();
-const CartController = require("../controller/cart.controller");
+const cartRouter = express.Router();
+const cartController = require("../controller/cart.controller");
 const authMiddleware = require("../middleware/auth.middleware");
 
-CartRouter.post(
+cartRouter.post(
     "/",
     authMiddleware.checkRequired,
     authMiddleware.verifiyToken,
-    CartController.createCartByUserID,
+    cartController.createCartByUserID,
 );
-
-module.exports = CartRouter;
+cartRouter.patch("/:id", cartController.update);
+cartRouter.patch("/clear/:id", cartController.clear);
+module.exports = cartRouter;
