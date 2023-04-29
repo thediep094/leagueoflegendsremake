@@ -119,7 +119,7 @@ const UserController = {
     update: async (req, res) => {
         try {
             const { id } = req.params;
-            const data = await User.findByIdAndUpdate(id, req.body};
+            const data = await User.findByIdAndUpdate(id, req.body);
             const deletedIngame = await InGame.findOneAndRemove({ name: data.ingame });
             const deletedRank = await Rank.deleteMany({ summonerName: data.ingame });
             if (data) {
