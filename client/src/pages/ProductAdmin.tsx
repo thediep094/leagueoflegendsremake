@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../sections/Header";
 import "../styles/pages/Admin.scss";
 import axios from "axios";
-import { API_LINK } from "../default-value";
+import { API_IMAGES, API_LINK } from "../default-value";
 import { INew } from "../types/new";
 import Loading from "../components/Loading";
 import { IProduct } from "../types/product";
@@ -251,7 +251,7 @@ const ProductAdmin = () => {
               return (
                 <div className="newAdmin__item" key={item?._id}>
                   <img
-                    src={`data:image/jpeg;base64,${item?.images[0].base64}`}
+                    src={`${API_IMAGES}/images/${item.images[0]}`}
                     className="newAdmin__item-img"
                     alt=""
                   />
