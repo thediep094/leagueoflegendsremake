@@ -120,8 +120,6 @@ const UserController = {
         try {
             const { id } = req.params;
             const data = await User.findByIdAndUpdate(id, req.body);
-            const deletedIngame = await InGame.findOneAndRemove({ name: data.ingame });
-            const deletedRank = await Rank.deleteMany({ summonerName: data.ingame });
             if (data) {
                 return res.status(200).json({
                     message: "Sửa thông tin thành công",
