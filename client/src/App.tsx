@@ -18,6 +18,7 @@ import Chat from "./pages/Chat";
 import Inventory from "./pages/Inventory";
 import New from "./pages/New";
 import SignUp from "./pages/SignUp";
+import Checkout from "./pages/Checkout";
 const socket = io("http://localhost:8000").connect();
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           <Route path="/chat" element={<Chat socket={socket} />} />
           <Route path="/teampage" element={<TeamPage />} />
           <Route path="/inventory" element={<Inventory/>}/>
+          <Route path="/checkout" element={<Checkout/>}/>
           <Route
             path="/champions/championview/:name"
             element={<ChampionView />}
