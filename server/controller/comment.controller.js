@@ -50,22 +50,46 @@ const CommentController = {
                 {
                     $sort: { createdAt: -1 },
                 },
+                {
+                    $lookup: {
+                        from: "users",
+                        localField: "userId",
+                        foreignField: "_id",
+                        as: "user",
+                    },
+                },
+                {
+                    $addFields: {
+                        fullname: "$user.fullname",
+                        ingame: "$user.ingame",
+                    },
+                },
+                {
+                    $project: {
+                        user: 0,
+                    },
+                },
             ]);
 
-            if (data.length > 0) {
-                const formattedData = data.map((comment) => {
-                    const timestamp = moment(comment.createdAt).fromNow();
-                    return {
-                        ...comment,
-                        createdAt: timestamp,
-                    };
+            const formattedData = data.map((comment) => {
+                const timestamp = moment(comment?.createdAt).fromNow();
+                return {
+                    ...comment,
+                    createdAt: timestamp,
+                };
+            });
+
+            if (formattedData.length > 0) {
+                return res.status(200).json({
+                    message: "Lấy comment thành công",
+                    data: formattedData,
+                });
+            } else {
+                return res.status(200).json({
+                    message: "Không có comment nào",
+                    data: formattedData,
                 });
             }
-
-            return res.status(200).json({
-                message: "Lấy comment thành công",
-                data: formattedData,
-            });
         } catch (error) {
             return res.status(500).json({
                 message: "Server error",

@@ -137,7 +137,31 @@
       padding: 40px 15px 20px;
       background-color: #252423;
       clip-path: polygon(80% 20px, 84% 0, 100% 0, 100% 100%, 0 100%, 0 20px);
+      .product__comment-datas {
+        max-height: 400px;
+        overflow: auto;
 
+        &:hover {
+          &::-webkit-scrollbar-thumb {
+            background-color: #c89b3c;
+          }
+        }
+        &::-webkit-scrollbar-track {
+          background: transparent;
+          border-radius: 100px;
+        }
+
+        &::-webkit-scrollbar {
+          width: 6px;
+          background: rgba(0, 0, 0, 0.5);
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 100px;
+          background-color: #a09b8c;
+          transition: all 0.3s ease-in-out;
+        }
+      }
       .product__comment {
         display: flex;
         flex-direction: column;

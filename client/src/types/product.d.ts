@@ -12,3 +12,15 @@ export interface IProduct {
   images: string[];
   quantity: string;
 }
+
+export interface IComment {
+  _id: string;
+  userId: string;
+  productId: string;
+  rate: number;
+  cmt: string;
+  createdAt: string;
+  updatedAt: string;
+  fullname: string[];
+  ingame: string[];
+}
