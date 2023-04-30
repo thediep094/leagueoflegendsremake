@@ -79,8 +79,14 @@ const Product = () => {
     setLoading(false);
   };
 
+  const fetchComments = async () => {
+    const res = await axios.get(`${API_LINK}/comment/${id}`);
+    console.log(res.data);
+  };
+
   useEffect(() => {
     fetchData();
+    fetchComments();
   }, []);
 
   const handleAddToCart = (product_id: string) => {
@@ -106,6 +112,7 @@ const Product = () => {
 
     addCart();
   };
+
   return (
     <div className="product">
       <Header />
@@ -175,62 +182,124 @@ const Product = () => {
               })}
             </div>
           </div>
-          <div className="product-wrapper__info">
-            <div className="shape-top"></div>
-            <div className="product-wrapper__info-tags">
-              <div
-                className="product-wrapper__info-tag"
-                style={{
-                  backgroundColor: `#ffffff`,
-                  color: `#2b2a39`,
-                }}
-              >
-                {data.tags}
-              </div>
-            </div>
 
-            <div className="product-wrapper__info-heading">
-              <div className="product-wrapper__info-title">{data.name}</div>
-              <div className="product-wrapper__info-price">${data.price}</div>
-            </div>
-
-            <div
-              className="product-wrapper__info-button"
-              onClick={() => handleAddToCart(data._id)}
-            >
-              <ButtonShop name={`${data.price} - Add to Cart`} />
-            </div>
-
-            <div className="product-wrapper__info-alert">
-              This product is a collector's item intended for ages 14+
-            </div>
-            <div className="product-wrapper__info-estimate">
-              Estimated ship date: Jan 31, 2024
-            </div>
-
-            <div className="product-wrapper__info-description">
-              <div
-                className="product-wrapper__info-description-heading"
-                onClick={() => setOpenDescription(!openDescription)}
-              >
-                Description
+          <div className="product-wrapper__right">
+            <div className="product-wrapper__info">
+              <div className="shape-top"></div>
+              <div className="product-wrapper__info-tags">
                 <div
-                  className={`product-wrapper__info-description-svg ${
-                    openDescription ? "active" : ""
-                  }`}
+                  className="product-wrapper__info-tag"
+                  style={{
+                    backgroundColor: `#ffffff`,
+                    color: `#2b2a39`,
+                  }}
                 >
-                  <span></span>
-                  <span></span>
+                  {data.tags}
                 </div>
               </div>
+
+              <div className="product-wrapper__info-heading">
+                <div className="product-wrapper__info-title">{data.name}</div>
+                <div className="product-wrapper__info-price">${data.price}</div>
+              </div>
+
               <div
-                className={`product-wrapper__info-description-content ${
-                  openDescription ? "active" : ""
-                }`}
-                dangerouslySetInnerHTML={{ __html: data.description }}
-              ></div>
+                className="product-wrapper__info-button"
+                onClick={() => handleAddToCart(data._id)}
+              >
+                <ButtonShop name={`${data.price} - Add to Cart`} />
+              </div>
+
+              <div className="product-wrapper__info-alert">
+                This product is a collector's item intended for ages 14+
+              </div>
+              <div className="product-wrapper__info-estimate">
+                Estimated ship date: Jan 31, 2024
+              </div>
+
+              <div className="product-wrapper__info-description">
+                <div
+                  className="product-wrapper__info-description-heading"
+                  onClick={() => setOpenDescription(!openDescription)}
+                >
+                  Description
+                  <div
+                    className={`product-wrapper__info-description-svg ${
+                      openDescription ? "active" : ""
+                    }`}
+                  >
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
+                <div
+                  className={`product-wrapper__info-description-content ${
+                    openDescription ? "active" : ""
+                  }`}
+                  dangerouslySetInnerHTML={{ __html: data.description }}
+                ></div>
+              </div>
+              <div className="shape-bot"></div>
             </div>
-            <div className="shape-bot"></div>
+            <div className="product__comments">
+              <div className="product__comment">
+                <input type="text" placeholder="Write comment here" />
+                <div className="product__comment-user submit">Submit</div>
+              </div>
+
+              <div className="product__comment">
+                <div className="product__comment-content">
+                  Charismatic team captain and lover of ice cream sundaes, this
+                  1/7 scale statue of Star Guardian Ahri and magical medium Kiko
+                  embodies the duo's charm and sass to defend the light of the
+                  cosmos!
+                </div>
+
+                <div className="product__comment-user">
+                  x2muadacam -{" "}
+                  <span>
+                    &nbsp; 4.0
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-star-good"
+                    >
+                      <path
+                        d="M8.84456 0.749867C9.31736 -0.249956 10.6833 -0.249956 11.1552 0.749867L13.5477 5.8121L18.8951 6.62347C19.9527 6.78408 20.3739 8.14131 19.6096 8.92019L15.7392 12.8601L16.6529 18.4236C16.8342 19.5228 15.7286 20.361 14.7839 19.8421L9.99901 17.2149L5.2168 19.8421C4.2712 20.362 3.16652 19.5228 3.34693 18.4236L4.26054 12.8601L0.390161 8.92019C-0.374138 8.14038 0.0480039 6.785 1.10469 6.62347L6.45212 5.8121L8.84367 0.749867H8.84456Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div className="product__comment">
+                <div className="product__comment-content">
+                  Charismatic team captain and lover of ice cream sundaes, this
+                  1/7 scale statue of Star Guardian Ahri and magical medium Kiko
+                  embodies the duo's charm and sass to defend the light of the
+                  cosmos!
+                </div>
+
+                <div className="product__comment-user">
+                  x2muadacam -{" "}
+                  <span>
+                    &nbsp; 4.0
+                    <svg
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-star-good"
+                    >
+                      <path
+                        d="M8.84456 0.749867C9.31736 -0.249956 10.6833 -0.249956 11.1552 0.749867L13.5477 5.8121L18.8951 6.62347C19.9527 6.78408 20.3739 8.14131 19.6096 8.92019L15.7392 12.8601L16.6529 18.4236C16.8342 19.5228 15.7286 20.361 14.7839 19.8421L9.99901 17.2149L5.2168 19.8421C4.2712 20.362 3.16652 19.5228 3.34693 18.4236L4.26054 12.8601L0.390161 8.92019C-0.374138 8.14038 0.0480039 6.785 1.10469 6.62347L6.45212 5.8121L8.84367 0.749867H8.84456Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       ) : null}

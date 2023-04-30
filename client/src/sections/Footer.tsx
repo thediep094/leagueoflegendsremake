@@ -23,7 +23,11 @@ function Footer() {
       <div className="footer__container__bottom">
         <div className="footer__container__bottom1">
           <span>TAKE LEAGUE WITH YOU</span>
-          <p>
+          <p
+            style={{
+              margin: "0",
+            }}
+          >
             Download the League app to stay connected to friends and the latest
             game and esports news.
           </p>

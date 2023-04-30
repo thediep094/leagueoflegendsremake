@@ -124,6 +124,64 @@
     }
   }
 
+  .product-wrapper__right {
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      max-width: 440px;
+      width: 37.5vw;
+      margin-top: 0;
+    }
+
+    .product__comments {
+      margin-top: 100px;
+      padding: 40px 15px 20px;
+      background-color: #252423;
+      clip-path: polygon(80% 20px, 84% 0, 100% 0, 100% 100%, 0 100%, 0 20px);
+
+      .product__comment {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid rgba(#c8aa6e, 0.2);
+        padding-bottom: 20px;
+        &:first-child {
+          border-bottom: none;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+        margin-bottom: 20px;
+        input {
+          min-height: 70px;
+          background-color: transparent;
+          padding: 10px 20px;
+          border: 1px solid rgba(#c8aa6e, 0.2);
+          outline: none;
+          color: #c8aa6e;
+        }
+      }
+
+      .product__comment-user {
+        margin-top: 10px;
+        display: flex;
+        color: #c8aa6e;
+        &.submit {
+          cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+            auto !important;
+          width: fit-content;
+        }
+        span {
+          display: flex;
+          align-items: center;
+        }
+        .icon {
+          height: 12px;
+          margin-left: 3px;
+        }
+      }
+    }
+  }
+
   .product-wrapper__info {
     background-color: rgb(37, 36, 35);
     padding: 20px 50px;

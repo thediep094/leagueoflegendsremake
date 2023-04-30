@@ -2,7 +2,7 @@ const Comment = require("../model/Comment");
 const mongoose = require("mongoose");
 const User = require("../model/User");
 const Product = require("../model/Product");
-
+const moment = require("moment");
 const CommentController = {
     create: async (req, res) => {
         const userId = req.body.userId;
@@ -51,14 +51,20 @@ const CommentController = {
                     $sort: { createdAt: -1 },
                 },
             ]);
+
             if (data.length > 0) {
-                return res.status(200).json({
-                    message: "Lấy comment thành công",
-                    data: data,
+                const formattedData = data.map((comment) => {
+                    const timestamp = moment(comment.createdAt).fromNow();
+                    return {
+                        ...comment,
+                        createdAt: timestamp,
+                    };
                 });
             }
-            return res.status(404).json({
-                message: "Không tồn tại comment",
+
+            return res.status(200).json({
+                message: "Lấy comment thành công",
+                data: formattedData,
             });
         } catch (error) {
             return res.status(500).json({
