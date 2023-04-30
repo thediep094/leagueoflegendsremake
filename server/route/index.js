@@ -8,6 +8,7 @@ const ingameRouter = require("./ingame.route");
 const rankRouter = require("./rank.route");
 const newRouter = require("./new.route");
 const cartRouter = require("./cart.route");
+const commentRouter = require("./comment.route");
 const router = express.Router();
 
 router.use("/rank", rankRouter);
@@ -17,6 +18,7 @@ router.use("/users", userRouter);
 router.use("/auth", authRouter);
 router.use("/chat", BoxChatRouter);
 router.use("/message", messageRouter);
+router.use("/comment", commentRouter);
 router.use("/new", newRouter);
 router.use("/cart", cartRouter);
 

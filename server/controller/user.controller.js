@@ -104,18 +104,17 @@ const UserController = {
             if (ingameData) {
                 result.ingame = ingameData;
             }
-            result.rank = (rankData.length > 0) ? rankData : [];
+            result.rank = rankData.length > 0 ? rankData : [];
             return res.status(200).json({
                 message: "Thành công",
                 data: result,
-            })
+            });
         } catch (error) {
             return res.status(500).json({
                 message: "Server error",
                 error: error,
-            }); 
+            });
         }
-
     },
     update: async (req, res) => {
         try {
