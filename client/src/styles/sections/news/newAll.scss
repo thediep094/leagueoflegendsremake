@@ -55,6 +55,20 @@
         padding-bottom: 50px;
         cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
           auto !important;
+        @media screen and (max-width: 768px) {
+          a {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            .newsAll__container__left__item__img {
+              width: 100%;
+              img {
+                width: 100%;
+                object-fit: cover;
+              }
+            }
+          }
+        }
         .newsAll__container__left__item__img {
           width: 420px;
           height: 220px;
@@ -73,7 +87,7 @@
 
         .newsAll__container__left__item__title {
           max-width: 350px;
-          @media screen and (min-width: 475px) {
+          @media screen and (min-width: 768px) {
             padding-left: 50px;
           }
           align-self: center;
@@ -317,12 +331,14 @@
           }
 
           .newsAll__container__left__item__title {
-            max-width: 350px;
+            max-width: 420px;
             align-self: center;
             margin-top: 20px;
             padding-bottom: 20px;
-            padding-left: 40px;
+            padding-left: 0;
             border-bottom: 1px solid rgb(199, 196, 196);
+            width: 100%;
+            text-align: left;
             p {
               margin-bottom: 0;
               font-size: 10px;
@@ -331,7 +347,9 @@
               color: rgb(11, 198, 227);
               font-family: var(--font-footer-family);
             }
-
+            a {
+              justify-content: flex-start;
+            }
             h1 {
               margin-top: 0.3125rem;
               font-size: 1.5rem;
