@@ -180,7 +180,13 @@ const Cart: React.FC = () => {
               </div>
             </div>
 
-            {loading ? <Loading /> : <ButtonShop name={"CHECK OUT"} />}
+            {loading ? (
+              <Loading />
+            ) : (
+              <Link to={"/checkout"}>
+                <ButtonShop name={"CHECK OUT"} />
+              </Link>
+            )}
 
             <div className="cart-totals__message">
               Taxes and shipping are calculated at checkout.

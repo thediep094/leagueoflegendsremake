@@ -5,6 +5,7 @@ const OrderController = {
     createOrder: async (req, res) => {
         try {
             const { userID, items, total, status } = req.body;
+
             const newOrder = await Order.create({
                 userID,
                 items,
