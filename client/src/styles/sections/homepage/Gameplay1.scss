@@ -14,6 +14,7 @@
     margin-left: 15%;
     justify-content: center;
     .goal {
+      height: 500px;
       .about {
         color: white;
         position: absolute;
@@ -119,38 +120,44 @@
           .left {
             appearance: none;
             padding: 0px;
-            border: 0px;
+            border: 0.5px solid transparent;
             margin-right: 10px;
             background: none;
-            width: 1.5rem;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 2rem;
             cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
               auto !important;
             padding: 0 10px;
-            color: var(--tertiary-color);
+            color: #0bc6e3;
             background-color: transparent;
-            transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+            transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
             &:hover {
               animation: hoverBtn;
-              border: 0.5px solid var(--tertiary-color);
+              border: 0.5px solid #0bc6e3;
             }
           }
           .right {
             appearance: none;
             padding: 0px;
-            border: 0px;
+            border: 0.5px solid transparent;
             background: none;
             padding: 0 10px;
-            width: 1.5rem;
+            width: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             height: 2rem;
             cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
               auto !important;
             background-color: transparent;
-            color: var(--tertiary-color);
-            transition: opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
+            color: #0bc6e3;
+            transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) 0s;
             &:hover {
               animation: hoverBtn;
-              border: 0.5px solid var(--tertiary-color);
+              border: 0.5px solid #0bc6e3;
             }
           }
         }

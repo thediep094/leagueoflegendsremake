@@ -4,6 +4,8 @@ import Header from "../sections/Header";
 // import "./championView.scss";
 import { useParams } from "react-router-dom";
 import ChampionViewOverview from "../sections/champion/ChampionViewOverview";
+import Abilities from "../sections/champion/Abilities";
+import Skin from "../sections/champion/Skin";
 const ChampionView = () => {
   const { name } = useParams();
   const [nameChampion, setNameChampion] = useState(name);
@@ -31,8 +33,8 @@ const ChampionView = () => {
     <div className="championView">
       <Header />
       <ChampionViewOverview championData={championData} name={nameChampion} />
-      {/* <Abilities index={location.state.index} championData={championData} /> */}
-      {/* <Skin index={location.state.index} championData={championData} /> */}
+      <Abilities championData={championData} />
+      <Skin championData={championData} />
       <Footer />
     </div>
   );

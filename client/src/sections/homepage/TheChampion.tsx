@@ -28,10 +28,7 @@ const TheChampion = () => {
             }}
           >
             <div className="overlay"></div>
-            <div className="thechampion__container__text">
-              <span>MEET SOME OF</span>
-              <h1>THE CHAMPS</h1>
-            </div>
+
             <div className="thechampion__container__champ">
               <div className="info">
                 <h1>{theChampion[champion].name}</h1>
@@ -65,6 +62,10 @@ const TheChampion = () => {
               </div>
 
               <div className="thechampion__container__img">
+                <div className="thechampion__container__text">
+                  <span>MEET SOME OF</span>
+                  <h1>THE CHAMPS</h1>
+                </div>
                 <img
                   src={process.env.PUBLIC_URL + theChampion[champion].img}
                   alt=""
