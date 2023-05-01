@@ -35,11 +35,9 @@ const server = app.listen(port, () => {
 });
 
 const io = new Server(server, {
-  cors: {
-    origin: true,
-    credentials: true,
-  },
-  allowEIO3: true,
+    cors: {
+        origin: "*",
+    },
 });
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);

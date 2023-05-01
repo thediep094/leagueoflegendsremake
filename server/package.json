@@ -7,7 +7,7 @@
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "hieu + dung",
+  "author": "hieu + dung + diep",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.3.6",
