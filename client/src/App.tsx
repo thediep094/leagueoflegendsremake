@@ -20,7 +20,7 @@ import SignUp from "./pages/SignUp";
 import NewAdmin from "./pages/NewAdmin";
 import ProductAdmin from "./pages/ProductAdmin";
 import Checkout from "./pages/CheckOut";
-const socket = io("http://localhost:8000").connect();
+const socket = io("http://localhost:8001").connect();
 function App() {
   return (
     <div className="App">
