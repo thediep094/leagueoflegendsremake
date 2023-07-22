@@ -84,7 +84,7 @@ const ProductAdmin = () => {
       formData.append("thumbnails", data.thumbnails[i]);
     }
 
-    const res = await axios.post(`${API_LINK}/products/create`, formData);
+    const res = await axios.post(`${API_LINK}/products/admin/create`, formData);
     fetchNews();
     setData({
       name: "",

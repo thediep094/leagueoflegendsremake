@@ -35,6 +35,7 @@ const io = require("socket.io")(http, {
         origin: "*",
     },
 });
+
 io.on("connection", (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
@@ -53,6 +54,7 @@ io.on("connection", (socket) => {
         console.log("User Disconnected", socket.id);
     });
 });
+
 http.listen(port, () => {
     console.log(`Server listening on ${port}`);
 });

@@ -26,6 +26,7 @@ const ChampionView = () => {
       .then((data) => {
         if (nameChampion) {
           setChampionData(data.data[nameChampion]);
+          console.log(data);
         }
       });
   }, [nameChampion, championUrl]);

@@ -20,7 +20,8 @@ import SignUp from "./pages/SignUp";
 import NewAdmin from "./pages/NewAdmin";
 import ProductAdmin from "./pages/ProductAdmin";
 import Checkout from "./pages/CheckOut";
-const socket = io("http://localhost:8001").connect();
+import { API_IMAGES } from "./default-value";
+const socket = io(`${API_IMAGES}`).connect();
 function App() {
   return (
     <div className="App">
