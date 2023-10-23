@@ -374,12 +374,15 @@
     }
 
     .chat__popup-heading-button {
+      display: flex;
+      align-items: center;
       color: #ffdd8d;
       font-weight: bold;
       cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
         auto;
 
       width: 20px;
+      font-size: 27px;
       text-align: center;
     }
     .chat__popup-heading-name {
@@ -458,5 +461,21 @@
         background-color: #1e282d;
       }
     }
+  }
+}
+
+.chat-users__button-input {
+  background-color: #1e282d;
+  border: 1px solid #785a28;
+  color: #c19d4a;
+  outline: none;
+  margin: 0 10px;
+  width: 50%;
+}
+
+.chat-users__button-icon {
+  .icon-addfriend {
+    height: 20px;
+    margin-right: 20px;
   }
 }

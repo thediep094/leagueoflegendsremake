@@ -10,7 +10,7 @@ const ChampionView = () => {
   const { name } = useParams();
   const [nameChampion, setNameChampion] = useState(name);
   const [championData, setChampionData] = useState<any>();
-  const championUrl = `http://ddragon.leagueoflegends.com/cdn/13.7.1/data/en_US/champion/${nameChampion}.json`;
+  const championUrl = `https://ddragon.leagueoflegends.com/cdn/13.7.1/data/en_US/champion/${nameChampion}.json`;
   useEffect(() => {
     if (name?.includes("'")) {
       const parts = name.replace("'", "").toLowerCase();

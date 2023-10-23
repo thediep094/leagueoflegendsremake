@@ -10,6 +10,8 @@ const newRouter = require("./new.route");
 const cartRouter = require("./cart.route");
 const commentRouter = require("./comment.route");
 const orderRouter = require("./order.route");
+const friendRouter = require("./friend.route");
+
 const router = express.Router();
 
 router.use("/rank", rankRouter);
@@ -20,6 +22,7 @@ router.use("/auth", authRouter);
 router.use("/chat", BoxChatRouter);
 router.use("/message", messageRouter);
 router.use("/comment", commentRouter);
+router.use("/friend", friendRouter);
 router.use("/new", newRouter);
 router.use("/cart", cartRouter);
 router.use("/order", orderRouter);

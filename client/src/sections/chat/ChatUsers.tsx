@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import Loading from "../../components/Loading";
 const ChatUsers = ({ socket }: any) => {
+  const [searchIngame, setSearchIngame] = useState("");
   const [openPopup, setOpenPopup] = useState(false);
   const [clickUser, setClickUser] = useState<IAccount>();
   const [roomId, setRoomId] = useState();
@@ -23,13 +24,25 @@ const ChatUsers = ({ socket }: any) => {
   });
   const [usersData, setUsersData] = useState<IAccount[]>();
 
+  const fetchAllUser = async () => {
+    const res = await axios.post(`${API_LINK}/friend/find`, {
+      friendIngame: "",
+    });
+    setUsersData(res.data.data);
+  };
+
+  const findUser = async (ingame: string) => {
+    const res = await axios.post(`${API_LINK}/friend/find`, {
+      friendIngame: ingame,
+    });
+    setUsersData(res.data.data);
+  };
+
   useEffect(() => {
-    const fetchAllUser = async () => {
-      const res = await axios.get(`${API_LINK}/users/all?page=1&limit=200`);
-      setUsersData(res.data.data);
-    };
-    fetchAllUser();
-  }, []);
+    if (user?._id) {
+      fetchAllUser();
+    }
+  }, [user]);
   const openPopupChat = () => {
     setOpenPopup(true);
   };
@@ -100,6 +113,22 @@ const ChatUsers = ({ socket }: any) => {
     }
   };
 
+  const addFriendByIngame = async (ingame: string) => {
+    try {
+      const res = await axios.post(`${API_LINK}/friend/byIngame`, {
+        userId: user?._id,
+        friendIngame: ingame,
+      });
+    } catch (error: any) {
+      // console.log(error);
+      alert(error.response.data.message);
+    }
+  };
+
+  const onSearch = () => {
+    findUser(searchIngame);
+  };
+
   useEffect(() => {
     socket.on("receive_message", (data: any) => {
       if (data.room === roomId) {
@@ -140,11 +169,14 @@ const ChatUsers = ({ socket }: any) => {
       </div>
       <div className="chat-users__button">
         <div className="chat-users__button-title">SOCIAL</div>
+        <input
+          type="text"
+          className="chat-users__button-input"
+          placeholder="search..."
+          onChange={(e) => setSearchIngame(e.target.value)}
+        />
         <div className="chat-users__button-icons">
-          <div className="chat-users__button-icon">
-            <Icons name="addfriend" />
-          </div>
-          <div className="chat-users__button-icon">
+          <div className="chat-users__button-icon" onClick={() => onSearch()}>
             <Icons name="icon-search" />
           </div>
         </div>
@@ -199,10 +231,25 @@ const ChatUsers = ({ socket }: any) => {
             </div>
           </div>
           <div
-            className="chat__popup-heading-button"
-            onClick={() => setOpenPopup(false)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
           >
-            _
+            <div
+              className="chat-users__button-icon"
+              onClick={() => {
+                addFriendByIngame(String(clickUser?.ingame));
+              }}
+            >
+              <Icons name="addfriend" />
+            </div>
+            <div
+              className="chat__popup-heading-button"
+              onClick={() => setOpenPopup(false)}
+            >
+              -
+            </div>
           </div>
         </div>
         <div className="chat__popup-content" ref={chatParent}>
