@@ -8,11 +8,9 @@ import WatchNews from "../sections/news/WatchNews";
 const News = () => {
   return (
     <div className="news">
-      <Header />
       <NewFeatured />
       <NewAll />
       <WatchNews />
-      <Footer />
     </div>
   );
 };

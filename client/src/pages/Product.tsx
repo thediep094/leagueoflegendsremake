@@ -137,7 +137,6 @@ const Product = () => {
   };
   return (
     <div className="product">
-      <Header />
       {data ? (
         <div className="product-wrapper">
           <div className="product-wrapper__img">
@@ -344,7 +343,6 @@ const Product = () => {
           </div>
         </div>
       ) : null}
-      <Footer />
     </div>
   );
 };

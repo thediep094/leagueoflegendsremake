@@ -35,13 +35,22 @@ const io = require("socket.io")(http, {
         origin: "*",
     },
 });
-
+const onlineUsers = {};
 io.on("connection", (socket) => {
-    console.log(`User Connected: ${socket.id}`);
+    // When a user connects, send their user information to the server
+    socket.on("user_connected", (user) => {
+        console.log(user);
+        if (user) {
+            console.log("connected");
+            onlineUsers[user._id] = socket.id; // Map user ID to socket ID
+            io.emit("update_online_users", onlineUsers);
+        }
+    });
 
     socket.on("join_room", (data) => {
         socket.join(data);
         console.log(`User with ID: ${socket.id} joined room: ${data}`);
+        console.log(`User Connected: ${socket.id}`);
     });
 
     socket.on("send_message", (data) => {
@@ -52,6 +61,7 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", () => {
         console.log("User Disconnected", socket.id);
+        delete onlineUsers[socket.id];
     });
 });
 

@@ -116,7 +116,6 @@ function Champions() {
 
   return (
     <div className="champions">
-      <Header />
       <div className="champions_heading">
         <div className="champions__heading-news">
           <div className="champions__heading-news-desktop">
@@ -308,7 +307,6 @@ function Champions() {
             : null}
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

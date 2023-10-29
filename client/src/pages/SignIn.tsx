@@ -74,7 +74,6 @@ const SignIn = () => {
   };
   return (
     <Fragment>
-      <Header />
       <div className="signIn">
         <section className="page">
           <div className="login_section">

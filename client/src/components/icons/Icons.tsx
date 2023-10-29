@@ -51,14 +51,14 @@ const Icons: React.FC<TProp> = ({ name }) => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M5 9.5C5 7.01472 7.01472 5 9.5 5C11.9853 5 14 7.01472 14 9.5C14 11.9853 11.9853 14 9.5 14C7.01472 14 5 11.9853 5 9.5Z"
             fill="currentColor"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M4.64115 15.6993C5.87351 15.1644 7.49045 15 9.49995 15C11.5112 15 13.1293 15.1647 14.3621 15.7008C15.705 16.2847 16.5212 17.2793 16.949 18.6836C17.1495 19.3418 16.6551 20 15.9738 20H3.02801C2.34589 20 1.85045 19.3408 2.05157 18.6814C2.47994 17.2769 3.29738 16.2826 4.64115 15.6993Z"
             fill="currentColor"
           />
@@ -77,15 +77,15 @@ const Icons: React.FC<TProp> = ({ name }) => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M10.6306 16.5995C14.3315 16.4724 17.2286 13.3691 17.1014 9.66821C16.9743 5.9673 13.871 3.0702 10.1701 3.19736C6.46919 3.32451 3.57209 6.42776 3.69924 10.1287C3.82639 13.8296 6.92965 16.7267 10.6306 16.5995ZM10.7267 19.3982C15.9733 19.2179 20.0803 14.8186 19.9 9.57206C19.7198 4.3255 15.3205 0.21846 10.0739 0.398716C4.82739 0.578971 0.720345 4.97827 0.900601 10.2248C1.08086 15.4714 5.48015 19.5784 10.7267 19.3982Z"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             fill="currentColor"
           />
           <path
-            clip-rule="evenodd"
+            clipRule="evenodd"
             d="M14.9234 14.9819C15.4883 14.3768 16.4592 14.3651 17.0919 14.9557L21.6973 19.2552C22.33 19.8458 22.3849 20.8152 21.82 21.4203C21.2551 22.0255 20.2842 22.0372 19.6515 21.4465L15.0462 17.1471C14.4135 16.5564 14.3585 15.587 14.9234 14.9819Z"
-            fill-rule="evenodd"
+            fillRule="evenodd"
             fill="currentColor"
           />
         </svg>
@@ -208,8 +208,8 @@ const Icons: React.FC<TProp> = ({ name }) => {
       return (
         <svg viewBox="0 0 20 18" fill="none">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M12 11H14C14.552 11 15 11.448 15 12V16C15 16.552 14.552 17 14 17H12C11.448 17 11 16.552 11 16V12C11 11.448 11.448 11 12 11Z"
             stroke="currentColor"
             stroke-width="1.5"
@@ -231,8 +231,8 @@ const Icons: React.FC<TProp> = ({ name }) => {
             stroke-linejoin="round"
           />
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M8 7H6C5.448 7 5 6.552 5 6V2C5 1.448 5.448 1 6 1H8C8.552 1 9 1.448 9 2V6C9 6.552 8.552 7 8 7Z"
             stroke="currentColor"
             stroke-width="1.5"
@@ -265,8 +265,8 @@ const Icons: React.FC<TProp> = ({ name }) => {
           xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M16.625 12.6991V6.30088C16.625 5.73483 16.3234 5.21233 15.8333 4.92971L10.2917 1.73058C9.80162 1.44796 9.19837 1.44796 8.70833 1.73058L3.16667 4.92971C2.67662 5.21233 2.375 5.73563 2.375 6.30088V12.6999C2.375 13.266 2.67662 13.7885 3.16667 14.0711L8.70833 17.2702C9.19837 17.5528 9.80162 17.5528 10.2917 17.2702L15.8333 14.0711C16.3234 13.7877 16.625 13.2652 16.625 12.6991Z"
             stroke="#323232"
             stroke-width="1.5"

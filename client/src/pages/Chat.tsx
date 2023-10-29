@@ -12,6 +12,7 @@ const Chat = ({ socket }: any) => {
   useEffect(() => {
     if (user && room !== "") {
       socket.emit("join_room", room);
+      socket.emit("user_connected", user);
     }
   }, []);
 

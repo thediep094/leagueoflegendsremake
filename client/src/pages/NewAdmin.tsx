@@ -112,7 +112,6 @@ const NewAdmin = () => {
 
   return (
     <div className="newAdmin">
-      <Header />
       <div className="container">
         <div className="newAdmin__add">
           <form onSubmit={(e) => e.preventDefault()}>

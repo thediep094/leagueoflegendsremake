@@ -35,7 +35,6 @@ const Rank: React.FC = () => {
 
   return (
     <div className="rank">
-      <Header />
       <div className="container">
         <h1 className="rank__title">League of Legends Ranking</h1>
         <h2 className="rank__subtitle">
@@ -65,7 +64,6 @@ const Rank: React.FC = () => {
           <RankingTable teams={ranksList} />
         )}
       </div>
-      <Footer />
     </div>
   );
 };

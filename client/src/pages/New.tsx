@@ -19,7 +19,6 @@ const New = () => {
 
   return (
     <div className="new">
-      <Header />
       <div className="new-content">
         <div className="new__heading">
           <div className="new__heading-img-blur">
@@ -53,7 +52,6 @@ const New = () => {
           ></div>
         ) : null}
       </div>
-      <Footer />
     </div>
   );
 };

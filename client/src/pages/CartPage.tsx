@@ -6,9 +6,7 @@ import Footer from "../sections/Footer";
 const CartPage = () => {
   return (
     <div className="CartPage">
-      <Header />
       <Cart />
-      <Footer />
     </div>
   );
 };

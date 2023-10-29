@@ -21,11 +21,14 @@ import NewAdmin from "./pages/NewAdmin";
 import ProductAdmin from "./pages/ProductAdmin";
 import Checkout from "./pages/CheckOut";
 import { API_IMAGES } from "./default-value";
+import Header from "./sections/Header";
+import Footer from "./sections/Footer";
 const socket = io(`${API_IMAGES}`).connect();
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Header />
         <ScrollToTop />
         <Routes>
           <Route index path="/" element={<Homepage />} />
@@ -50,6 +53,7 @@ function App() {
           <Route path="/admin/new" element={<NewAdmin />} />
           <Route path="/admin/product" element={<ProductAdmin />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

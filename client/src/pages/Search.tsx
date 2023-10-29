@@ -21,7 +21,6 @@ function Search() {
   };
   return (
     <div className="search">
-      <Header />
       <div
         className="container"
         style={{
@@ -34,7 +33,6 @@ function Search() {
         <button onClick={() => fetchEncrypIdUser()}>Search</button>
         <div className="render">{`${dataUser}`}</div>
       </div>
-      <Footer />
     </div>
   );
 }

@@ -2,9 +2,6 @@ import { Fragment, useState, useEffect } from "react";
 import "../styles/pages/signIn.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { register } from "../store/apiCall";
-import Header from "../sections/Header";
-import Footer from "../sections/Footer";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
@@ -13,6 +10,7 @@ import { AiFillApple } from "react-icons/ai";
 import { RiArrowRightLine } from "react-icons/ri";
 import SocialLoginButtons from "../components/sociallogin/SocialLoginButtons";
 import { RootState } from "../store/store";
+import { register } from "../store/apiCall";
 
 const SignUp = () => {
   const [userForm, setUserForm] = useState({
@@ -47,7 +45,6 @@ const SignUp = () => {
   }, [accessToken]);
   return (
     <Fragment>
-      <Header />
       <div className="signIn">
         <section className="page">
           <div className="login_section">

@@ -16,6 +16,7 @@ const ChatUsers = ({ socket }: any) => {
   const [currentMessage, setCurrentMessage] = useState("");
   const chatParent = useRef<HTMLDivElement>(null);
   const [loadingMessage, setLoadingMessage] = useState(false);
+  const [onlineUsers, setOnlineUsers] = useState<any[]>([]);
   useEffect(() => {
     const domNode = chatParent.current;
     if (domNode) {
@@ -142,7 +143,11 @@ const ChatUsers = ({ socket }: any) => {
           ?.classList.add("have-message");
       }
     });
+    socket.on("update_online_users", (onlineUsers: any) => {
+      setOnlineUsers(onlineUsers);
+    });
   }, [socket, roomId]);
+
   return (
     <div className="chat-users">
       <div className="main-user">
@@ -183,6 +188,10 @@ const ChatUsers = ({ socket }: any) => {
       </div>
       <div className="other-users">
         {usersData?.map((item: IAccount, index: number) => {
+          let checkOnlineUser = false;
+          if (item && onlineUsers.hasOwnProperty(`${item?._id}`)) {
+            checkOnlineUser = true;
+          }
           return item._id !== user?._id ? (
             <div
               className="chat-user"
@@ -199,9 +208,11 @@ const ChatUsers = ({ socket }: any) => {
               <div className="chat-user__info">
                 <div className="chat-user__name">{item.ingame}</div>
                 <div
-                  className={`chat-user__status ${item ? "online" : "offline"}`}
+                  className={`chat-user__status ${
+                    checkOnlineUser ? "online" : "offline"
+                  }`}
                 >
-                  Online
+                  {checkOnlineUser ? "Online" : "Offline"}
                 </div>
               </div>
             </div>

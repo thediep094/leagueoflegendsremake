@@ -32,11 +32,9 @@ const ChampionView = () => {
   }, [nameChampion, championUrl]);
   return (
     <div className="championView">
-      <Header />
       <ChampionViewOverview championData={championData} name={nameChampion} />
       <Abilities championData={championData} />
       <Skin championData={championData} />
-      <Footer />
     </div>
   );
 };

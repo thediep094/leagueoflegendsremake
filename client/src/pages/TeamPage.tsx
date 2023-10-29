@@ -114,7 +114,6 @@ const TeamPage = () => {
         paddingTop: "78px",
       }}
     >
-      <Header />
       {loading ? (
         <Loading />
       ) : (
