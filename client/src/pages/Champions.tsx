@@ -44,7 +44,7 @@ function Champions() {
       };
     }, [ref]);
   }
-  const championUrl = `https://ddragon.leagueoflegends.com/cdn/12.5.1/data/en_US/champion.json`;
+  const championUrl = `https://ddragon.leagueoflegends.com/cdn/13.21.1/data/en_US/champion.json`;
   const fetchData = async () => {
     const res = await fetch(championUrl);
     const productExtraJson: IChampions = await res.json();

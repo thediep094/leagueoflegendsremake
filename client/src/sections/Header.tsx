@@ -5,18 +5,33 @@ import "../styles/base.scss";
 import Icons from "../components/icons/Icons";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
-import { loginSuccess } from "../store/slice/accountSlice";
 import { getDataFromAccessToken } from "../store/apiCall";
+import axios from "axios";
+import { API_LINK } from "../default-value";
+import { changeBalance } from "../store/slice/walletSlice";
 function Header() {
   const [openMenu, setOpenMenu] = useState<Boolean>(false);
+  const balance = useSelector((state: RootState) => state.wallet.balance);
   const user = useSelector((state: RootState) => state.account.user);
   const dispatch = useDispatch();
+  const getWallet = async () => {
+    try {
+      if (user) {
+        const res = await axios.get(
+          `${API_LINK}/wallet/get-wallet/${user?._id}`
+        );
+        dispatch(changeBalance(res.data.data.balance));
+      }
+    } catch (error) {}
+  };
   useEffect(() => {
     const userLocal = localStorage?.getItem("accessToken");
     if (!user) {
       if (userLocal) {
         getDataFromAccessToken(dispatch, userLocal);
       }
+    } else {
+      getWallet();
     }
   }, [user]);
   const handleLogout = () => {
@@ -83,10 +98,19 @@ function Header() {
           <Link to={"/shop"}>Shop</Link>
         </div>
         <div className="header__menu-link desktop">
+          <Link to={"/shop-icons"}>Shop Icons</Link>
+        </div>
+        <div className="header__menu-link desktop">
           <Link to={"/rank"}>Rank</Link>
         </div>
       </div>
       <div className="header__account">
+        {user && (
+          <div className="header__wallet">
+            {balance} <img src="./BE_icon.png" alt="" />
+          </div>
+        )}
+
         {user ? (
           <Link to={`/profile/${user._id}`} className="header__account-avatar">
             <img src={user.mainAva} alt="" />
@@ -245,11 +269,20 @@ function Header() {
               <Link to={"/shop"}>Shop</Link>
             </div>
             <div className="menu-drawer__link">
+              <Link to={"/shop-icons"}>Shop Icons</Link>
+            </div>
+            <div className="menu-drawer__link">
               <Link to={"/rank"}>Rank</Link>
             </div>
           </div>
 
           <div className="menu-drawer__account">
+            {user && (
+              <div className="header__wallet">
+                {balance} <img src="./BE_icon.png" alt="" />
+              </div>
+            )}
+
             {user ? (
               <Link
                 to={`/profile/${user._id}`}

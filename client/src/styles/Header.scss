@@ -294,3 +294,13 @@
     }
   }
 }
+
+.header__wallet {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  color: #f9f9f9;
+  img {
+    width: 20px;
+  }
+}

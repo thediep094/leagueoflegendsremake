@@ -5,7 +5,10 @@ import axios from "axios";
 import { API_IMAGES, API_LINK } from "../default-value";
 import { INew } from "../types/new";
 import Loading from "../components/Loading";
+import { RootState } from "../store/store";
+import { useSelector } from "react-redux";
 const NewAdmin = () => {
+  const user = useSelector((state: RootState) => state.account.user);
   const [listNews, setListNews] = useState<INew[]>([]);
   const [idUpdate, setIdUpdate] = useState<string>("");
   const [data, setData] = useState({
@@ -202,43 +205,44 @@ const NewAdmin = () => {
             </button>
           </form>
         </div>
-
-        <div className="newAdmin__lists">
-          {loading ? (
-            <Loading />
-          ) : listNews ? (
-            listNews.map((item: INew) => {
-              return (
-                <div className="newAdmin__item" key={item._id}>
-                  {/* <div className="newAdmin__item-checkbox">
-                      <input type="checkbox" />
-                    </div> */}
-                  <img
-                    src={`${API_IMAGES}/news/${item.img}  `}
-                    className="newAdmin__item-img"
-                    alt=""
-                  />
-                  <div className="newAdmin__item-title">{item.title}</div>
-                  <button
-                    className="newAdmin__item-update"
-                    onClick={() => {
-                      setDataInputToUpdate(item);
-                      setIdUpdate(item._id);
-                    }}
-                  >
-                    Update
-                  </button>
-                  <button
-                    className="newAdmin__item-delete"
-                    onClick={() => handleDelete(item._id)}
-                  >
-                    Delete
-                  </button>
-                </div>
-              );
-            })
-          ) : null}
-        </div>
+        {user?.role === "admin" && (
+          <div className="newAdmin__lists">
+            {loading ? (
+              <Loading />
+            ) : listNews ? (
+              listNews.map((item: INew) => {
+                return (
+                  <div className="newAdmin__item" key={item._id}>
+                    {/* <div className="newAdmin__item-checkbox">
+                <input type="checkbox" />
+              </div> */}
+                    <img
+                      src={`${API_IMAGES}/news/${item.img}  `}
+                      className="newAdmin__item-img"
+                      alt=""
+                    />
+                    <div className="newAdmin__item-title">{item.title}</div>
+                    <button
+                      className="newAdmin__item-update"
+                      onClick={() => {
+                        setDataInputToUpdate(item);
+                        setIdUpdate(item._id);
+                      }}
+                    >
+                      Update
+                    </button>
+                    <button
+                      className="newAdmin__item-delete"
+                      onClick={() => handleDelete(item._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                );
+              })
+            ) : null}
+          </div>
+        )}
       </div>
     </div>
   );

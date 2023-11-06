@@ -8,6 +8,8 @@ const app = express();
 const http = require("http").Server(app);
 const port = process.env.PORT;
 const router = require("./route/index");
+const User = require("./model/User");
+const Wallet = require("./model/Wallet");
 const url = process.env.URL;
 const connectDB = async () => {
     try {
@@ -35,6 +37,7 @@ const io = require("socket.io")(http, {
         origin: "*",
     },
 });
+
 const onlineUsers = {};
 io.on("connection", (socket) => {
     // When a user connects, send their user information to the server

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Aos from "aos";
-import { newsLeft } from "../../data/newsLeft";
 import { newsRight } from "../../data/newsRight";
 import "../../styles/sections/news/newAll.scss";
 import { Link } from "react-router-dom";
@@ -8,6 +7,7 @@ import axios from "axios";
 import { API_IMAGES, API_LINK } from "../../default-value";
 import { INew } from "../../types/new";
 import Loading from "../../components/Loading";
+import ButtonShop from "../../components/button/ButtonShop";
 const NewAll = () => {
   const [listNews, setListNews] = useState<INew[]>();
   const [loading, setLoading] = useState(false);
@@ -24,6 +24,16 @@ const NewAll = () => {
   return (
     <div className="newsAll">
       <div className="newsAll__tag">LATEST NEWS</div>
+      <div
+        className="newsAll__container"
+        style={{
+          marginBottom: "20px",
+        }}
+      >
+        <Link to={"/news/add"}>
+          <ButtonShop name="Create new post" />
+        </Link>
+      </div>
       <div className="newsAll__container">
         <div className="newsAll__container__left">
           {loading ? <Loading /> : null}

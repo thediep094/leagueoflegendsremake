@@ -23,6 +23,7 @@ import Checkout from "./pages/CheckOut";
 import { API_IMAGES } from "./default-value";
 import Header from "./sections/Header";
 import Footer from "./sections/Footer";
+import ShopIcons from "./pages/ShopIcons";
 const socket = io(`${API_IMAGES}`).connect();
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/user/:username" element={<UserInformation />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/shop-icons" element={<ShopIcons />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/login" element={<SignIn />} />
@@ -50,7 +52,7 @@ function App() {
             path="/champions/championview/:name"
             element={<ChampionView />}
           />
-          <Route path="/admin/new" element={<NewAdmin />} />
+          <Route path="/news/add" element={<NewAdmin />} />
           <Route path="/admin/product" element={<ProductAdmin />} />
         </Routes>
         <Footer />

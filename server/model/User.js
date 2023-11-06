@@ -9,6 +9,7 @@ const userSchema = new Schema(
         mail: { type: String, default: "" },
         ingame: { type: String, default: "" },
         mainAva: { type: String, default: "" },
+        role: { type: String, enum: ["user", "admin"], default: "user" }, // Add 'role' field with default value 'user'
     },
     {
         timestamps: true,

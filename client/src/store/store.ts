@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import accountReducer from "./slice/accountSlice";
 import cartReducer from "./slice/cartSlice";
+import walletReducer from "./slice/walletSlice";
+
 export const store = configureStore({
   reducer: {
     account: accountReducer,
     cart: cartReducer,
+    wallet: walletReducer,
   },
 });
 

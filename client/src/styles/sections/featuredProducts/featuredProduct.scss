@@ -1,7 +1,39 @@
 .featuredProduct {
   padding-top: 100px;
   padding-bottom: 100px;
-  a{
+  a {
     text-decoration: none;
+  }
+}
+
+.filter-section {
+  margin-bottom: 20px;
+  column-gap: 20px;
+  display: flex;
+  flex-direction: row;
+  input {
+    padding: 10px;
+    border: 1px solid rgba(1, 1, 1, 0.2);
+  }
+
+  button {
+    background-color: rgb(11, 198, 227);
+    color: rgb(1, 1, 1);
+    padding: 10px 20px;
+    border: none;
+    font-family: var(--font-body-family);
+  }
+}
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 10px;
+  button {
+    background-color: rgb(11, 198, 227);
+    color: rgb(1, 1, 1);
+    padding: 10px 20px;
+    border: none;
+    font-family: var(--font-body-family);
   }
 }

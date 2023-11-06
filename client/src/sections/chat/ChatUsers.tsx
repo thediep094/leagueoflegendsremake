@@ -40,9 +40,7 @@ const ChatUsers = ({ socket }: any) => {
   };
 
   useEffect(() => {
-    if (user?._id) {
-      fetchAllUser();
-    }
+    fetchAllUser();
   }, [user]);
   const openPopupChat = () => {
     setOpenPopup(true);
@@ -201,7 +199,11 @@ const ChatUsers = ({ socket }: any) => {
                 clickUserHandle(item);
               }}
             >
-              <div className="chat-user__avatar">
+              <div
+                className={`chat-user__avatar  ${
+                  checkOnlineUser ? "online" : "offline"
+                }`}
+              >
                 <img src={item?.mainAva} alt="" />
               </div>
 
@@ -248,14 +250,6 @@ const ChatUsers = ({ socket }: any) => {
             }}
           >
             <div
-              className="chat-users__button-icon"
-              onClick={() => {
-                addFriendByIngame(String(clickUser?.ingame));
-              }}
-            >
-              <Icons name="addfriend" />
-            </div>
-            <div
               className="chat__popup-heading-button"
               onClick={() => setOpenPopup(false)}
             >
@@ -271,7 +265,7 @@ const ChatUsers = ({ socket }: any) => {
               return (
                 <div
                   className={`chat__popup-content-comment ${
-                    message.type == "user" ? "user" : "other-user"
+                    message.type === "user" ? "user" : "other-user"
                   }`}
                 >
                   {message?.comment}

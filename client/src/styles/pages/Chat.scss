@@ -291,11 +291,15 @@
         width: 10px;
         height: 10px;
         border-radius: 50%;
-        background-color: #43d343;
         position: absolute;
+        background-color: gray;
         right: 2px;
         bottom: 2px;
         border: 2px solid #111;
+      }
+
+      &.online {
+        background-color: #43d343;
       }
     }
 

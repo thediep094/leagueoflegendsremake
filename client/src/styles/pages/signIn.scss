@@ -1,6 +1,5 @@
 .signIn {
   width: 100%;
-  height: 94vh;
   padding-top: 78px;
   box-sizing: content-box;
   background-repeat: no-repeat;
@@ -238,7 +237,6 @@
 
   section.page {
     width: 100vw;
-    height: 100vh;
     display: grid;
     grid-template-columns: 1fr 3fr;
   }

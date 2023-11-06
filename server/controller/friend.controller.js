@@ -130,7 +130,7 @@ const FriendController = {
 
         try {
             const users = await User.find({
-                ingame: { $regex: friendIngame, $options: "i" },
+                ingame: { $regex: friendIngame || "", $options: "i" },
             });
 
             if (users.length > 0) {

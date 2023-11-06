@@ -8,6 +8,7 @@ export interface IAccount {
   mail: string;
   date: string;
   online: boolean;
+  role: string;
 }
 
 export interface IIngame {

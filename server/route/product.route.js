@@ -35,6 +35,7 @@ productRouter.post("/create", cpUpload, productController.create);
 productRouter.put("/update/:id", cpUpload, productController.update);
 
 productRouter.delete("/:id", productController.delete);
+productRouter.get("/tags", productController.getAllTags);
 
 productRouter.get(
     // "/:id",

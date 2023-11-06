@@ -9,9 +9,11 @@ const rankRouter = require("./rank.route");
 const newRouter = require("./new.route");
 const cartRouter = require("./cart.route");
 const commentRouter = require("./comment.route");
+const commentNewsRouter = require("./commentNews.route");
 const orderRouter = require("./order.route");
 const friendRouter = require("./friend.route");
-
+const walletRouter = require("./wallet.route");
+const purchaseItem = require("./purchaseItem.route");
 const router = express.Router();
 
 router.use("/rank", rankRouter);
@@ -22,9 +24,12 @@ router.use("/auth", authRouter);
 router.use("/chat", BoxChatRouter);
 router.use("/message", messageRouter);
 router.use("/comment", commentRouter);
+router.use("/comment-news", commentNewsRouter);
 router.use("/friend", friendRouter);
 router.use("/new", newRouter);
 router.use("/cart", cartRouter);
 router.use("/order", orderRouter);
+router.use("/wallet", walletRouter);
+router.use("/purchase-item", purchaseItem);
 
 module.exports = router;
