@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/base.scss";
 import "../../styles/sections/teamPage/TeamBanner.scss";
-import { IIngame } from "../../types/account";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
+import ChangeIcon from "./ChangeIcon";
+import Loading from "../../components/Loading";
 
 const TeamBanner = ({ teamData }: any) => {
   const user = useSelector((state: RootState) => state.account.user);
+  const [openChangeIconModal, setOpenChangeIconModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   return (
     <div className="team-banner-container">
       <div
@@ -16,15 +19,15 @@ const TeamBanner = ({ teamData }: any) => {
         }}
       />
 
-      <div className="team-logo">
+      <div className="team-logo" onClick={() => setOpenChangeIconModal(true)}>
         <img
           src={
-            teamData
+            !teamData
               ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${teamData?.profileIconId}.png`
               : user?.mainAva
           }
           alt={
-            teamData
+            !teamData
               ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${teamData?.profileIconId}.png`
               : user?.mainAva
           }
@@ -38,6 +41,13 @@ const TeamBanner = ({ teamData }: any) => {
           Level: {teamData?.summonerLevel ? teamData?.summonerLevel : 1}
         </div>
       </div>
+      {openChangeIconModal && (
+        <ChangeIcon
+          setIsLoading={setIsLoading}
+          setOpenChangeIconModal={setOpenChangeIconModal}
+        />
+      )}
+      {isLoading && <Loading />}
     </div>
   );
 };

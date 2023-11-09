@@ -118,7 +118,6 @@ const TeamPage = () => {
         <Loading />
       ) : (
         <Fragment>
-          {" "}
           <TeamBanner teamData={ingame} />
           {rank ? <TeamInfo rank={rank} /> : null}
         </Fragment>

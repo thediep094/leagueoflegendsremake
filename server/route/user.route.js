@@ -26,6 +26,6 @@ userRouter.get(
     "/me/:id",
     userController.getUserwithRank,
 );
-
+userRouter.put("/change-avatar/:id", userController.changeAvatar);
 userRouter.get("/all", userController.getAllUser);
 module.exports = userRouter;

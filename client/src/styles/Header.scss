@@ -140,7 +140,6 @@
   .header__account {
     display: none;
     @media screen and (min-width: 992px) {
-      width: calc(100% - 70% - 95px);
       display: flex;
       justify-content: flex-end;
     }

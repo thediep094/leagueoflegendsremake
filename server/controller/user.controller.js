@@ -156,7 +156,33 @@ const UserController = {
             });
         }
     },
+    changeAvatar: async (req, res) => {
+        try {
+            const { id } = req.params;
+            const { newAvatar } = req.body;
 
+            const user = await User.findById(id);
+
+            if (!user) {
+                return res.status(404).json({
+                    message: "Người dùng không tồn tại",
+                });
+            }
+
+            user.mainAva = newAvatar;
+            await user.save();
+
+            return res.status(200).json({
+                message: "Đổi ảnh đại diện thành công",
+                user: user,
+            });
+        } catch (error) {
+            return res.status(500).json({
+                message: "Server error",
+                error: error,
+            });
+        }
+    },
     create: async (req, res) => {
         try {
             const newUser = await User.create(req.body);

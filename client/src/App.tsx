@@ -24,6 +24,7 @@ import { API_IMAGES } from "./default-value";
 import Header from "./sections/Header";
 import Footer from "./sections/Footer";
 import ShopIcons from "./pages/ShopIcons";
+import WheelPrizes from "./pages/WheelPrizes";
 const socket = io(`${API_IMAGES}`).connect();
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/chat" element={<Chat socket={socket} />} />
           <Route path="/profile/:id" element={<TeamPage />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/game" element={<WheelPrizes />} />
           <Route
             path="/champions/championview/:name"
             element={<ChampionView />}

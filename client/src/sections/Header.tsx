@@ -103,11 +103,14 @@ function Header() {
         <div className="header__menu-link desktop">
           <Link to={"/rank"}>Rank</Link>
         </div>
+        <div className="header__menu-link desktop">
+          <Link to={"/game"}>Game</Link>
+        </div>
       </div>
       <div className="header__account">
         {user && (
           <div className="header__wallet">
-            {balance} <img src="./BE_icon.png" alt="" />
+            {balance} <img src="/BE_icon.png" alt="" />
           </div>
         )}
 
@@ -274,12 +277,15 @@ function Header() {
             <div className="menu-drawer__link">
               <Link to={"/rank"}>Rank</Link>
             </div>
+            <div className="menu-drawer__link">
+              <Link to={"/game"}>Game</Link>
+            </div>
           </div>
 
           <div className="menu-drawer__account">
             {user && (
               <div className="header__wallet">
-                {balance} <img src="./BE_icon.png" alt="" />
+                {balance} <img src="/BE_icon.png" alt="" />
               </div>
             )}
 
