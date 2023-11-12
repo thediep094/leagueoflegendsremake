@@ -21,8 +21,9 @@ const OrderSchema = new Schema(
         ],
         total: { type: Number, default: 0 },
         status: {
-            type: Boolean,
-            default: false,
+            type: String,
+            enum: ["new", "done", "delivery"], // Define possible values
+            default: "new", // Default value
         },
     },
     {

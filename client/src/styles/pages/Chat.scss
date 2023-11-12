@@ -299,7 +299,9 @@
       }
 
       &.online {
-        background-color: #43d343;
+        &::after {
+          background-color: #43d343;
+        }
       }
     }
 

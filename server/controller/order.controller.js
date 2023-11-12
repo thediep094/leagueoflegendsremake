@@ -74,6 +74,65 @@ const OrderController = {
             });
         }
     },
+    getAllOrders: async (req, res) => {
+        try {
+            const orders = await Order.find()
+                .sort({ updatedAt: -1 })
+
+                .populate({
+                    path: "userID",
+                    select: "username", // Select the fields you want to populate
+                })
+                .populate("items.product");
+            return res.status(200).json({
+                message: "Get all orders successfully",
+                data: orders,
+            });
+        } catch (error) {
+            console.log("Error in getAllOrders function:", error);
+            return res.status(500).json({
+                message: "Server error",
+                error,
+            });
+        }
+    },
+
+    setStatusForOrder: async (req, res) => {
+        try {
+            const { orderId, status } = req.body;
+
+            // Check if the provided status is one of the allowed values
+            const allowedStatusValues = ["new", "done", "delivery"];
+            if (!allowedStatusValues.includes(status)) {
+                return res.status(400).json({
+                    message: "Invalid status value",
+                });
+            }
+
+            const order = await Order.findByIdAndUpdate(
+                orderId,
+                { status },
+                { new: true },
+            );
+
+            if (!order) {
+                return res.status(404).json({
+                    message: "Order not found",
+                });
+            }
+
+            return res.status(200).json({
+                message: "Set status for order successfully",
+                data: order,
+            });
+        } catch (error) {
+            console.log("Error in setStatusForOrder function:", error);
+            return res.status(500).json({
+                message: "Server error",
+                error,
+            });
+        }
+    },
 };
 
 module.exports = OrderController;

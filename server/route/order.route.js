@@ -5,7 +5,11 @@ const authMiddleware = require("../middleware/auth.middleware");
 
 // tạo order
 orderRouter.post("/", orderController.createOrder);
+// get all orders
+orderRouter.get("/all", orderController.getAllOrders);
 
+// set status for order
+orderRouter.patch("/setStatus", orderController.setStatusForOrder);
 // get order by order id
 orderRouter.get("/:id", orderController.getOrdersByID);
 

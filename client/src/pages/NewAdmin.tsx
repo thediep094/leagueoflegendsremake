@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Header from "../sections/Header";
 import "../styles/pages/Admin.scss";
 import axios from "axios";
 import { API_IMAGES, API_LINK } from "../default-value";

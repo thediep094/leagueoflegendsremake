@@ -25,6 +25,7 @@ import Header from "./sections/Header";
 import Footer from "./sections/Footer";
 import ShopIcons from "./pages/ShopIcons";
 import WheelPrizes from "./pages/WheelPrizes";
+import OrderAdmin from "./pages/OrderAdmin";
 const socket = io(`${API_IMAGES}`).connect();
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
           />
           <Route path="/news/add" element={<NewAdmin />} />
           <Route path="/admin/product" element={<ProductAdmin />} />
+          <Route path="/admin/order" element={<OrderAdmin />} />
         </Routes>
         <Footer />
       </BrowserRouter>
