@@ -7,12 +7,25 @@ import Loading from "../components/Loading";
 const OrderAdmin = () => {
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
+  const [filterStatus, setFilterStatus] = useState<string | null>(null);
+  const [sortOption, setSortOption] = useState<string>("newest");
+
   const fetchData = async () => {
     setLoading(true);
-    const res = await axios.get(`${API_LINK}/order/all`);
-    setData(res.data.data);
-    setLoading(false);
+    try {
+      const url = filterStatus
+        ? `${API_LINK}/order/all?filter=${filterStatus}&sortBy=${sortOption}`
+        : `${API_LINK}/order/all?sortBy=${sortOption}`;
+
+      const res = await axios.get(url);
+      setData(res.data.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
   };
+
   const updateStatus = async (orderId: string, newStatus: string) => {
     try {
       const res = await axios.patch(`${API_LINK}/order/setStatus`, {
@@ -49,11 +62,33 @@ const OrderAdmin = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [filterStatus, sortOption]);
 
   return (
     <div className="newAdmin">
       <div className="container">
+        <div className="filter">
+          <label>Filter by Status:</label>
+          <select
+            value={filterStatus || ""}
+            onChange={(e) => setFilterStatus(e.target.value || null)}
+          >
+            <option value="">All</option>
+            <option value="new">New</option>
+            <option value="delivery">Delivery</option>
+            <option value="done">Done</option>
+          </select>
+
+          <label>Sort by:</label>
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+          >
+            <option value="newest">Newest</option>
+            <option value="oldest">Oldest</option>
+            <option value="status">Status</option>
+          </select>
+        </div>
         <div className="newAdmin__lists">
           {loading ? (
             <Loading />
