@@ -2,11 +2,16 @@ const InGame = require("../model/Ingame");
 const Rank = require("../model/Rank");
 const User = require("../model/User");
 const mongoose = require("mongoose");
+const Wallet = require("../model/Wallet");
 
 const UserController = {
     create: async (req, res) => {
         try {
             const newUser = await User.create(req.body);
+            await Wallet.create({
+                user: newUser._id,
+                balance: 10000,
+            });
             return res.status(200).json({
                 message: "Tạo tài khoản thành công",
                 user: newUser,
@@ -183,21 +188,6 @@ const UserController = {
             });
         }
     },
-    create: async (req, res) => {
-        try {
-            const newUser = await User.create(req.body);
-            return res.status(200).json({
-                message: "Tạo tài khoản thành công",
-                user: newUser,
-            });
-        } catch (error) {
-            return res.status(500).json({
-                message: "Server error",
-                error: error,
-            });
-        }
-    },
-
     read: async (req, res) => {
         try {
             const user = await User.find({
