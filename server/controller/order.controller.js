@@ -76,14 +76,33 @@ const OrderController = {
     },
     getAllOrders: async (req, res) => {
         try {
-            const orders = await Order.find()
-                .sort({ updatedAt: -1 })
+            const { filter, sortBy } = req.query;
+            let sortOption = {};
 
+            switch (sortBy) {
+                case "newest":
+                    sortOption = { updatedAt: -1 };
+                    break;
+                case "oldest":
+                    sortOption = { updatedAt: 1 };
+                    break;
+                case "status":
+                    sortOption = { status: 1 };
+                    break;
+                default:
+                    sortOption = { updatedAt: -1 }; // Default to newest if no valid sortBy filter is provided
+            }
+
+            const statusFilter = filter != null ? { status: filter } : {};
+            console.log(statusFilter);
+            const orders = await Order.find(statusFilter)
+                .sort(sortOption)
                 .populate({
                     path: "userID",
-                    select: "username", // Select the fields you want to populate
+                    select: "username",
                 })
                 .populate("items.product");
+
             return res.status(200).json({
                 message: "Get all orders successfully",
                 data: orders,
