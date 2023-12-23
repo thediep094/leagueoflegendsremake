@@ -133,6 +133,39 @@ const OrderController = {
             });
         }
     },
+
+    // delete order by ID
+    deleteOrderById: async (req, res) => {
+        try {
+            const orderId = req.params.id;
+
+            // Check if the provided orderId is a valid MongoDB ObjectId
+            if (!mongoose.Types.ObjectId.isValid(orderId)) {
+                return res.status(400).json({
+                    message: "Invalid Order ID",
+                });
+            }
+
+            const deletedOrder = await Order.findByIdAndDelete(orderId);
+
+            if (!deletedOrder) {
+                return res.status(404).json({
+                    message: "Order not found",
+                });
+            }
+
+            return res.status(200).json({
+                message: "Order deleted successfully",
+                data: deletedOrder,
+            });
+        } catch (error) {
+            console.log("Error in deleteOrderById function:", error);
+            return res.status(500).json({
+                message: "Server error",
+                error,
+            });
+        }
+    },
 };
 
 module.exports = OrderController;

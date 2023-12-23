@@ -38,6 +38,7 @@ const InGameController = {
                     });
                 })
                 .catch(function (err) {
+                    console.log(err);
                     return res.status(404).json({
                         message: "Ingame không tồn tại",
                     });

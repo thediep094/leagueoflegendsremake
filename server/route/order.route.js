@@ -21,4 +21,7 @@ orderRouter.get(
     orderController.getOrdersByUser,
 );
 
+// delete order by order id
+orderRouter.delete("/:id", orderController.deleteOrderById);
+
 module.exports = orderRouter;

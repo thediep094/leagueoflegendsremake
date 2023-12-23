@@ -62,9 +62,16 @@ io.on("connection", (socket) => {
         socket.to(data.room).emit("receive_message", data);
     });
 
-    socket.on("disconnect", () => {
-        console.log("User Disconnected", socket.id);
-        delete onlineUsers[socket.id];
+    socket.on("disconnect", (user) => {
+        const disconnectedUserId = Object.keys(onlineUsers).find(
+            (userId) => onlineUsers[userId] === socket.id,
+        );
+
+        if (disconnectedUserId) {
+            console.log("User Disconnected", socket.id);
+            delete onlineUsers[disconnectedUserId];
+            io.emit("update_online_users", onlineUsers);
+        }
     });
 });
 
