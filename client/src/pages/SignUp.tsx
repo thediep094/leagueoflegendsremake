@@ -28,15 +28,20 @@ const SignUp = () => {
   const navigator = useNavigate();
   const dispatch = useDispatch();
   const handleLogin = () => {
-    register(dispatch, {
-      fullname: userForm.fullname,
-      username: userForm.username,
-      password: userForm.password,
-      date: userForm.date,
-      mail: userForm.mail,
-      ingame: userForm.ingame ? userForm.ingame : "Clone Account",
-      mainAva: userForm.mainAva,
-    });
+    try {
+      register(dispatch, {
+        fullname: userForm.fullname,
+        username: userForm.username,
+        password: userForm.password,
+        date: userForm.date,
+        mail: userForm.mail,
+        ingame: userForm.ingame ? userForm.ingame : "Clone Account",
+        mainAva: userForm.mainAva,
+      });
+      navigator("/");
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     if (accessToken) {

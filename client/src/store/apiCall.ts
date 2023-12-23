@@ -2,6 +2,7 @@ import { loginStart, loginSuccess, loginFailure } from "./slice/accountSlice";
 import axios from "axios";
 import { API_LINK } from "../default-value";
 import { fetchSuccess } from "./slice/cartSlice";
+
 export const login = async (dispatch: any, user: any) => {
   dispatch(loginStart());
   try {
@@ -11,25 +12,20 @@ export const login = async (dispatch: any, user: any) => {
     });
     dispatch(loginSuccess(res.data.user));
     localStorage.setItem("accessToken", res.data.token.accessToken);
-    const res3 = await axios.post(`${API_LINK}/rank/search/`, {
+    await axios.post(`${API_LINK}/rank/search/`, {
       username: user.username,
     });
     alert("Đăng nhập thành công");
-  } catch (error) {
+  } catch (error: any) {
     dispatch(loginFailure());
-    alert("Đăng nhập thất bại");
+    alert(error.response.data.message);
   }
 };
 
 export const register = async (dispatch: any, user: any) => {
   dispatch(loginStart());
-
-  if (user.ingame) {
-    const res2 = await axios.get(
-      `${API_LINK}/ingame/search?summonerName=${user.ingame}`
-    );
-    const data2 = await res2.data?.ingame?.profileIconId;
-    setTimeout(async () => {
+  try {
+    if (user.ingame) {
       const res = await axios.post(`${API_LINK}/users/`, {
         fullname: user.fullname,
         username: user.username,
@@ -37,13 +33,14 @@ export const register = async (dispatch: any, user: any) => {
         date: user.date,
         mail: user.mail,
         ingame: user.ingame,
-        mainAva: data2
-          ? `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${data2}.png`
-          : user.mainAva,
+        mainAva: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${1}.png`,
       });
-    }, 1000);
-
-    alert("Tạo tài khoản thành công");
+      dispatch(loginSuccess(res.data.user));
+      alert("Tạo tài khoản thành công");
+    }
+  } catch (error: any) {
+    alert(error.response.data.message);
+    throw error;
   }
 };
 
