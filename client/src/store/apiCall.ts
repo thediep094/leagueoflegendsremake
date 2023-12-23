@@ -12,9 +12,7 @@ export const login = async (dispatch: any, user: any) => {
     });
     dispatch(loginSuccess(res.data.user));
     localStorage.setItem("accessToken", res.data.token.accessToken);
-    await axios.post(`${API_LINK}/rank/search/`, {
-      username: user.username,
-    });
+
     alert("Đăng nhập thành công");
   } catch (error: any) {
     dispatch(loginFailure());
@@ -34,6 +32,10 @@ export const register = async (dispatch: any, user: any) => {
         mail: user.mail,
         ingame: user.ingame,
         mainAva: `https://ddragon.leagueoflegends.com/cdn/13.8.1/img/profileicon/${1}.png`,
+      });
+      await axios.get(`${API_LINK}/ingame/search?summonerName=${user.ingame}`);
+      await axios.post(`${API_LINK}/rank/search/`, {
+        username: user.username,
       });
       dispatch(loginSuccess(res.data.user));
       alert("Tạo tài khoản thành công");

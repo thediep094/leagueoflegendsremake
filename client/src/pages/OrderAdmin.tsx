@@ -36,6 +36,17 @@ const OrderAdmin = () => {
     return `${day}/${month}/${year}`;
   };
 
+  const delteteOrder = async (orderId: string) => {
+    try {
+      await axios.delete(`${API_LINK}/order/${orderId}`);
+
+      alert("delete success");
+      fetchData();
+    } catch (error: any) {
+      alert(error.response.data.message);
+    }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -93,6 +104,15 @@ const OrderAdmin = () => {
                     >
                       New
                     </button>
+                    <button
+                      className="newAdmin__item-delete"
+                      style={{
+                        marginTop: 0,
+                      }}
+                      onClick={() => delteteOrder(item._id)}
+                    >
+                      Delete
+                    </button>
                   </div>
 
                   <div className="newAdmin__product-items">
@@ -100,7 +120,6 @@ const OrderAdmin = () => {
                       return (
                         <div className="newAdmin__product-item">
                           <span>Id: {product?.product._id}</span>
-
                           <span>Name: {product?.product.name}</span>
                           <span>Price: {product?.price}</span>
                           <span>Quantity: {product?.quantity}</span>

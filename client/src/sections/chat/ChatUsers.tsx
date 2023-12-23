@@ -144,6 +144,10 @@ const ChatUsers = ({ socket }: any) => {
     socket.on("update_online_users", (onlineUsers: any) => {
       setOnlineUsers(onlineUsers);
     });
+
+    socket.on("disconnect", (data: any) => {
+      console.log(data);
+    });
   }, [socket, roomId]);
 
   return (
