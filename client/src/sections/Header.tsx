@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Header.scss";
 import "../styles/base.scss";
 import Icons from "../components/icons/Icons";
@@ -11,6 +11,7 @@ import { API_LINK } from "../default-value";
 import { changeBalance } from "../store/slice/walletSlice";
 function Header() {
   const [openMenu, setOpenMenu] = useState<Boolean>(false);
+  const navigation = useNavigate();
   const balance = useSelector((state: RootState) => state.wallet.balance);
   const user = useSelector((state: RootState) => state.account.user);
   const dispatch = useDispatch();
@@ -29,9 +30,25 @@ function Header() {
     if (!user) {
       if (userLocal) {
         getDataFromAccessToken(dispatch, userLocal);
+      } else {
+        if (
+          window.location.pathname == "/admin/order" ||
+          window.location.pathname == "/admin/product"
+        ) {
+          navigation("/");
+        }
       }
     } else {
       getWallet();
+    }
+
+    if (
+      window.location.pathname == "/admin/order" ||
+      window.location.pathname == "/admin/product"
+    ) {
+      if (user && user?.role != "admin") {
+        navigation("/");
+      }
     }
   }, [user]);
   const handleLogout = () => {
