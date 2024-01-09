@@ -6,7 +6,12 @@ import { API_IMAGES, API_LINK } from "../default-value";
 import { INew } from "../types/new";
 import Loading from "../components/Loading";
 import { IProduct } from "../types/product";
+import { RootState } from "../store/store";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 const ProductAdmin = () => {
+  const user = useSelector((state: RootState) => state.account.user);
+  const navigation = useNavigate();
   const [listNews, setListNews] = useState<IProduct[]>([]);
   const [idUpdate, setIdUpdate] = useState<string>("");
   const [data, setData] = useState({
@@ -135,6 +140,12 @@ const ProductAdmin = () => {
   useEffect(() => {
     fetchNews();
   }, []);
+
+  useEffect(() => {
+    if (user?.role != "admin") {
+      navigation("/");
+    }
+  }, [user]);
 
   return (
     <div className="newAdmin">

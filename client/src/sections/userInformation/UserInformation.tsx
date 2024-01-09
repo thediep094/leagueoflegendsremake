@@ -27,7 +27,7 @@ const User = () => {
     Aos.init({ duration: 1000 });
     fetchEncrypIdUser();
   }, []);
-  console.log(dataUser);
+
   return (
     <div className="userInformation">
       <div className="container">

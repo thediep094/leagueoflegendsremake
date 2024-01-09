@@ -3,8 +3,13 @@ import React, { useEffect, useState } from "react";
 import { API_LINK } from "../default-value";
 import "../styles/pages/Admin.scss";
 import Loading from "../components/Loading";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "../store/store";
 
 const OrderAdmin = () => {
+  const user = useSelector((state: RootState) => state.account.user);
+  const navigation = useNavigate();
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [filterStatus, setFilterStatus] = useState<string | null>(null);
@@ -63,7 +68,11 @@ const OrderAdmin = () => {
   useEffect(() => {
     fetchData();
   }, [filterStatus, sortOption]);
-
+  useEffect(() => {
+    if (user?.role != "admin") {
+      navigation("/");
+    }
+  }, [user]);
   return (
     <div className="newAdmin">
       <div className="container">

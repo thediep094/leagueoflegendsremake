@@ -98,10 +98,14 @@ const TeamPage = () => {
 
   const changePassword = async () => {
     try {
-      const res = await axios.put(`${API_LINK}/users/${user?._id}`, {
-        password: password,
-      });
-      alert("Change password successfully");
+      if (password != "") {
+        const res = await axios.put(`${API_LINK}/users/${user?._id}`, {
+          password: password,
+        });
+        alert("Change password successfully");
+      } else {
+        alert("Please enter new password!!");
+      }
     } catch (error) {
       console.log(error);
     }
