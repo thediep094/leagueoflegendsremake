@@ -221,14 +221,16 @@ const Product = () => {
 
               <div className="product-wrapper__info-heading">
                 <div className="product-wrapper__info-title">{data.name}</div>
-                <div className="product-wrapper__info-price">${data.price}</div>
+                <div className="product-wrapper__info-price">
+                  {data.price}VND
+                </div>
               </div>
 
               <div
                 className="product-wrapper__info-button"
                 onClick={() => handleAddToCart(data._id)}
               >
-                <ButtonShop name={`${data.price} - Add to Cart`} />
+                <ButtonShop name={`${data.price}VND - Add to Cart`} />
               </div>
 
               <div className="product-wrapper__info-alert">
